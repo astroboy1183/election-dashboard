@@ -6,6 +6,7 @@ from backend.db import get_session
 from backend.models import State, Candidate, Constituency, Alliance, Party, HistoricalResult, NotaPerAC
 from backend.config.states import STATE_CONFIG
 from backend.config.alliances import ALLIANCES
+from backend._cache import ttl_cache
 
 router = APIRouter()
 
@@ -33,6 +34,7 @@ def all_states(response: Response):
 
 
 @router.get("/dashboard-summary")
+@ttl_cache(seconds=600)  # 5.7s → 5ms after first hit. Powers the Home hero stat cards.
 def dashboard_summary(response: Response, session: Session = Depends(get_session)):
     # Updates only on the weekly scrape — a 5-min browser cache is safe.
     response.headers["Cache-Control"] = "public, max-age=300"
