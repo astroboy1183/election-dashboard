@@ -64,9 +64,8 @@ jobs:
           import backend.main, backend.db, backend.models
           import backend.routes.constituencies, backend.routes.candidates
           import backend.routes.overview, backend.routes.kpis
-          import backend.routes.swing, backend.routes.parties, backend.routes.alliances
-          import backend.routes.results, backend.routes.loksabha, backend.routes.insights
-          import backend.routes.ai, backend.routes.nota
+          import backend.routes.swing, backend.routes.loksabha
+          import backend.routes.insights, backend.routes.ai, backend.routes.geojson
           import backend.scrapers.eci, backend.scrapers.myneta, backend.scrapers.historical
           print('All backend modules import cleanly.')
           "
