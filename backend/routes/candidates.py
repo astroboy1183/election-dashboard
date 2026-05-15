@@ -5,11 +5,13 @@ from backend.db import get_session
 from backend.models import Candidate, Constituency
 from backend.config.states import STATE_CONFIG
 from backend.config.alliances import ALLIANCES
+from backend._cache import ttl_cache
 
 router = APIRouter()
 
 
 @router.get("/{state}/party-analytics")
+@ttl_cache(seconds=600)  # 1.2s → 5ms after first hit
 def party_analytics(state: str, session: Session = Depends(get_session)):
     """
     Per-party analytics that go beyond Overview/Swing's basic seat counts:

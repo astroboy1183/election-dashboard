@@ -5,11 +5,13 @@ from backend.db import get_session
 from backend.models import Candidate, Constituency, HistoricalResult
 from backend.config.states import STATE_CONFIG
 from backend.config.alliances import ALLIANCES
+from backend._cache import ttl_cache
 
 router = APIRouter()
 
 
 @router.get("/{state}/swing")
+@ttl_cache(seconds=600)  # 6.6s → 5ms after first hit. DB only updates weekly.
 def swing_analysis(state: str, session: Session = Depends(get_session)):
     if state not in STATE_CONFIG:
         raise HTTPException(404, "State not found")

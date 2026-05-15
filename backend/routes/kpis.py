@@ -13,6 +13,7 @@ from typing import Any
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlmodel import Session, select, func
+from backend._cache import ttl_cache
 
 from backend.config.states import STATE_CONFIG
 from backend.db import get_session
@@ -68,6 +69,7 @@ def _ac_match_2021_to_2026(state: str, session: Session) -> dict[int, dict]:
 # ─────────────────────────  /api/{state}/kpis  ─────────────────────────
 
 @router.get("/{state}/kpis")
+@ttl_cache(seconds=600)  # 4s → 5ms after first hit
 def state_kpis(state: str, session: Session = Depends(get_session)) -> dict[str, Any]:
     if state not in STATE_CONFIG:
         raise HTTPException(404, "Unknown state")
