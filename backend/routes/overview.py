@@ -123,8 +123,9 @@ def dashboard_summary(response: Response, session: Session = Depends(get_session
         ).first() or 0
         polled = (cand_total or 0) + (nota_total or 0)
         share = round(nota_total / polled * 100, 2) if polled else 0
-        # NOTA-decided count: per-AC join.
-        decided_count = 0
+        # NOTA-decided seats: per-AC join. Now we also collect the seat details
+        # so the Home page can pop a modal listing them on click.
+        decided_seats: list[dict] = []
         for con in session.exec(select(Constituency).where(Constituency.state_slug == slug)).all():
             nota_row = session.exec(
                 select(NotaPerAC.votes)
@@ -145,22 +146,51 @@ def dashboard_summary(response: Response, session: Session = Depends(get_session
             ).first() or 0
             margin = winner.votes - runner_up_votes
             if margin > 0 and nota_row > margin:
-                decided_count += 1
+                decided_seats.append({
+                    "ac_number": con.ac_number,
+                    "ac_name": con.name,
+                    "district": con.district,
+                    "winner": winner.name,
+                    "party": winner.party,
+                    "margin": int(margin),
+                    "nota_votes": int(nota_row),
+                })
+        # Sort by NOTA/margin ratio descending — "most NOTA-decided" first.
+        decided_seats.sort(key=lambda s: -s["nota_votes"] / max(s["margin"], 1))
         nota_by_state.append({
             "state": slug, "name": cfg["name"],
             "total_nota": int(nota_total), "polled": int(polled),
-            "share_pct": share, "decided_count": decided_count,
+            "share_pct": share,
+            "decided_count": len(decided_seats),
+            "decided_seats": decided_seats,
         })
     total_nota_all = sum(n["total_nota"] for n in nota_by_state)
     total_decided_all = sum(n["decided_count"] for n in nota_by_state)
 
-    # Cross-state party share: top 8 parties by total MLAs across all states.
-    party_totals: dict[str, int] = {}
+    # Cross-state party share: top 8 parties by total MLAs across all states,
+    # with 2021 baseline so the Home page can show "+47 vs 2021" deltas.
+    party_totals_2026: dict[str, int] = {}
     for c in all_winners:
-        party_totals[c.party] = party_totals.get(c.party, 0) + 1
-    top_parties = sorted(party_totals.items(), key=lambda kv: -kv[1])[:8]
+        party_totals_2026[c.party] = party_totals_2026.get(c.party, 0) + 1
+    # 2021 seat count per party — from HistoricalResult.is_winner across the
+    # 5 covered states. Note: 2021 alliance affiliations differed but a raw
+    # seat count is what the UI displays, so the comparison is apples-to-apples.
+    rows_2021 = session.exec(
+        select(HistoricalResult.party, func.count(HistoricalResult.id))
+        .where(HistoricalResult.year == 2021)
+        .where(HistoricalResult.is_winner == True)
+        .group_by(HistoricalResult.party)
+    ).all()
+    party_totals_2021: dict[str, int] = {p: int(n) for p, n in rows_2021}
+    top_parties = sorted(party_totals_2026.items(), key=lambda kv: -kv[1])[:8]
     party_share = [
-        {"party": p, "seats": n, "pct": round(n / total_mlas * 100, 1) if total_mlas else 0}
+        {
+            "party": p,
+            "seats": n,
+            "pct": round(n / total_mlas * 100, 1) if total_mlas else 0,
+            "seats_2021": party_totals_2021.get(p, 0),
+            "delta": n - party_totals_2021.get(p, 0),
+        }
         for p, n in top_parties
     ]
 

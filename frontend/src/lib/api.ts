@@ -120,7 +120,7 @@ export interface DashboardSummary {
   avg_mla_age: number | null
   hung_states: number
   decisive_states: number
-  top_parties: { party: string; seats: number; pct: number }[]
+  top_parties: { party: string; seats: number; pct: number; seats_2021: number; delta: number }[]
   nota_by_state: {
     state: string
     name: string
@@ -128,6 +128,15 @@ export interface DashboardSummary {
     polled: number
     share_pct: number
     decided_count: number
+    decided_seats: {
+      ac_number: number
+      ac_name: string
+      district: string
+      winner: string
+      party: string
+      margin: number
+      nota_votes: number
+    }[]
   }[]
   total_nota_votes_all_states: number
   total_nota_decided_seats_all_states: number
