@@ -1,0 +1,27 @@
+# Render Blueprint — defines the FastAPI backend service.
+# Render auto-deploys on every push to main once you connect the repo.
+# Docs: https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: election-dashboard-api
+    runtime: python
+    plan: free                  # bump to "starter" for no cold-starts
+    region: singapore           # closest to India for AC dashboard users
+    branch: main
+    rootDir: .
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/states
+    autoDeploy: true            # redeploy on every push to main
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12
+      # Set CORS_ORIGINS to your Vercel URL in the Render dashboard once you
+      # know it (e.g. https://election-dashboard.vercel.app). Comma-separated
+      # if you have multiple (preview deployments etc.).
+      - key: CORS_ORIGINS
+        sync: false             # marked as a secret — set in dashboard, not in repo
+      # Optional: ANTHROPIC_API_KEY for the /api/ai/ask endpoint. Without it the
+      # endpoint returns 503 and the rest of the dashboard works fine.
+      - key: ANTHROPIC_API_KEY
+        sync: false

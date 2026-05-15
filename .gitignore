@@ -1,0 +1,65 @@
+# ─────────────────────────  Secrets  ─────────────────────────
+# Never commit env files. `.env.example` is the safe template you CAN commit.
+.env
+.env.local
+.env.*.local
+*.env
+!.env.example
+!scripts/*.env.example
+
+# ─────────────────────────  Python  ─────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+
+# ─────────────────────────  Node / frontend  ─────────────────────────
+node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/.parcel-cache/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ─────────────────────────  Editor / OS  ─────────────────────────
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ─────────────────────────  Project-specific  ─────────────────────────
+# AI response cache — regenerated on demand from the live DB.
+data/ai_cache/
+
+# Probe-script run logs and the eci-changes alert log.
+logs/
+
+# SQLite write-ahead logs (DB itself IS committed — see notes in README).
+data/election.db-wal
+data/election.db-shm
+
+# Local backup + sandbox copies of the DB — never commit (each is 1.4 MB and bloats history).
+data/election.db.backup-*
+data/election.db.sandbox-*
+data/*.db-journal
+
+# Local scratch / dev files.
+*.bak
+.scratch/
+
+# Local Claude Code state (per-developer; don't commit).
+.claude/

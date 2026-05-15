@@ -1,0 +1,546 @@
+@import "tailwindcss";
+
+:root {
+  /* Theme — deeper navy with cyan/violet ambient accents */
+  --bg-primary: #07091a;
+  --bg-secondary: #0e1226;
+  --bg-card: #161b32;
+  --bg-card-hover: #1d2440;
+  --border: #2a3258;
+  --border-strong: #3d4880;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+
+  /* Accent palette */
+  --accent: #a78bfa;            /* violet 400 */
+  --accent-strong: #8b5cf6;     /* violet 500 */
+  --accent-cyan: #67e8f9;       /* cyan 300 */
+  --accent-glow: rgba(167, 139, 250, 0.28);
+  --accent-glow-soft: rgba(167, 139, 250, 0.12);
+  --cyan-glow: rgba(103, 232, 249, 0.18);
+
+  /* Political theme accents */
+  --saffron: #ff9933;
+  --white: #ffffff;
+  --green: #138808;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg-primary);
+  /* ───── Political-theme backdrop ─────
+     Layered from back to front:
+     1. Saffron wash at the top-left  (Indian flag's top band)
+     2. Green wash at the bottom-right (Indian flag's bottom band)
+     3. Indigo chakra glow in the centre (Ashoka Chakra hue)
+     4. Subtle violet/cyan ambience to keep the analytical mood
+     5. Soft grid lines for texture
+     All opacities are intentionally low so text stays readable. */
+  background-image:
+    radial-gradient(ellipse at 10% -5%,   rgba(255, 153, 51, 0.11) 0%, transparent 45%),
+    radial-gradient(ellipse at 90% 105%,  rgba(19, 136, 8, 0.10)   0%, transparent 45%),
+    radial-gradient(circle  at 50% 55%,   rgba(21, 101, 192, 0.07) 0%, transparent 40%),
+    radial-gradient(ellipse at 20% -10%,  rgba(139, 92, 246, 0.10) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 110%,  rgba(103, 232, 249, 0.07) 0%, transparent 55%),
+    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+  background-size: auto, auto, auto, auto, auto, 36px 36px, 36px 36px;
+  background-attachment: fixed;
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+}
+
+/* Faint Ashoka Chakra watermark — fixed in the bottom-right of the viewport.
+   Rendered as inline SVG so it's pure CSS, no asset file needed.
+   Opacity is tuned so it's perceived as ambient texture, not decoration. */
+body::before {
+  content: "";
+  position: fixed;
+  bottom: -100px;
+  right: -100px;
+  width: 520px;
+  height: 520px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><g fill='none' stroke='%231565C0' stroke-width='0.5' stroke-linecap='round'><circle cx='50' cy='50' r='48'/><circle cx='50' cy='50' r='6' fill='%231565C0'/><g stroke-width='0.45'>");
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' opacity='0.7'><circle cx='0' cy='0' r='46' fill='none' stroke='%231565C0' stroke-width='1.2'/><circle cx='0' cy='0' r='5' fill='%231565C0'/><g stroke='%231565C0' stroke-width='0.7' stroke-linecap='round'><line x1='0' y1='-46' x2='0' y2='46'/><line x1='-46' y1='0' x2='46' y2='0'/><line x1='-32.5' y1='-32.5' x2='32.5' y2='32.5'/><line x1='-32.5' y1='32.5' x2='32.5' y2='-32.5'/><line x1='-12' y1='-44.4' x2='12' y2='44.4'/><line x1='12' y1='-44.4' x2='-12' y2='44.4'/><line x1='-23.5' y1='-39.5' x2='23.5' y2='39.5'/><line x1='23.5' y1='-39.5' x2='-23.5' y2='39.5'/><line x1='-39.5' y1='-23.5' x2='39.5' y2='23.5'/><line x1='39.5' y1='-23.5' x2='-39.5' y2='23.5'/><line x1='-44.4' y1='-12' x2='44.4' y2='12'/><line x1='44.4' y1='-12' x2='-44.4' y2='12'/></g></svg>");
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.06;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(0.3px);
+}
+
+/* Ensure all real content sits above the watermark */
+#root { position: relative; z-index: 1; }
+
+#root { width: 100%; min-height: 100vh; }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 4px;
+  border: 2px solid var(--bg-primary);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* ───── Cards with ambient glow ─────
+   Two layers of box-shadow:
+   1. Soft outer glow (the "ambient light" — colored)
+   2. Hard drop shadow (depth)
+   On hover: lift, scale subtly, brighten the glow.
+   Inner highlight (::before) gives a glass top-edge sheen. */
+.card,
+.stat-card {
+  position: relative;
+  /* Two-layer background: a violet-tinted ambient wash at the top-right corner,
+     blended into the base navy gradient. Gives every card a faint "lit from above"
+     mood at rest, before any hover interaction. */
+  background:
+    radial-gradient(ellipse 80% 60% at 100% 0%, rgba(139, 92, 246, 0.10) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 0% 100%, rgba(103, 232, 249, 0.06) 0%, transparent 50%),
+    linear-gradient(180deg, rgba(26, 32, 58, 0.95) 0%, rgba(18, 22, 42, 0.92) 100%);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.25rem;
+  box-shadow:
+    /* ambient violet glow — stronger at rest now */
+    0 0 32px -10px var(--accent-glow),
+    /* inner highlight */
+    0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    /* outer depth */
+    0 10px 30px -10px rgba(0, 0, 0, 0.55),
+    0 2px 8px rgba(0, 0, 0, 0.25);
+  transition:
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.28s ease;
+  overflow: hidden;
+  will-change: transform;
+}
+.stat-card {
+  border-radius: 14px;
+  padding: 1rem 1.25rem;
+}
+
+/* Glass sheen along top edge */
+.card::before,
+.stat-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(180deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    transparent 45%);
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+/* Soft radial halo at the top — visible at rest, brighter on hover.
+   This is the "ambient lamp" effect that makes every card feel inhabited. */
+.card::after,
+.stat-card::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% -10%,
+    var(--accent-glow) 0%,
+    transparent 55%);
+  opacity: 0.55;            /* visible at rest, not just on hover */
+  transition: opacity 0.35s ease;
+}
+
+.card:hover,
+.stat-card:hover {
+  transform: translateY(-4px) scale(1.005);
+  border-color: var(--accent-strong);
+  box-shadow:
+    /* ambient violet + cyan dual glow on hover */
+    0 0 56px -8px var(--accent-glow),
+    0 0 90px -16px var(--cyan-glow),
+    0 1px 0 rgba(255, 255, 255, 0.12) inset,
+    0 20px 50px -10px rgba(0, 0, 0, 0.7),
+    0 6px 16px rgba(0, 0, 0, 0.35);
+}
+.card:hover::before,
+.stat-card:hover::before { opacity: 1; }
+.card:hover::after,
+.stat-card:hover::after { opacity: 1; }
+
+.stat-card:hover {
+  transform: translateY(-5px) scale(1.015);
+}
+
+/* ───── Typography ───── */
+.page-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.025em;
+  background: linear-gradient(135deg, #f1f5f9 0%, var(--accent) 60%, var(--accent-cyan) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 32px rgba(167, 139, 250, 0.25);
+}
+
+.section-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  margin-bottom: 0.875rem;
+}
+
+/* ───── Tables ───── */
+table { border-collapse: collapse; width: 100%; }
+th {
+  background: rgba(14, 18, 38, 0.95);
+  backdrop-filter: blur(8px);
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.75rem 0.85rem;
+  text-align: left;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  border-bottom: 1px solid var(--border-strong);
+}
+td {
+  padding: 0.7rem 0.85rem;
+  font-size: 0.875rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-primary);
+  vertical-align: middle;
+}
+tr {
+  transition: background 0.18s ease;
+}
+tr:hover td {
+  background: rgba(167, 139, 250, 0.07);
+  cursor: pointer;
+}
+tr:last-child td { border-bottom: none; }
+
+/* ───── Badges ───── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0.28rem 0.65rem 0.28rem 0.32rem;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  line-height: 1;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.badge:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+.badge-green  { background: rgba(34,197,94,0.18);  color: #4ade80; border: 1px solid rgba(34,197,94,0.30); }
+.badge-yellow { background: rgba(234,179,8,0.18);  color: #facc15; border: 1px solid rgba(234,179,8,0.30); }
+.badge-blue   { background: rgba(167,139,250,0.20); color: var(--accent); border: 1px solid rgba(167,139,250,0.32); }
+
+/* ───── Tricolor strip ───── */
+.tricolor-strip {
+  height: 3px;
+  background: linear-gradient(90deg,
+    var(--saffron) 0%, var(--saffron) 33%,
+    rgba(255,255,255,0.85) 33%, rgba(255,255,255,0.85) 66%,
+    var(--green) 66%, var(--green) 100%);
+  border-radius: 2px;
+  opacity: 0.6;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 8px rgba(255, 153, 51, 0.18);
+}
+
+/* ───── Buttons ───── */
+button {
+  transition: background 0.18s ease, border-color 0.18s ease,
+              transform 0.12s ease, color 0.18s ease,
+              box-shadow 0.18s ease;
+}
+button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+* { transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
+
+/* ───── Fade-in on page load ───── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+main > * {
+  animation: fadeInUp 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Subtle ambient pulse — pulses the outer GLOW only, never the card's opacity,
+   so content inside (party logos, numbers) stays at full visibility. */
+@keyframes ambientPulse {
+  0%, 100% { box-shadow:
+    0 0 28px -12px var(--accent-glow),
+    0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 10px 30px -10px rgba(0, 0, 0, 0.55),
+    0 2px 8px rgba(0, 0, 0, 0.25); }
+  50%      { box-shadow:
+    0 0 44px -10px var(--accent-glow),
+    0 1px 0 rgba(255, 255, 255, 0.08) inset,
+    0 12px 34px -10px rgba(0, 0, 0, 0.55),
+    0 2px 8px rgba(0, 0, 0, 0.25); }
+}
+.card,
+.stat-card {
+  animation: ambientPulse 6s ease-in-out infinite;
+}
+/* Pause the pulse on hover so the hover shadow isn't fighting the keyframe. */
+.card:hover,
+.stat-card:hover {
+  animation: none;
+}
+
+::selection {
+  background: rgba(167, 139, 250, 0.35);
+  color: var(--text-primary);
+}
+
+/* ───── Tabular numerals ─────
+   Election tables live on columns of numbers — tabular figures keep them
+   perfectly aligned regardless of which digits appear. Applied globally to
+   every <td> and any element that opts in with the `.tabular` class. */
+td, .tabular, .num {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1, 'lnum' 1;
+}
+
+/* ───── Skeleton loading placeholder ─────
+   Pulsing gray block used while data is fetching. Match the final layout's
+   shape (height/width) so the page doesn't jump when data arrives. */
+@keyframes skeletonShimmer {
+  0%   { background-position: -200px 0; }
+  100% { background-position: calc(200px + 100%) 0; }
+}
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.04) 0%,
+    rgba(167,139,250,0.10) 50%,
+    rgba(255,255,255,0.04) 100%
+  );
+  background-size: 200px 100%;
+  background-repeat: no-repeat;
+  background-color: rgba(255,255,255,0.04);
+  border-radius: 6px;
+  animation: skeletonShimmer 1.4s ease-in-out infinite;
+  display: block;
+}
+
+/* ───── Responsive breakpoints ─────
+   The dashboard was built for desktop first. These rules adapt it to:
+     - Tablet  (≤ 960px): sidebar shrinks/collapses, KPIs reflow to 2-col
+     - Mobile  (≤ 640px): sidebar drawers in, all grids stack, tables horiz-scroll
+   We intentionally do this in plain CSS rather than per-component JS so it
+   applies uniformly without touching every page's inline styles. */
+@media (max-width: 960px) {
+  /* Hide the desktop sidebar; a hamburger button takes over (see Sidebar.tsx). */
+  .sidebar-desktop { display: none !important; }
+  .main-content { margin-left: 0 !important; }
+  /* Reflow 4-column KPI grids to 2-column on tablet. */
+  .kpi-grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  /* Reflow 2-column overview grids to single column. */
+  .col-2 { grid-template-columns: 1fr !important; }
+  /* Page padding tightens. */
+  main { padding: 1.25rem !important; }
+  .page-title { font-size: 1.4rem !important; }
+}
+@media (max-width: 640px) {
+  .kpi-grid-4 { grid-template-columns: 1fr !important; }
+  /* Make wide tables horizontally scrollable instead of overflowing the page. */
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  /* Fallback for any table inside a card that wasn't explicitly wrapped — gives
+     mobile users a horizontal scroller instead of letting the table push the
+     layout out. */
+  .card > table,
+  .card > div > table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  th, td { padding: 0.55rem 0.6rem !important; font-size: 0.8rem !important; }
+  /* Compact filter rows that used flex-wrap. */
+  .filter-row { gap: 0.5rem !important; }
+  .filter-row > * { flex: 1 1 100% !important; min-width: 0 !important; }
+  main { padding: 0.85rem !important; }
+  .page-title { font-size: 1.2rem !important; }
+  /* Smaller card padding on phones. */
+  .card { padding: 0.95rem !important; border-radius: 12px !important; }
+  /* Hide secondary table columns when too narrow. */
+  .hide-mobile { display: none !important; }
+}
+
+/* ───── Mobile sidebar drawer ───── */
+.sidebar-mobile-trigger {
+  display: none;
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 60;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  color: var(--text-primary);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+.sidebar-mobile-trigger:active { transform: scale(0.95); }
+@media (max-width: 960px) {
+  .sidebar-mobile-trigger { display: flex; }
+}
+.sidebar-mobile-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(7, 9, 26, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 70;
+  animation: fadeInUp 0.18s ease-out;
+}
+.sidebar-mobile-drawer {
+  position: fixed; top: 0; left: 0; bottom: 0;
+  width: 260px; max-width: 80vw;
+  z-index: 71;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border-strong);
+  overflow-y: auto;
+  box-shadow: 8px 0 32px rgba(0,0,0,0.5);
+  animation: slideInLeft 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(0); }
+}
+
+/* ───── Command palette (⌘K) ───── */
+.cmdk-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(7, 9, 26, 0.65);
+  backdrop-filter: blur(8px);
+  z-index: 200;
+  display: flex;
+  justify-content: center;
+  padding-top: 12vh;
+  animation: fadeInUp 0.16s ease-out;
+}
+.cmdk-shell {
+  width: min(640px, 92vw);
+  max-height: 70vh;
+  background: linear-gradient(180deg, rgba(26, 32, 58, 0.98) 0%, rgba(14, 18, 38, 0.98) 100%);
+  border: 1px solid var(--border-strong);
+  border-radius: 14px;
+  box-shadow: 0 30px 80px -10px rgba(0,0,0,0.7), 0 0 60px -10px var(--accent-glow);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.cmdk-input {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-primary);
+  font-size: 1rem;
+  outline: none;
+}
+.cmdk-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.4rem 0;
+}
+.cmdk-group {
+  padding: 0.4rem 0.85rem 0.2rem;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+.cmdk-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0.55rem 0.85rem;
+  margin: 0 0.4rem;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--text-primary);
+  font-size: 0.88rem;
+  border: 1px solid transparent;
+}
+.cmdk-item[data-active="true"] {
+  background: rgba(167, 139, 250, 0.12);
+  border-color: rgba(167, 139, 250, 0.35);
+}
+.cmdk-item-icon {
+  width: 28px; height: 28px;
+  border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(167, 139, 250, 0.12);
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+.cmdk-item-meta {
+  margin-left: auto;
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+}
+.cmdk-empty {
+  padding: 2rem;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+.cmdk-footer {
+  padding: 0.5rem 0.85rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  display: flex;
+  gap: 14px;
+  justify-content: flex-end;
+}
+.kbd {
+  display: inline-block;
+  padding: 0.08rem 0.35rem;
+  font-size: 0.66rem;
+  font-family: inherit;
+  font-weight: 700;
+  color: var(--text-secondary);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin: 0 2px;
+}

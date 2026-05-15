@@ -1,0 +1,102 @@
+name: Scheduled ECI scrape
+
+on:
+  # Sunday 06:00 UTC = Sunday 11:30 IST. ECI rarely updates AC-result data
+  # post-election, so a weekly cadence is plenty for ongoing reconciliation.
+  schedule:
+    - cron: '0 6 * * 0'
+  # Allow manual triggering from the Actions tab when we need a fresh pull.
+  workflow_dispatch:
+
+# Only one scrape runs at a time — if the schedule and a manual run overlap,
+# the manual run waits.
+concurrency:
+  group: scrape
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    name: Run ECI probe + commit DB changes
+    runs-on: ubuntu-latest
+    permissions:
+      # Required so the workflow can push the updated DB back to main.
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Use the default GITHUB_TOKEN with the contents:write permission above
+          # so the workflow can push back. fetch-depth: 0 keeps the full history
+          # so the commit graph survives.
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Snapshot DB row counts (before)
+        id: before
+        run: |
+          python -c "
+          import sqlite3, json
+          con = sqlite3.connect('data/election.db')
+          cur = con.cursor()
+          cur.execute(\"SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'\")
+          rows = {t: cur.execute(f'SELECT COUNT(*) FROM {t}').fetchone()[0] for t, in cur.fetchall()}
+          print(json.dumps(rows, indent=2))
+          with open('/tmp/snapshot_before.json', 'w') as f:
+              json.dump(rows, f)
+          "
+
+      - name: Run ECI probe (detect changes)
+        run: |
+          python scripts/probe_eci.py || true
+
+      # Reseed only if ECI probe reported changes. The probe writes to
+      # data/.eci_hashes.json; a different hash means new data.
+      - name: Re-seed from ECI (if changes detected)
+        run: |
+          # If the eci_hashes file changed since the last commit, re-run the seed.
+          if git diff --quiet data/.eci_hashes.json; then
+            echo "No ECI changes detected — skipping reseed."
+          else
+            echo "ECI changes detected — running full reseed."
+            python -m backend.seed
+          fi
+
+      - name: Snapshot DB row counts (after)
+        run: |
+          python -c "
+          import sqlite3, json
+          con = sqlite3.connect('data/election.db')
+          cur = con.cursor()
+          cur.execute(\"SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'\")
+          rows = {t: cur.execute(f'SELECT COUNT(*) FROM {t}').fetchone()[0] for t, in cur.fetchall()}
+          print(json.dumps(rows, indent=2))
+          with open('/tmp/snapshot_after.json', 'w') as f:
+              json.dump(rows, f)
+          "
+
+      - name: Commit DB changes (if any)
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          # Stage only the DB + hash file; never let unrelated files sneak in.
+          git add data/election.db data/.eci_hashes.json 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "::notice::No DB changes to commit."
+          else
+            DIFF_SUMMARY=$(diff /tmp/snapshot_before.json /tmp/snapshot_after.json || true)
+            git commit -m "chore(data): weekly ECI refresh
+
+          $DIFF_SUMMARY
+
+          🤖 Auto-committed by .github/workflows/scrape.yml"
+            git push
+            echo "::notice::Committed and pushed DB changes."
+          fi
