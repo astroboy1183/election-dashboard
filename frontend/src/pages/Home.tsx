@@ -429,6 +429,7 @@ function formatRelative(iso: string): string {
 }
 
 export default function Home() {
+  const navigate = useNavigate()
   const { data: states, isLoading, isError } = useStates()
   const { data: summary } = useDashboardSummary()
   const [statModal, setStatModal] = useState<StatModalKind | null>(null)
