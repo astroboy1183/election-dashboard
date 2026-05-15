@@ -3,9 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { MapContainer, TileLayer, GeoJSON, useMap } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
-import axios from 'axios'
 import L from 'leaflet'
-import { useConstituencies, useOverview, useLokSabha } from '../lib/api'
+import { api, useConstituencies, useOverview, useLokSabha } from '../lib/api'
 import PartyLogo from '../components/PartyLogo'
 import InsightsCard, { type Insight } from '../components/InsightsCard'
 import { fmtIN } from '../lib/format'
@@ -41,7 +40,7 @@ export default function MapView() {
   const { data: lsData } = useLokSabha(state!)
   const { data: geoData, isLoading: geoLoading, error: geoError } = useQuery<any>({
     queryKey: ['geojson', state],
-    queryFn: () => axios.get(`/api/${state}/geojson`).then(r => r.data),
+    queryFn: () => api.get(`/${state}/geojson`).then(r => r.data),
     enabled: !!state,
     staleTime: Infinity,
   })

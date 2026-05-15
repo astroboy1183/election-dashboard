@@ -1,8 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useQueries } from '@tanstack/react-query'
-import axios from 'axios'
-import { useStates } from '../lib/api'
+import { api, useStates } from '../lib/api'
 
 /**
  * Global ⌘K / Ctrl+K command palette.
@@ -45,13 +44,13 @@ export default function CommandPalette() {
     queries: (states ?? []).flatMap(s => [
       {
         queryKey: ['cmdk-constituencies', s.slug],
-        queryFn: () => axios.get(`/api/${s.slug}/constituencies`).then(r => r.data),
+        queryFn: () => api.get(`/${s.slug}/constituencies`).then(r => r.data),
         enabled,
         staleTime: 5 * 60 * 1000,
       },
       {
         queryKey: ['cmdk-overview', s.slug],
-        queryFn: () => axios.get(`/api/${s.slug}/overview`).then(r => r.data),
+        queryFn: () => api.get(`/${s.slug}/overview`).then(r => r.data),
         enabled,
         staleTime: 5 * 60 * 1000,
       },

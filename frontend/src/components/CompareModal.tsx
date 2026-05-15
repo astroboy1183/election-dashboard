@@ -1,9 +1,8 @@
 import { useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useQueries } from '@tanstack/react-query'
-import axios from 'axios'
 import {
-  compareEntities, useStates,
+  api, compareEntities, useStates,
   type CompareKind, type CompareResponse, type CompareSide,
 } from '../lib/api'
 import { useEscapeKey } from '../lib/useEscapeKey'
@@ -245,10 +244,10 @@ function SidePicker({
   const overviewQ = useQueries({
     queries: [
       { queryKey: ['overview', side.state],
-        queryFn: () => axios.get(`/api/${side.state}/overview`).then(r => r.data),
+        queryFn: () => api.get(`/${side.state}/overview`).then(r => r.data),
         enabled: !!side.state },
       { queryKey: ['constituencies', side.state],
-        queryFn: () => axios.get(`/api/${side.state}/constituencies`).then(r => r.data),
+        queryFn: () => api.get(`/${side.state}/constituencies`).then(r => r.data),
         enabled: !!side.state },
     ],
   })

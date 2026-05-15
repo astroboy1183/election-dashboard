@@ -1,8 +1,7 @@
 import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useQueries } from '@tanstack/react-query'
-import axios from 'axios'
-import { useStates, useDashboardSummary } from '../lib/api'
+import { api, useStates, useDashboardSummary } from '../lib/api'
 import type { StateInfo } from '../lib/types'
 import InsightsCard, { type Insight } from '../components/InsightsCard'
 import { CountUp } from '../components/CountUp'
@@ -440,7 +439,7 @@ export default function Home() {
   const overviewQueries = useQueries({
     queries: (states ?? []).map(s => ({
       queryKey: ['overview', s.slug],
-      queryFn: () => axios.get(`/api/${s.slug}/overview`).then(r => r.data as StateOverview),
+      queryFn: () => api.get(`/${s.slug}/overview`).then(r => r.data as StateOverview),
       enabled: !!states,
       staleTime: 5 * 60 * 1000,
     })),

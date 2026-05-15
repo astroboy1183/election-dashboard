@@ -1,7 +1,6 @@
 import { useState } from 'react'
-import axios from 'axios'
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom'
-import { useConstituencies, useResults } from '../lib/api'
+import { api, useConstituencies, useResults } from '../lib/api'
 import PartyLogo from '../components/PartyLogo'
 import SortableTh from '../components/SortableTh'
 import { useSortable } from '../lib/useSortable'
@@ -131,7 +130,7 @@ export default function Results() {
     try {
       // Fetch the full filtered set (not just the current page) in one shot.
       const exportParams = { ...params, limit: 100000, offset: 0 }
-      const res = await axios.get(`/api/${state}/candidates`, { params: exportParams })
+      const res = await api.get(`/${state}/candidates`, { params: exportParams })
       const rows: any[] = res.data.candidates ?? []
       const headers = [
         'ac_number', 'constituency', 'district', 'rank', 'name', 'party',
