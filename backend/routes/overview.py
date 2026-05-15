@@ -1,6 +1,6 @@
 from datetime import datetime
 from pathlib import Path
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Response
 from sqlmodel import Session, select, func
 from backend.db import get_session
 from backend.models import State, Candidate, Constituency, Alliance, Party, HistoricalResult, NotaPerAC
@@ -11,7 +11,10 @@ router = APIRouter()
 
 
 @router.get("/states")
-def all_states():
+def all_states(response: Response):
+    # Static config — list of 5 states only changes when we add a new state to
+    # the dashboard. Cache aggressively at browser + CDN.
+    response.headers["Cache-Control"] = "public, max-age=3600"
     return [
         {
             "slug": slug,
@@ -28,7 +31,9 @@ def all_states():
 
 
 @router.get("/dashboard-summary")
-def dashboard_summary(session: Session = Depends(get_session)):
+def dashboard_summary(response: Response, session: Session = Depends(get_session)):
+    # Updates only on the weekly scrape — a 5-min browser cache is safe.
+    response.headers["Cache-Control"] = "public, max-age=300"
     """
     Cross-state aggregate numbers for the Home page hero strip + a last-updated
     timestamp (derived from the DB file's mtime). Derived from live data so

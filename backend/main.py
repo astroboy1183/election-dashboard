@@ -3,6 +3,7 @@ from pathlib import Path
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
 
 
 # ───── Auto-load env from project-root .env ─────
@@ -31,6 +32,10 @@ from backend.routes import overview, constituencies, swing, candidates, loksabha
 # the dashboard works normally.
 
 app = FastAPI(title="Election Dashboard API", version="1.0")
+
+# Gzip-compress responses >1 KB. Candidate-list and geojson payloads shrink
+# 60-80%, which matters a lot on the Render free tier's 0.1 CPU + India RTTs.
+app.add_middleware(GZipMiddleware, minimum_size=1000)
 
 # Comma-separated list of allowed origins. Dev defaults to localhost:5173;
 # in production set CORS_ORIGINS to your Vercel URL (e.g. https://myapp.vercel.app).
