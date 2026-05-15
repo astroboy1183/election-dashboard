@@ -10,7 +10,9 @@ from backend.config.alliances import ALLIANCES
 router = APIRouter()
 
 
-@router.get("/states")
+# Accept both GET and HEAD so free-tier UptimeRobot (HEAD-only) can ping us
+# as a keep-warm probe without 405'ing.
+@router.api_route("/states", methods=["GET", "HEAD"])
 def all_states(response: Response):
     # Static config — list of 5 states only changes when we add a new state to
     # the dashboard. Cache aggressively at browser + CDN.
