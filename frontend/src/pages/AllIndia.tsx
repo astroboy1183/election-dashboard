@@ -428,7 +428,7 @@ export default function AllIndia() {
                           style={{ cursor: 'pointer' }}
                           onClick={() => {
                             setNotaModalState(null)
-                            navigate(`/${notaModalState}/constituency/${s.ac_number}`)
+                            navigate(`/${notaModalState}/constituencies/${s.ac_number}`)
                           }}
                           title={`Open ${s.ac_name} drilldown`}
                         >
