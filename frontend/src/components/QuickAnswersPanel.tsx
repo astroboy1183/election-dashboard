@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { askAI, useQuickAnswers, useStates, type AskResponse } from '../lib/api'
+import { api, askAI, useQuickAnswers, useStates, type AskResponse, type QuickAnswersResponse } from '../lib/api'
 import { useEscapeKey } from '../lib/useEscapeKey'
 import { matchNavIntent } from '../lib/navIntent'
+import { matchQuestionIntent, CATEGORY_LABEL_PREFIX } from '../lib/questionIntent'
 import { Skeleton } from './Skeleton'
 
 /**
@@ -42,9 +43,8 @@ export default function QuickAnswersPanel({ open, onClose }: { open: boolean; on
     const question = q.trim()
     if (!question || asking) return
 
-    // Short-circuit: if this is a navigation phrase ("take me to X", "open Y
-    // map", etc.) resolve locally and route immediately. No need to spend an
-    // LLM round-trip on a UI command.
+    // Short-circuit 1: navigation phrases ("take me to X", "open Y map") —
+    // resolve locally and route immediately. No LLM round-trip needed.
     const navMatch = matchNavIntent(question, states ?? [], effectiveState)
     if (navMatch) {
       navigate(navMatch.to)
@@ -52,6 +52,35 @@ export default function QuickAnswersPanel({ open, onClose }: { open: boolean; on
       return
     }
 
+    // Short-circuit 2: curated-answer phrases ("closest contest in kerala",
+    // "richest MLA in west bengal", etc.) — fetch the pre-computed answer
+    // from the backend's quick-answers endpoint instead of hitting Claude.
+    const intent = matchQuestionIntent(question, states ?? [], effectiveState)
+    if (intent) {
+      setAsking(true); setAskError(null); setAskResult(null)
+      try {
+        const res = await api.get<QuickAnswersResponse>(`/insights/quick-answers/${intent.stateSlug}`)
+        const labelPrefix = CATEGORY_LABEL_PREFIX[intent.category]
+        const matched = res.data.answers.find(a => a.label.startsWith(labelPrefix))
+        if (matched) {
+          // Synthesize an AskResponse so the existing renderer reuses its UI.
+          // The trace marks this as a local lookup (no Claude call).
+          setAskResult({
+            answer: matched.answer,
+            model: 'local · curated quick-answer',
+            trace: [{ tool: `quick-answers:${intent.stateSlug}`, args: { category: intent.category }, ok: true }],
+          })
+          setAsking(false)
+          return
+        }
+        // Pattern matched but no curated answer with the expected prefix
+        // → fall through to Claude path below.
+      } catch {
+        // Network error fetching curated answers → fall through to Claude
+      }
+    }
+
+    // Fall through: hit Claude with the original question
     setAsking(true); setAskError(null); setAskResult(null)
     try {
       const res = await askAI(question, effectiveState)
@@ -185,6 +214,17 @@ export default function QuickAnswersPanel({ open, onClose }: { open: boolean; on
               )}
               {askResult && (
                 <>
+                  {askResult.model?.startsWith('local') && (
+                    <div style={{
+                      display: 'inline-flex', alignItems: 'center', gap: 4,
+                      fontSize: '0.66rem', fontWeight: 800, color: '#22c55e',
+                      padding: '0.12rem 0.45rem', borderRadius: 4,
+                      background: 'rgba(34,197,94,0.10)', border: '1px solid rgba(34,197,94,0.35)',
+                      marginBottom: 8, textTransform: 'uppercase', letterSpacing: '0.06em',
+                    }} title="Answered from pre-computed dashboard data — no LLM call.">
+                      ⚡ Instant · no API call
+                    </div>
+                  )}
                   <div style={{ fontSize: '0.9rem', lineHeight: 1.55, color: 'var(--text-primary)', whiteSpace: 'pre-wrap' }}>
                     {askResult.answer}
                   </div>

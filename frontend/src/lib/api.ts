@@ -148,6 +148,80 @@ export const useDashboardSummary = () =>
     queryFn: () => api.get('/dashboard-summary').then(r => r.data),
   })
 
+// ─────────────────────  Cross-state postal-ballot leads  ─────────────────────
+
+export interface PostalPartyRow {
+  party: string
+  evm_votes: number
+  postal_votes: number
+  total_votes: number
+  evm_share_pct: number
+  postal_share_pct: number
+  delta_pp: number              // postal% − evm%. positive = over-performs among postal voters.
+  seats_won: number             // ACs the party actually won (decided by total votes).
+  postal_seats_led: number      // ACs where the party had the highest postal_votes.
+  seat_delta: number            // postal_seats_led − seats_won.
+}
+
+export interface PostalLeads {
+  grand_total_postal: number
+  grand_total_evm: number
+  grand_total_polled: number
+  states: {
+    state: string
+    name: string
+    postal_total: number
+    evm_total: number
+    postal_share_of_polled: number
+    parties: PostalPartyRow[]
+    top_over_performer: PostalPartyRow | null
+    top_under_performer: PostalPartyRow | null
+    biggest_seat_divergence: PostalPartyRow | null
+  }[]
+}
+
+export const usePostalLeads = () =>
+  useQuery<PostalLeads>({
+    queryKey: ['postal-leads'],
+    queryFn: () => api.get('/postal-leads').then(r => r.data),
+  })
+
+// ─────────────  Postal 2021 → 2026 swing  ─────────────
+
+export interface PostalSwingPartyRow {
+  party: string
+  votes_2021: number
+  votes_2026: number
+  share_2021_pct: number
+  share_2026_pct: number
+  swing_pp: number       // share_2026 − share_2021 (in percentage points)
+  seats_led_2021: number // ACs the party led in postal votes in 2021
+  seats_led_2026: number // ACs the party led in postal votes in 2026
+  seat_swing: number     // seats_led_2026 − seats_led_2021
+}
+
+export interface PostalSwing {
+  states: {
+    state: string
+    name: string
+    postal_total_2021: number
+    postal_total_2026: number
+    acs_with_postal_2021: number
+    acs_with_postal_2026: number
+    parties: PostalSwingPartyRow[]
+    top_gainer: PostalSwingPartyRow | null
+    top_loser: PostalSwingPartyRow | null
+    top_seat_gainer: PostalSwingPartyRow | null
+    top_seat_loser: PostalSwingPartyRow | null
+  }[]
+}
+
+export const usePostalSwing = () =>
+  useQuery<PostalSwing>({
+    queryKey: ['postal-2021-vs-2026'],
+    queryFn: () => api.get('/postal-2021-vs-2026').then(r => r.data),
+  })
+
 // ─────────────────────  Per-state KPIs (composite)  ─────────────────────
 
 export interface StateKPIs {

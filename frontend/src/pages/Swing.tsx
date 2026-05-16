@@ -1,14 +1,14 @@
-import { useParams, useNavigate, useLocation } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom'
 import { useEffect, useMemo, useState } from 'react'
 import {
-  BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, ReferenceLine, CartesianGrid,
+  XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, ReferenceLine,
   ScatterChart, Scatter, ZAxis, LabelList,
 } from 'recharts'
 import { useSwing, useOverview, useSeatFlips, useAllianceBreakdown, useFlipMatrix, useDistrictSwing, useStateKPIs } from '../lib/api'
 import { useSortable, sortIcon } from '../lib/useSortable'
 import PartyLogo from '../components/PartyLogo'
 import SortableTh from '../components/SortableTh'
-import InsightsCard, { type Insight } from '../components/InsightsCard'
+import { type Insight } from '../components/InsightsCard'
 import { PageSkeleton, Skeleton } from '../components/Skeleton'
 import { Sparkline } from '../components/Sparkline'
 import { useEscapeKey } from '../lib/useEscapeKey'
@@ -313,7 +313,6 @@ function FlipsTable({
 
 export default function Swing() {
   const { state } = useParams<{ state: string }>()
-  const navigate = useNavigate()
   const location = useLocation()
   const { data, isLoading, isError, refetch } = useSwing(state!)
   const { data: overview } = useOverview(state!)
@@ -397,8 +396,8 @@ export default function Swing() {
   // Sortable-table hooks (must be declared before any early return)
   const { sorted: sortedAllianceSwing, sort: aSort, onSort: aOnSort } =
     useSortable<any>(allianceSwing, { key: 'seats_2026', dir: 'desc' })
-  const { sorted: sortedCloseContests, sort: cSort, onSort: cOnSort } =
-    useSortable<any>(data?.closest_contests ?? [], { key: 'margin', dir: 'asc' })
+  // Closest-contests sortable hook removed with the closest-contests table.
+  // The same data is now surfaced from Overview's Competition KPI tile modal.
 
   if (isError) {
     return (
@@ -443,8 +442,9 @@ export default function Swing() {
   const rulingAlliance2026 = [...allianceSwing].sort((a, b) => b.seats_2026 - a.seats_2026)[0]
   const powerShift = rulingAlliance2021?.id !== rulingAlliance2026?.id
 
-  // Top 8 for charts
-  const top = meaningful.slice(0, 8)
+  // (Removed: `top` slice was for the Vote Share Swing + Seats Won 2021 vs 2026
+  // bar charts that have been dropped. The scatter chart below uses
+  // `scatterData` directly.)
 
   // ─────────────────────  KEY INSIGHTS  ─────────────────────
   // Insights here intentionally SKIP power-shift / continuity and per-AC flip
@@ -584,7 +584,9 @@ export default function Swing() {
         </div>
       </div>
 
-      <InsightsCard insights={swingInsights} subtitle="2021 → 2026 narrative takeaways" />
+      {/* InsightsCard removed — The Story narrative above already serves as the
+          page's auto-generated takeaways. swingInsights still computed for
+          potential reuse elsewhere. */}
 
       {/* KPI cards row */}
       <div className="kpi-grid-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem', marginBottom: '1.5rem' }}>
@@ -774,79 +776,10 @@ export default function Swing() {
         </div>
       )}
 
-      {/* Two-column charts */}
-      <div className="col-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem', marginBottom: '1.5rem' }}>
-        <div className="card">
-          <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 6 }}>
-            <div className="section-title" style={{ marginBottom: 0 }}>Vote Share Swing (pp)</div>
-            <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>
-              <span style={{ color: '#22c55e', fontWeight: 700 }}>green = gained</span> · <span style={{ color: '#ef4444', fontWeight: 700 }}>red = lost</span>
-            </div>
-          </div>
-          <ResponsiveContainer width="100%" height={260}>
-            <BarChart data={top} layout="vertical" margin={{ left: 10, right: 60, top: 5 }}>
-              <CartesianGrid strokeDasharray="2 4" stroke="var(--border)" horizontal={false} />
-              <XAxis type="number" tick={{ fontSize: 11, fill: 'var(--text-secondary)' }} unit="pp" />
-              <YAxis type="category" dataKey="party" width={60} tick={{ fontSize: 11, fill: 'var(--text-secondary)' }} />
-              <Tooltip
-                cursor={{ fill: 'rgba(167,139,250,0.06)' }}
-                contentStyle={{ background: 'var(--bg-card)', border: '1px solid var(--border-strong)', borderRadius: 8, padding: '0.55rem 0.75rem' }}
-                labelStyle={{ color: 'var(--text-primary)', fontWeight: 700 }}
-                formatter={(v, _n, p: any) => {
-                  const n = Number(v)
-                  const d = p?.payload
-                  const from = (d?.share_2021 ?? 0).toFixed(1)
-                  const to = (d?.share_2026 ?? 0).toFixed(1)
-                  return [`${n > 0 ? '+' : ''}${n.toFixed(1)}pp · ${from}% → ${to}%`, '']
-                }}
-                labelFormatter={(l) => l as string}
-              />
-              <ReferenceLine x={0} stroke="#64748b" strokeWidth={1} />
-              <Bar dataKey="share_swing" radius={[0, 4, 4, 0]} name="Swing">
-                {top.map(p => <Cell key={p.party} fill={p.share_swing >= 0 ? '#22c55e' : '#ef4444'} />)}
-                <LabelList dataKey="share_swing" position="right" fill="var(--text-primary)" fontSize={11} fontWeight={700}
-                  formatter={((v: number) => `${v > 0 ? '+' : ''}${v.toFixed(1)}pp`) as any} />
-              </Bar>
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-
-        <div className="card">
-          <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 6 }}>
-            <div className="section-title" style={{ marginBottom: 0 }}>Seats Won — 2021 vs 2026</div>
-            <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>
-              Dashed line = <span style={{ color: '#eab308', fontWeight: 700 }}>{overview?.majority ?? '—'}-seat majority</span>
-            </div>
-          </div>
-          <ResponsiveContainer width="100%" height={260}>
-            <BarChart data={top} margin={{ left: 5, right: 20, top: 16 }}>
-              <CartesianGrid strokeDasharray="2 4" stroke="var(--border)" vertical={false} />
-              <XAxis dataKey="party" tick={{ fontSize: 11, fill: 'var(--text-secondary)' }} />
-              <YAxis tick={{ fontSize: 11, fill: 'var(--text-secondary)' }} />
-              <Tooltip
-                cursor={{ fill: 'rgba(167,139,250,0.06)' }}
-                contentStyle={{ background: 'var(--bg-card)', border: '1px solid var(--border-strong)', borderRadius: 8, padding: '0.55rem 0.75rem' }}
-                labelStyle={{ color: 'var(--text-primary)', fontWeight: 700 }}
-                formatter={(v: any, n: any, p: any) => {
-                  const d = p?.payload
-                  const delta = (d?.seat_change ?? 0)
-                  if (n === '2021') return [`${v} seats`, '2021']
-                  return [`${v} seats (${delta > 0 ? '+' : ''}${delta} vs 2021)`, '2026']
-                }}
-              />
-              {overview?.majority && (
-                <ReferenceLine y={overview.majority} stroke="#eab308" strokeDasharray="4 4" strokeWidth={1.5}
-                  label={{ value: `Majority ${overview.majority}`, position: 'right', fill: '#eab308', fontSize: 10, fontWeight: 700 }} />
-              )}
-              <Bar dataKey="seats_2021" name="2021" fill="#475569" radius={[4, 4, 0, 0]} />
-              <Bar dataKey="seats_2026" name="2026" radius={[4, 4, 0, 0]}>
-                {top.map(p => <Cell key={p.party} fill={p.color} />)}
-                <LabelList dataKey="seats_2026" position="top" fill="var(--text-primary)" fontSize={11} fontWeight={700} />
-              </Bar>
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
+      {/* Two-column charts (Vote Share Swing + Seats Won 2021 vs 2026) removed —
+          both metrics are already conveyed by The Story above + the Alliance Swing
+          and Seat Transfers sections. Vote-to-Seat scatter below keeps the
+          swing/seat-change relationship visible in one chart instead of two. */}
 
       {/* Vote-to-seat efficiency scatter */}
       <div className="card" style={{ marginBottom: '1.5rem' }}>
@@ -882,43 +815,9 @@ export default function Swing() {
         </ResponsiveContainer>
       </div>
 
-      {/* Closest contests */}
-      <div className="card">
-        <div className="section-title">20 Closest Contests (Smallest Margins)</div>
-        <div className="table-wrap" style={{ overflowX: 'auto' }}>
-          <table>
-            <thead>
-              <tr>
-                <SortableTh label="AC #" sortKey="ac_number" sort={cSort} onSort={cOnSort} />
-                <SortableTh label="Constituency" sortKey="name" sort={cSort} onSort={cOnSort} />
-                <SortableTh label="Winner" sortKey="winner" sort={cSort} onSort={cOnSort} />
-                <SortableTh label="Party" sortKey="winner_party" sort={cSort} onSort={cOnSort} />
-                <SortableTh label="Runner-up" sortKey="runner_up" sort={cSort} onSort={cOnSort} />
-                <SortableTh label="Party" sortKey="runner_up_party" sort={cSort} onSort={cOnSort} />
-                <SortableTh label="Margin" sortKey="margin" sort={cSort} onSort={cOnSort} align="right" />
-              </tr>
-            </thead>
-            <tbody>
-              {sortedCloseContests.map((c: any) => (
-                <tr key={c.ac_number}
-                    onClick={() => navigate(`/${state}/constituencies/${c.ac_number}`)}
-                    style={{ cursor: 'pointer' }}
-                    title="View assembly segment result">
-                  <td style={{ color: 'var(--text-secondary)', fontSize: '0.78rem' }}>AC{c.ac_number}</td>
-                  <td style={{ fontWeight: 600 }}>{c.name}</td>
-                  <td>{c.winner}</td>
-                  <td><span className="badge badge-green" style={{ fontSize: '0.65rem' }}><PartyLogo party={c.winner_party} size={12} />{c.winner_party}</span></td>
-                  <td style={{ color: 'var(--text-secondary)' }}>{c.runner_up}</td>
-                  <td><span className="badge badge-yellow" style={{ fontSize: '0.65rem' }}><PartyLogo party={c.runner_up_party} size={12} />{c.runner_up_party}</span></td>
-                  <td style={{ textAlign: 'right', fontWeight: 700, color: c.margin < 1000 ? '#ef4444' : '#f59e0b' }}>
-                    {fmtIN(c.margin)}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+      {/* "20 Closest Contests" table removed — same data available in the
+          Overview page's Close-Contests modal, where it's also more discoverable
+          (clickable Competition KPI tile). Kept the per-AC drill-in pattern there. */}
 
       {/* ──────────────  Alliance breakdown modal  ────────────── */}
       {allianceModal && (

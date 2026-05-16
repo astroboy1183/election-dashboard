@@ -433,12 +433,8 @@ export default function Home() {
   const { data: states, isLoading, isError } = useStates()
   const { data: summary } = useDashboardSummary()
   const [statModal, setStatModal] = useState<StatModalKind | null>(null)
-  // When the user clicks a per-state NOTA "⚠ N" badge, we open a modal listing
-  // the actual NOTA-decided seats in that state. Store the state-slug we clicked.
-  const [notaModalState, setNotaModalState] = useState<string | null>(null)
   const { openQuickAnswers, openCompare } = useAITools()
   useEscapeKey(statModal !== null, () => setStatModal(null))
-  useEscapeKey(notaModalState !== null, () => setNotaModalState(null))
 
   // Fetch overview for every state in parallel — powers the per-card headline + page-level insights
   const overviewQueries = useQueries({
@@ -686,119 +682,47 @@ export default function Home() {
                 sub={`across all ${summary.total_mlas} elected representatives`}
               />
             </div>
-            {summary.top_parties.length > 0 && (
-              <>
-                <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 700, marginTop: 18, marginBottom: 8 }}>
-                  Biggest parties by MLA count (all 5 states combined)
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
-                  {/* Header row labelling the columns so the +/- delta column is unambiguous */}
-                  <div style={{
-                    display: 'flex', alignItems: 'center', gap: 10,
-                    fontSize: '0.62rem', color: 'var(--text-secondary)',
-                    textTransform: 'uppercase', letterSpacing: '0.07em', fontWeight: 700,
-                    marginBottom: 2,
-                  }}>
-                    <span style={{ width: 60 }}>Party</span>
-                    <span style={{ flex: 1 }}></span>
-                    <span style={{ width: 70, textAlign: 'right' }}>2026</span>
-                    <span style={{ width: 50, textAlign: 'right' }}>%</span>
-                    <span style={{ width: 70, textAlign: 'right' }} title="Change vs 2021">vs 2021</span>
-                  </div>
-                  {summary.top_parties.map(p => {
-                    const deltaColor = p.delta > 0 ? '#22c55e' : p.delta < 0 ? '#ef4444' : 'var(--text-secondary)'
-                    const deltaSign = p.delta > 0 ? '+' : ''
-                    return (
-                      <div key={p.party} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                        <span style={{ width: 60, fontWeight: 700, fontSize: '0.84rem', color: 'var(--text-primary)' }}>{p.party}</span>
-                        <div style={{ flex: 1, height: 18, borderRadius: 4, background: 'var(--bg-secondary)', overflow: 'hidden' }}>
-                          <div style={{
-                            width: `${Math.max(1, (p.pct / (summary.top_parties[0].pct || 1)) * 100)}%`,
-                            height: '100%',
-                            background: 'linear-gradient(90deg, var(--accent) 0%, var(--accent-cyan) 100%)',
-                            borderRadius: 4,
-                          }} />
-                        </div>
-                        <span className="tabular" style={{ width: 70, textAlign: 'right', fontWeight: 700 }}>{p.seats}</span>
-                        <span className="tabular" style={{ width: 50, textAlign: 'right', fontSize: '0.78rem', color: 'var(--text-secondary)' }}>{p.pct}%</span>
-                        <span
-                          className="tabular"
-                          style={{
-                            width: 70, textAlign: 'right', fontSize: '0.82rem', fontWeight: 700,
-                            color: deltaColor,
-                          }}
-                          title={`2021: ${p.seats_2021} seats → 2026: ${p.seats} seats (${deltaSign}${p.delta})`}
-                        >
-                          {deltaSign}{p.delta}
-                        </span>
-                      </div>
-                    )
-                  })}
-                </div>
-              </>
-            )}
-
-            {/* NOTA — voter dissatisfaction signal across states */}
-            {summary.nota_by_state && summary.nota_by_state.some(n => n.total_nota > 0) && (
-              <>
-                <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 700, marginTop: 22, marginBottom: 8 }}>
-                  🗳️ NOTA — voter dissatisfaction
-                </div>
-                <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 8, flexWrap: 'wrap' }}>
-                  <div>
-                    <span className="tabular" style={{ fontSize: '1.5rem', fontWeight: 800, color: '#f59e0b' }}>
-                      {summary.total_nota_votes_all_states.toLocaleString('en-IN')}
-                    </span>
-                    <span style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', marginLeft: 6 }}>NOTA votes across all 5 states</span>
-                  </div>
-                  {summary.total_nota_decided_seats_all_states > 0 && (
-                    <div style={{
-                      padding: '0.25rem 0.65rem', borderRadius: 999,
-                      background: 'rgba(245,158,11,0.14)', border: '1px solid rgba(245,158,11,0.45)',
-                      color: '#fbbf24', fontWeight: 700, fontSize: '0.82rem',
-                    }}>
-                      ⚠ {summary.total_nota_decided_seats_all_states} seats where NOTA exceeded the winning margin
-                    </div>
-                  )}
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
-                  {summary.nota_by_state.slice().sort((a, b) => b.share_pct - a.share_pct).map(n => (
-                    <div key={n.state} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                      <span style={{ width: 100, fontWeight: 700, fontSize: '0.82rem' }}>{n.name}</span>
-                      <div style={{ flex: 1, height: 14, borderRadius: 3, background: 'var(--bg-secondary)', overflow: 'hidden' }}>
-                        <div style={{
-                          width: `${Math.max(2, (n.share_pct / Math.max(...summary.nota_by_state.map(x => x.share_pct), 0.001)) * 100)}%`,
-                          height: '100%', background: 'linear-gradient(90deg, #f59e0b 0%, #ef4444 100%)', borderRadius: 3,
-                        }} />
-                      </div>
-                      <span className="tabular" style={{ width: 60, textAlign: 'right', fontWeight: 700, fontSize: '0.82rem' }}>{n.share_pct}%</span>
-                      <span className="tabular" style={{ width: 80, textAlign: 'right', fontSize: '0.74rem', color: 'var(--text-secondary)' }}>
-                        {n.total_nota.toLocaleString('en-IN')}
-                      </span>
-                      {n.decided_count > 0 && (
-                        <span
-                          role="button"
-                          tabIndex={0}
-                          onClick={() => setNotaModalState(n.state)}
-                          onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setNotaModalState(n.state) } }}
-                          style={{
-                            fontSize: '0.66rem', fontWeight: 800, color: '#f87171',
-                            padding: '0.1rem 0.4rem', borderRadius: 4,
-                            background: 'rgba(239,68,68,0.12)', border: '1px solid rgba(239,68,68,0.35)',
-                            cursor: 'pointer', userSelect: 'none',
-                          }}
-                          title={`Click to see the ${n.decided_count} seat${n.decided_count === 1 ? '' : 's'} in ${n.name} where NOTA exceeded the winning margin`}
-                        >
-                          ⚠ {n.decided_count}
-                        </span>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </>
-            )}
+            {/* Top parties chart + NOTA dissatisfaction + Postal Ballots block moved to /all-india
+                to keep this Home card light and focused on the at-a-glance tiles only. */}
           </div>
         )}
+
+        {/* CTA → All-India Analytics deep-dive */}
+        <div
+          role="button"
+          tabIndex={0}
+          onClick={() => navigate('/all-india')}
+          onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate('/all-india') } }}
+          style={{
+            marginBottom: '1.5rem',
+            padding: '1rem 1.25rem',
+            borderRadius: 12,
+            background: 'linear-gradient(135deg, rgba(167,139,250,0.10) 0%, rgba(6,182,212,0.10) 100%)',
+            border: '1px solid rgba(167,139,250,0.35)',
+            cursor: 'pointer',
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12,
+            transition: 'transform 0.15s, background 0.15s',
+          }}
+          title="Open the All-India Analytics deep-dive"
+        >
+          <div>
+            <div style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: 2 }}>
+              📊 All-India Analytics — deeper cross-state insights
+            </div>
+            <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)' }}>
+              Top parties by MLA count · NOTA-decided seats · postal ballot leaders &amp; 2021→2026 swing
+            </div>
+          </div>
+          <div style={{
+            fontSize: '0.78rem', fontWeight: 700, color: '#a78bfa',
+            padding: '0.4rem 0.8rem', borderRadius: 8,
+            background: 'rgba(167,139,250,0.15)', border: '1px solid rgba(167,139,250,0.4)',
+            whiteSpace: 'nowrap',
+          }}>
+            Open →
+          </div>
+        </div>
+
 
         {/* Page-level Key Insights */}
         <InsightsCard insights={pageInsights} subtitle="What stands out across all 5 states" />
@@ -885,102 +809,6 @@ export default function Home() {
         <HeroStatModal kind={statModal} states={states} onClose={() => setStatModal(null)} />
       )}
 
-      {/* NOTA-decided seats modal — opens when the per-state ⚠ badge is clicked */}
-      {notaModalState && summary?.nota_by_state && (() => {
-        const stateInfo = summary.nota_by_state.find(n => n.state === notaModalState)
-        if (!stateInfo) return null
-        return (
-          <div
-            onClick={() => setNotaModalState(null)}
-            style={{
-              position: 'fixed', inset: 0, background: 'rgba(7, 9, 26, 0.78)',
-              backdropFilter: 'blur(6px)', zIndex: 100, display: 'flex',
-              alignItems: 'flex-start', justifyContent: 'center',
-              padding: '4rem 1rem 2rem', overflowY: 'auto', animation: 'fadeInUp 0.25s ease-out',
-            }}
-          >
-            <div
-              className="card"
-              onClick={e => e.stopPropagation()}
-              style={{ maxWidth: 720, width: '100%', borderLeft: '4px solid #f87171', maxHeight: '85vh', overflowY: 'auto' }}
-            >
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
-                <div>
-                  <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 6 }}>
-                    NOTA-Decided Seats · {stateInfo.name}
-                  </div>
-                  <div style={{ fontSize: '1.4rem', fontWeight: 800, color: '#f87171' }}>
-                    {stateInfo.decided_count} seat{stateInfo.decided_count === 1 ? '' : 's'} where NOTA &gt; winning margin
-                  </div>
-                  <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginTop: 4 }}>
-                    Sorted by how NOTA-decided each contest was (NOTA ÷ margin, descending).
-                  </div>
-                </div>
-                <button
-                  onClick={() => setNotaModalState(null)}
-                  style={{
-                    background: 'transparent', border: '1px solid var(--border)', color: 'var(--text-secondary)',
-                    borderRadius: 8, padding: '0.35rem 0.75rem', cursor: 'pointer', fontSize: '0.85rem',
-                  }}
-                >Close ✕</button>
-              </div>
-
-              <div className="table-wrap" style={{ overflowX: 'auto' }}>
-                <table>
-                  <thead>
-                    <tr>
-                      <th style={{ width: 30 }}>#</th>
-                      <th>AC</th>
-                      <th>Winner</th>
-                      <th style={{ textAlign: 'right' }}>Margin</th>
-                      <th style={{ textAlign: 'right' }}>NOTA</th>
-                      <th style={{ textAlign: 'right' }}>NOTA / Margin</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {stateInfo.decided_seats.map((s, i) => {
-                      const ratio = s.nota_votes / Math.max(s.margin, 1)
-                      return (
-                        <tr
-                          key={s.ac_number}
-                          style={{ cursor: 'pointer' }}
-                          onClick={() => {
-                            setNotaModalState(null)
-                            navigate(`/${notaModalState}/constituency/${s.ac_number}`)
-                          }}
-                          title={`Open ${s.ac_name} drilldown`}
-                        >
-                          <td style={{ color: 'var(--text-secondary)' }}>{i + 1}</td>
-                          <td>
-                            <div style={{ fontWeight: 600 }}>{s.ac_name}</div>
-                            <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>
-                              AC-{s.ac_number} · {s.district}
-                            </div>
-                          </td>
-                          <td>
-                            <div style={{ fontWeight: 600 }}>{s.winner}</div>
-                            <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)' }}>{s.party}</div>
-                          </td>
-                          <td className="tabular" style={{ textAlign: 'right', fontWeight: 700 }}>{fmtIN(s.margin)}</td>
-                          <td className="tabular" style={{ textAlign: 'right', fontWeight: 700, color: '#fbbf24' }}>{fmtIN(s.nota_votes)}</td>
-                          <td className="tabular" style={{ textAlign: 'right', fontWeight: 700, color: '#f87171' }}>
-                            {ratio >= 100 ? `${ratio.toFixed(0)}×` : `${ratio.toFixed(1)}×`}
-                          </td>
-                        </tr>
-                      )
-                    })}
-                  </tbody>
-                </table>
-              </div>
-              <div style={{ marginTop: 12, fontSize: '0.72rem', color: 'var(--text-secondary)' }}>
-                💡 A high <strong>NOTA / Margin</strong> ratio means voters who rejected every candidate (NOTA) outnumbered the margin
-                of victory many times over — if those NOTA voters had backed the runner-up, the outcome would have flipped.
-                Click any row to drill into that constituency.
-              </div>
-            </div>
-          </div>
-        )
-      })()}
     </div>
   )
 }

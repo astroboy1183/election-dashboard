@@ -313,13 +313,13 @@ export default function Overview() {
         })}
       </div>
 
-      {/* Row 2 — Competition + Anti-incumbency + NOTA (3 tiles, consolidated from 6)
-          • Competition merges Close-contests + Avg-margin into one tile (dual-value layout)
-          • Single-largest-party share removed — that fact is prominent in the Party-wise Seats chart + Story
-          • NOTA share + NOTA-decided merged into one tile
-      */}
+      {/* Row 2 — Competition + MLA Profile + NOTA (3 tiles, consolidated from 9 across
+          two earlier rows). Removed: Anti-incumbency (full coverage in /swing), MLAs
+          with criminal cases (full coverage in /assets), Vote-to-seat tilt (full
+          coverage in /swing). Each removed metric still has a dedicated page
+          accessible from the sidebar — this row is only the at-a-glance overview. */}
       {kpis && (
-        <div className="kpi-grid-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '1.5rem' }}>
+        <div className="kpi-grid-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '1rem' }}>
           <SmallKpi
             emoji="🎯" label="Competition" accent="#f59e0b"
             value={`${kpis.competition.close_contests_lt_5pct}`}
@@ -332,11 +332,14 @@ export default function Overview() {
             drillLabel="See close-contest list"
           />
           <SmallKpi
-            emoji="🔁" label="Anti-incumbency" accent="#ef4444"
-            value={kpis.incumbency.anti_incumbency_pct !== null ? `${kpis.incumbency.anti_incumbency_pct}%` : '—'}
-            sub={`${kpis.incumbency.flipped_seats} of ${kpis.incumbency.matched_2021_seats} seats flipped party`}
-            onClick={() => setAntiIncOpen(true)}
-            drillLabel="See flipped seats"
+            emoji="🧑‍💼" label="MLA profile" accent="#67e8f9"
+            value={kpis.demographics.avg_age !== null ? `${kpis.demographics.avg_age} yrs` : '—'}
+            sub={kpis.demographics.youngest !== null
+              ? `avg age · range ${kpis.demographics.youngest}–${kpis.demographics.oldest}` : 'avg age'}
+            secondaryLabel="Typical assets"
+            secondaryValue={kpis.demographics.median_assets_cr !== null ? `₹${kpis.demographics.median_assets_cr} cr` : '—'}
+            onClick={() => setAgeDistOpen(true)}
+            drillLabel="Age + asset breakdown"
           />
           {kpis.nota && (
             <SmallKpi
@@ -354,39 +357,38 @@ export default function Overview() {
         </div>
       )}
 
-      {/* Row 3 — Demographics + Efficiency (3 tiles, consolidated from 4)
-          • Avg age + Typical assets merged into one MLA Profile tile
-      */}
-      {kpis && (
-        <div className="kpi-grid-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '1.5rem' }}>
-          <SmallKpi
-            emoji="⚖️" label="MLAs with criminal cases" accent="#f87171"
-            value={`${kpis.demographics.criminal_mlas_pct}%`}
-            sub={`${kpis.demographics.criminal_mlas} of ${kpis.declared} winners · ${kpis.demographics.serious_criminal_mlas} have ≥ 3 cases`}
-            onClick={() => navigate(`/${state}/results?winners_only=true&criminal=true`)}
-            drillLabel="See these MLAs"
-          />
-          <SmallKpi
-            emoji="🧑‍💼" label="MLA profile" accent="#67e8f9"
-            value={kpis.demographics.avg_age !== null ? `${kpis.demographics.avg_age} yrs` : '—'}
-            sub={kpis.demographics.youngest !== null
-              ? `avg age · range ${kpis.demographics.youngest}–${kpis.demographics.oldest}` : 'avg age'}
-            secondaryLabel="Typical assets"
-            secondaryValue={kpis.demographics.median_assets_cr !== null ? `₹${kpis.demographics.median_assets_cr} cr` : '—'}
-            onClick={() => setAgeDistOpen(true)}
-            drillLabel="Age + asset breakdown"
-          />
-          <SmallKpi
-            emoji="📊" label="Vote-to-seat tilt" accent={kpis.efficiency[0]?.color ?? '#94a3b8'}
-            value={kpis.efficiency[0] ? `${kpis.efficiency[0].delta_pp > 0 ? '+' : ''}${kpis.efficiency[0].delta_pp}pp` : '—'}
-            sub={kpis.efficiency[0]
-              ? `${kpis.efficiency[0].alliance_name.split('(')[0].trim()} · ${kpis.efficiency[0].vote_share}% votes → ${kpis.efficiency[0].seat_share}% seats`
-              : undefined}
-            onClick={() => setEfficiencyOpen(true)}
-            drillLabel="Full breakdown"
-          />
-        </div>
-      )}
+      {/* Drill-deeper hint row — small links pointing at the dedicated pages
+          for the metrics we removed from the tile grid. Keeps the headline
+          numbers one click away without re-crowding the page. */}
+      <div style={{
+        display: 'flex', gap: '0.6rem', marginBottom: '1.5rem',
+        fontSize: '0.78rem', flexWrap: 'wrap',
+      }}>
+        <button
+          onClick={() => navigate(`/${state}/swing`)}
+          style={{
+            background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.3)',
+            color: '#fca5a5', padding: '0.35rem 0.7rem', borderRadius: 6, cursor: 'pointer',
+            fontWeight: 600,
+          }}
+        >🔁 Anti-incumbency → Swing & Trends</button>
+        <button
+          onClick={() => navigate(`/${state}/assets`)}
+          style={{
+            background: 'rgba(248,113,113,0.08)', border: '1px solid rgba(248,113,113,0.3)',
+            color: '#f87171', padding: '0.35rem 0.7rem', borderRadius: 6, cursor: 'pointer',
+            fontWeight: 600,
+          }}
+        >⚖️ Criminal MLAs → Criminality & Assets</button>
+        <button
+          onClick={() => navigate(`/${state}/swing`)}
+          style={{
+            background: 'rgba(167,139,250,0.08)', border: '1px solid rgba(167,139,250,0.3)',
+            color: '#a78bfa', padding: '0.35rem 0.7rem', borderRadius: 6, cursor: 'pointer',
+            fontWeight: 600,
+          }}
+        >📊 Vote-to-seat tilt → Swing & Trends</button>
+      </div>
 
       {/* NOTA-Decided Seats — inline list so users SEE the actual seats
           without clicking. The tile in Row 2 stays for the at-a-glance count;

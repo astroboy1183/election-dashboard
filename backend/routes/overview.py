@@ -2,6 +2,7 @@ from datetime import datetime
 from pathlib import Path
 from fastapi import APIRouter, Depends, HTTPException, Response
 from sqlmodel import Session, select, func
+from sqlalchemy import case, text
 from backend.db import get_session
 from backend.models import State, Candidate, Constituency, Alliance, Party, HistoricalResult, NotaPerAC
 from backend.config.states import STATE_CONFIG
@@ -214,6 +215,216 @@ def dashboard_summary(response: Response, session: Session = Depends(get_session
         "total_nota_votes_all_states": total_nota_all,
         "total_nota_decided_seats_all_states": total_decided_all,
     }
+
+
+@router.get("/postal-leads")
+@ttl_cache(seconds=600)
+def postal_leads(response: Response, session: Session = Depends(get_session)):
+    """Per-state postal-ballot breakdown by party.
+
+    The "delta" is the key insight: a party that captures (say) 30% of postal
+    votes but only 24% of EVM votes is over-performing among postal voters —
+    a cohort dominated by government employees, soldiers, polling staff, and
+    others who couldn't reach their booth on polling day. The difference is
+    interpretively meaningful (institutional / bureaucratic appeal vs. street
+    appeal).
+    """
+    response.headers["Cache-Control"] = "public, max-age=300"
+    states_out = []
+    for slug, cfg in STATE_CONFIG.items():
+        rows = session.exec(
+            select(
+                Candidate.party,
+                func.coalesce(func.sum(Candidate.evm_votes), 0).label("evm"),
+                func.coalesce(func.sum(Candidate.postal_votes), 0).label("postal"),
+                func.coalesce(func.sum(Candidate.votes), 0).label("total"),
+                func.sum(case((Candidate.is_winner == True, 1), else_=0)).label("wins"),
+            )
+            .join(Constituency, Constituency.id == Candidate.constituency_id)
+            .where(Constituency.state_slug == slug)
+            .where(Candidate.postal_votes != None)  # only rows we successfully ingested
+            .group_by(Candidate.party)
+        ).all()
+
+        # Per-AC postal leader: the party with the highest postal_votes in each AC.
+        # SQLite needs a window-function approach. Build it by raw SQL to keep
+        # things explicit; the result feeds into the same per-party rollup.
+        postal_leader_rows = session.exec(text("""
+            WITH ranked AS (
+              SELECT c.constituency_id, c.party, c.postal_votes,
+                     ROW_NUMBER() OVER (PARTITION BY c.constituency_id ORDER BY c.postal_votes DESC, c.id ASC) AS rk
+              FROM candidate c
+              JOIN constituency co ON c.constituency_id = co.id
+              WHERE co.state_slug = :slug AND c.postal_votes IS NOT NULL AND c.postal_votes > 0
+            )
+            SELECT party, COUNT(*) AS postal_seats_led
+            FROM ranked WHERE rk = 1
+            GROUP BY party
+        """), params={"slug": slug}).all()
+        postal_seats_by_party: dict[str, int] = {row[0]: int(row[1]) for row in postal_leader_rows}
+
+        state_evm_total = sum(r.evm for r in rows)
+        state_postal_total = sum(r.postal for r in rows)
+        party_rows = []
+        for r in rows:
+            evm_share = (r.evm / state_evm_total * 100) if state_evm_total else 0
+            postal_share = (r.postal / state_postal_total * 100) if state_postal_total else 0
+            party_rows.append({
+                "party": r.party,
+                "evm_votes": int(r.evm),
+                "postal_votes": int(r.postal),
+                "total_votes": int(r.total),
+                "evm_share_pct": round(evm_share, 2),
+                "postal_share_pct": round(postal_share, 2),
+                "delta_pp": round(postal_share - evm_share, 2),
+                "seats_won": int(r.wins or 0),
+                "postal_seats_led": postal_seats_by_party.get(r.party, 0),
+                "seat_delta": postal_seats_by_party.get(r.party, 0) - int(r.wins or 0),
+            })
+        # Keep only parties that materially participated (≥0.5% of either share OR led ≥1 seat).
+        party_rows = [
+            p for p in party_rows
+            if p["postal_share_pct"] >= 0.5 or p["evm_share_pct"] >= 0.5 or p["postal_seats_led"] >= 1
+        ]
+        party_rows.sort(key=lambda p: -p["postal_votes"])
+        # Top over- and under-performers (largest |delta| among material parties).
+        sorted_by_delta = sorted(party_rows, key=lambda p: p["delta_pp"], reverse=True)
+        # Most-divergent party (largest |seat_delta|) — the headline insight for
+        # the per-state row on Home.
+        sorted_by_seat_delta = sorted(party_rows, key=lambda p: abs(p["seat_delta"]), reverse=True)
+        states_out.append({
+            "state": slug,
+            "name": cfg["name"],
+            "postal_total": state_postal_total,
+            "evm_total": state_evm_total,
+            "postal_share_of_polled": round(state_postal_total / (state_evm_total + state_postal_total) * 100, 2) if (state_evm_total + state_postal_total) else 0,
+            "parties": party_rows,
+            "top_over_performer": sorted_by_delta[0] if sorted_by_delta else None,
+            "top_under_performer": sorted_by_delta[-1] if sorted_by_delta else None,
+            "biggest_seat_divergence": sorted_by_seat_delta[0] if sorted_by_seat_delta else None,
+        })
+    grand_postal = sum(s["postal_total"] for s in states_out)
+    grand_evm = sum(s["evm_total"] for s in states_out)
+    return {
+        "states": states_out,
+        "grand_total_postal": grand_postal,
+        "grand_total_evm": grand_evm,
+        "grand_total_polled": grand_postal + grand_evm,
+    }
+
+
+@router.get("/postal-2021-vs-2026")
+@ttl_cache(seconds=600)
+def postal_2021_vs_2026(response: Response, session: Session = Depends(get_session)):
+    """2021 vs 2026 postal-share comparison per state per party, INCLUDING
+    seat-leader counts (ACs each party led in postal votes per year).
+
+    The seat_swing column shows how many ACs of postal-leadership each party
+    gained or lost between cycles — the seat-level analogue of the share swing.
+    """
+    response.headers["Cache-Control"] = "public, max-age=600"
+    states_out = []
+    for slug, cfg in STATE_CONFIG.items():
+        # 2026 totals (per-party postal votes)
+        rows_2026 = session.exec(
+            select(Candidate.party, func.coalesce(func.sum(Candidate.postal_votes), 0))
+            .join(Constituency, Constituency.id == Candidate.constituency_id)
+            .where(Constituency.state_slug == slug)
+            .where(Candidate.postal_votes != None)
+            .group_by(Candidate.party)
+        ).all()
+        p26 = {p: int(v) for p, v in rows_2026 if v}
+        total_2026 = sum(p26.values())
+
+        # 2021 totals (per-party postal votes from HistoricalResult)
+        rows_2021 = session.exec(
+            select(HistoricalResult.party, func.coalesce(func.sum(HistoricalResult.postal_votes), 0))
+            .where(HistoricalResult.state_slug == slug)
+            .where(HistoricalResult.year == 2021)
+            .where(HistoricalResult.postal_votes != None)
+            .group_by(HistoricalResult.party)
+        ).all()
+        p21 = {p: int(v) for p, v in rows_2021 if v}
+        total_2021 = sum(p21.values())
+
+        # Per-AC postal leader → seat counts per party, per year.
+        # 2026: window over Candidate table joined with Constituency.
+        leaders_2026 = session.exec(text("""
+            WITH ranked AS (
+              SELECT c.party, c.postal_votes,
+                     ROW_NUMBER() OVER (PARTITION BY c.constituency_id ORDER BY c.postal_votes DESC, c.id ASC) AS rk
+              FROM candidate c
+              JOIN constituency co ON c.constituency_id = co.id
+              WHERE co.state_slug = :slug
+                AND c.postal_votes IS NOT NULL AND c.postal_votes > 0
+            )
+            SELECT party, COUNT(*) FROM ranked WHERE rk=1 GROUP BY party
+        """), params={"slug": slug}).all()
+        seats_2026 = {row[0]: int(row[1]) for row in leaders_2026}
+
+        # 2021: window over HistoricalResult.
+        leaders_2021 = session.exec(text("""
+            WITH ranked AS (
+              SELECT party, postal_votes, ac_number,
+                     ROW_NUMBER() OVER (PARTITION BY ac_number ORDER BY postal_votes DESC, id ASC) AS rk
+              FROM historicalresult
+              WHERE state_slug = :slug AND year = 2021
+                AND postal_votes IS NOT NULL AND postal_votes > 0
+            )
+            SELECT party, COUNT(*) FROM ranked WHERE rk=1 GROUP BY party
+        """), params={"slug": slug}).all()
+        seats_2021 = {row[0]: int(row[1]) for row in leaders_2021}
+
+        # Build per-party rows
+        all_parties = set(p26) | set(p21) | set(seats_2026) | set(seats_2021)
+        party_rows = []
+        for p in all_parties:
+            v21 = p21.get(p, 0); v26 = p26.get(p, 0)
+            s21 = v21 / total_2021 * 100 if total_2021 else 0
+            s26 = v26 / total_2026 * 100 if total_2026 else 0
+            seats21 = seats_2021.get(p, 0)
+            seats26 = seats_2026.get(p, 0)
+            party_rows.append({
+                "party": p,
+                "votes_2021": v21, "votes_2026": v26,
+                "share_2021_pct": round(s21, 2),
+                "share_2026_pct": round(s26, 2),
+                "swing_pp": round(s26 - s21, 2),
+                "seats_led_2021": seats21,
+                "seats_led_2026": seats26,
+                "seat_swing": seats26 - seats21,
+            })
+        # Material parties: ≥1% share in either year OR led ≥1 seat in either year
+        party_rows = [
+            p for p in party_rows
+            if p["share_2021_pct"] >= 1 or p["share_2026_pct"] >= 1
+            or p["seats_led_2021"] >= 1 or p["seats_led_2026"] >= 1
+        ]
+        party_rows.sort(key=lambda p: -p["share_2026_pct"])
+
+        # Top swingers (largest +/- swing pp)
+        by_swing = sorted(party_rows, key=lambda p: p["swing_pp"], reverse=True)
+        top_gainer = by_swing[0] if by_swing else None
+        top_loser = by_swing[-1] if by_swing else None
+        # Top seat-swingers (largest +/- seat_swing)
+        by_seat = sorted(party_rows, key=lambda p: p["seat_swing"], reverse=True)
+        top_seat_gainer = by_seat[0] if by_seat else None
+        top_seat_loser = by_seat[-1] if by_seat else None
+
+        states_out.append({
+            "state": slug,
+            "name": cfg["name"],
+            "postal_total_2021": total_2021,
+            "postal_total_2026": total_2026,
+            "acs_with_postal_2021": sum(seats_2021.values()),
+            "acs_with_postal_2026": sum(seats_2026.values()),
+            "parties": party_rows,
+            "top_gainer": top_gainer,
+            "top_loser": top_loser,
+            "top_seat_gainer": top_seat_gainer,
+            "top_seat_loser": top_seat_loser,
+        })
+    return {"states": states_out}
 
 
 @router.get("/{state}/overview")

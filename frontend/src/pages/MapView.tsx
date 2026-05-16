@@ -555,70 +555,65 @@ export default function MapView() {
         )
       })()}
 
-      {/* Party legend — clickable */}
-      {partyLegend.length > 0 && (
-        <div className="card" style={{ marginBottom: '0.85rem' }}>
-          <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 4 }}>
-            <div className="section-title" style={{ marginBottom: 0 }}>Party Color Legend</div>
-            <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)' }}>Click a party to highlight only its seats.</div>
-          </div>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginTop: 8 }}>
-            {partyLegend.map(p => {
-              const active = filter?.kind === 'party' && filter.value === p.key
-              const dim = filter && !active
-              return (
-                <button key={p.key}
-                  onClick={() => setFilter(active ? null : { kind: 'party', value: p.key })}
-                  title={active ? 'Click to clear filter' : `Show only ${p.label} seats`}
-                  style={{
-                    display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.78rem',
-                    padding: '0.32rem 0.65rem', borderRadius: 6, cursor: 'pointer',
-                    background: active ? `${p.color}30` : dim ? 'transparent' : `${p.color}15`,
-                    border: `1px solid ${active ? p.color : p.color + '33'}`,
-                    boxShadow: active ? `0 0 0 1px ${p.color}88 inset` : 'none',
-                    opacity: dim ? 0.45 : 1,
-                    transition: 'opacity 0.15s, background 0.15s',
-                  }}>
-                  <PartyLogo party={p.label} size={14} />
-                  <span style={{ color: p.color, fontWeight: 700 }}>{p.label}</span>
-                  <span style={{ color: 'var(--text-secondary)' }}>({p.count})</span>
-                </button>
-              )
-            })}
-          </div>
-        </div>
-      )}
-
-      {/* Alliance legend — clickable */}
-      {allianceLegend.length > 0 && (
+      {/* Unified legend — switches between Party and Alliance based on the
+          `colorBy` toggle the user already controls at the top of the page. */}
+      {((colorBy === 'party' && partyLegend.length > 0) ||
+        (colorBy === 'alliance' && allianceLegend.length > 0)) && (
         <div className="card">
-          <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 4 }}>
-            <div className="section-title" style={{ marginBottom: 0 }}>Alliance Color Legend</div>
-            <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)' }}>Click an alliance to highlight only its seats.</div>
+          <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 4, flexWrap: 'wrap', gap: 8 }}>
+            <div className="section-title" style={{ marginBottom: 0 }}>
+              {colorBy === 'party' ? 'Party Color Legend' : 'Alliance Color Legend'}
+            </div>
+            <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)' }}>
+              Click {colorBy === 'party' ? 'a party' : 'an alliance'} to highlight only its seats · toggle <strong>Party / Alliance</strong> at the top to switch view
+            </div>
           </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginTop: 8 }}>
-            {allianceLegend.map(a => {
-              const active = filter?.kind === 'alliance' && filter.value === a.key
-              const dim = filter && !active
-              return (
-                <button key={a.key}
-                  onClick={() => setFilter(active ? null : { kind: 'alliance', value: a.key })}
-                  title={active ? 'Click to clear filter' : `Show only ${a.label} seats`}
-                  style={{
-                    display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.78rem',
-                    padding: '0.4rem 0.75rem', borderRadius: 6, cursor: 'pointer',
-                    background: active ? `${a.color}30` : dim ? 'transparent' : `${a.color}15`,
-                    border: `1px solid ${active ? a.color : a.color + '33'}`,
-                    boxShadow: active ? `0 0 0 1px ${a.color}88 inset` : 'none',
-                    opacity: dim ? 0.45 : 1,
-                    transition: 'opacity 0.15s, background 0.15s',
-                  }}>
-                  <span style={{ width: 12, height: 12, borderRadius: 3, background: a.color, flexShrink: 0 }} />
-                  <span style={{ color: a.color, fontWeight: 700 }}>{a.label}</span>
-                  <span style={{ color: 'var(--text-secondary)' }}>({a.count})</span>
-                </button>
-              )
-            })}
+            {colorBy === 'party'
+              ? partyLegend.map(p => {
+                  const active = filter?.kind === 'party' && filter.value === p.key
+                  const dim = filter && !active
+                  return (
+                    <button key={p.key}
+                      onClick={() => setFilter(active ? null : { kind: 'party', value: p.key })}
+                      title={active ? 'Click to clear filter' : `Show only ${p.label} seats`}
+                      style={{
+                        display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.78rem',
+                        padding: '0.32rem 0.65rem', borderRadius: 6, cursor: 'pointer',
+                        background: active ? `${p.color}30` : dim ? 'transparent' : `${p.color}15`,
+                        border: `1px solid ${active ? p.color : p.color + '33'}`,
+                        boxShadow: active ? `0 0 0 1px ${p.color}88 inset` : 'none',
+                        opacity: dim ? 0.45 : 1,
+                        transition: 'opacity 0.15s, background 0.15s',
+                      }}>
+                      <PartyLogo party={p.label} size={14} />
+                      <span style={{ color: p.color, fontWeight: 700 }}>{p.label}</span>
+                      <span style={{ color: 'var(--text-secondary)' }}>({p.count})</span>
+                    </button>
+                  )
+                })
+              : allianceLegend.map(a => {
+                  const active = filter?.kind === 'alliance' && filter.value === a.key
+                  const dim = filter && !active
+                  return (
+                    <button key={a.key}
+                      onClick={() => setFilter(active ? null : { kind: 'alliance', value: a.key })}
+                      title={active ? 'Click to clear filter' : `Show only ${a.label} seats`}
+                      style={{
+                        display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.78rem',
+                        padding: '0.4rem 0.75rem', borderRadius: 6, cursor: 'pointer',
+                        background: active ? `${a.color}30` : dim ? 'transparent' : `${a.color}15`,
+                        border: `1px solid ${active ? a.color : a.color + '33'}`,
+                        boxShadow: active ? `0 0 0 1px ${a.color}88 inset` : 'none',
+                        opacity: dim ? 0.45 : 1,
+                        transition: 'opacity 0.15s, background 0.15s',
+                      }}>
+                      <span style={{ width: 12, height: 12, borderRadius: 3, background: a.color, flexShrink: 0 }} />
+                      <span style={{ color: a.color, fontWeight: 700 }}>{a.label}</span>
+                      <span style={{ color: 'var(--text-secondary)' }}>({a.count})</span>
+                    </button>
+                  )
+                })}
           </div>
         </div>
       )}

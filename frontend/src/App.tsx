@@ -4,6 +4,7 @@ import StateLayout from './components/layout/StateLayout'
 import CommandPalette from './components/CommandPalette'
 import { AIToolsProvider } from './lib/AIToolsContext'
 import Home from './pages/Home'
+import AllIndia from './pages/AllIndia'
 import Overview from './pages/Overview'
 import Parties from './pages/Parties'
 import Constituencies from './pages/Constituencies'
@@ -26,6 +27,7 @@ export default function App() {
           <CommandPalette />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/all-india" element={<AllIndia />} />
             <Route path="/:state" element={<StateLayout />}>
               <Route index element={<Navigate to="overview" replace />} />
               <Route path="overview" element={<Overview />} />

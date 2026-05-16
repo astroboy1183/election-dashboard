@@ -62,8 +62,13 @@ class Candidate(SQLModel, table=True):
     state_slug: str = Field(index=True)
     name: str
     party: str
-    votes: int
+    votes: int  # total votes (EVM + postal). Source: ECI partywisewinresult / Constituencywise pages.
     is_winner: bool = False
+    # EVM and postal vote splits — populated by scripts/ingest_postal.py from the
+    # Constituencywise<state><ac>.htm page. Nullable because older rows existed
+    # before this column was added.
+    evm_votes: Optional[int] = None
+    postal_votes: Optional[int] = None
     assets_cr: Optional[float] = None
     criminal_cases: Optional[int] = None
     education: Optional[str] = None
@@ -86,6 +91,11 @@ class HistoricalResult(SQLModel, table=True):
     votes: int
     is_winner: bool = False
     year: int = 2021
+    # EVM and postal vote splits — populated by scripts/ingest_postal_2021.py
+    # from Wayback-archived ECI Constituencywise pages. Nullable because rows
+    # ingested before this column was added.
+    evm_votes: Optional[int] = None
+    postal_votes: Optional[int] = None
 
     __table_args__ = (UniqueConstraint("state_slug", "year", "ac_number", "party"),)
 
