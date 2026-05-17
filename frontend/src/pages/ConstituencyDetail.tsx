@@ -97,24 +97,42 @@ export default function ConstituencyDetail() {
           (Assembly 2026 winner of this AC) with the sitting MP (LS 2024
           winner of the parent Lok Sabha seat that contains this AC).
           The dual representation that every Indian voter has but rarely
-          sees side-by-side. */}
-      {data.representation && (data.representation.mla || data.representation.mp) && (
+          sees side-by-side. Both inner cards are clickable — they jump to
+          the dedicated MPs & MLAs page (Representation.tsx) and scroll to
+          the matching parent LS PC for the broader view. */}
+      {data.representation && (data.representation.mla || data.representation.mp) && (() => {
+        const lsNumber = data.representation.mp?.ls_number
+        const goToPc = () => {
+          if (lsNumber != null) navigate(`/${state}/representation#ls-${lsNumber}`)
+        }
+        const linkable = lsNumber != null
+        return (
         <div className="card" style={{ marginBottom: '1.5rem', borderLeft: '4px solid #a78bfa' }}>
           <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 6, flexWrap: 'wrap', gap: 8 }}>
             <div className="section-title" style={{ marginBottom: 0 }}>🪪 Who Represents You</div>
             <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)' }}>
               Your two elected representatives — at the state assembly and the national parliament.
+              {linkable && <> Click either card to see all MLAs of the parent Lok Sabha seat.</>}
             </div>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: 8 }}>
             {/* MLA — assembly */}
             {data.representation.mla ? (
-              <div style={{
-                padding: '1rem 1.1rem', borderRadius: 8,
-                background: `${data.representation.mla.party_color}0c`,
-                border: `1px solid ${data.representation.mla.party_color}44`,
-              }}>
+              <div
+                onClick={linkable ? goToPc : undefined}
+                onKeyDown={linkable ? (e) => { if (e.key === 'Enter' || e.key === ' ') goToPc() } : undefined}
+                role={linkable ? 'button' : undefined}
+                tabIndex={linkable ? 0 : undefined}
+                title={linkable ? 'See all MLAs under this Lok Sabha seat' : undefined}
+                className={linkable ? 'rep-card-clickable' : undefined}
+                style={{
+                  padding: '1rem 1.1rem', borderRadius: 8,
+                  background: `${data.representation.mla.party_color}0c`,
+                  border: `1px solid ${data.representation.mla.party_color}44`,
+                  cursor: linkable ? 'pointer' : 'default',
+                  transition: 'transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease',
+                }}>
                 <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 8 }}>
                   <div style={{ fontSize: '0.66rem', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 700 }}>
                     🏛️ Member of Legislative Assembly (MLA)
@@ -170,6 +188,11 @@ export default function ConstituencyDetail() {
                     )}
                   </div>
                 )}
+                {linkable && (
+                  <div style={{ marginTop: 10, fontSize: '0.7rem', color: 'var(--accent)', fontWeight: 600, opacity: 0.85 }}>
+                    See all MLAs of this Lok Sabha seat →
+                  </div>
+                )}
               </div>
             ) : (
               <div style={{ padding: '1rem', borderRadius: 8, background: 'var(--bg-secondary)', color: 'var(--text-secondary)', fontStyle: 'italic', fontSize: '0.85rem' }}>
@@ -179,11 +202,20 @@ export default function ConstituencyDetail() {
 
             {/* MP — parliament */}
             {data.representation.mp ? (
-              <div style={{
-                padding: '1rem 1.1rem', borderRadius: 8,
-                background: `${data.representation.mp.party_color}0c`,
-                border: `1px solid ${data.representation.mp.party_color}44`,
-              }}>
+              <div
+                onClick={linkable ? goToPc : undefined}
+                onKeyDown={linkable ? (e) => { if (e.key === 'Enter' || e.key === ' ') goToPc() } : undefined}
+                role={linkable ? 'button' : undefined}
+                tabIndex={linkable ? 0 : undefined}
+                title={linkable ? 'See this MP’s parent Lok Sabha seat and all its assembly segments' : undefined}
+                className={linkable ? 'rep-card-clickable' : undefined}
+                style={{
+                  padding: '1rem 1.1rem', borderRadius: 8,
+                  background: `${data.representation.mp.party_color}0c`,
+                  border: `1px solid ${data.representation.mp.party_color}44`,
+                  cursor: linkable ? 'pointer' : 'default',
+                  transition: 'transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease',
+                }}>
                 <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 8 }}>
                   <div style={{ fontSize: '0.66rem', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 700 }}>
                     🏛️ Member of Parliament (MP)
@@ -223,6 +255,11 @@ export default function ConstituencyDetail() {
                     )}
                   </div>
                 )}
+                {linkable && (
+                  <div style={{ marginTop: 10, fontSize: '0.7rem', color: 'var(--accent)', fontWeight: 600, opacity: 0.85 }}>
+                    See this PC and its other MLAs →
+                  </div>
+                )}
               </div>
             ) : (
               <div style={{ padding: '1rem', borderRadius: 8, background: 'var(--bg-secondary)', color: 'var(--text-secondary)', fontStyle: 'italic', fontSize: '0.85rem' }}>
@@ -231,7 +268,8 @@ export default function ConstituencyDetail() {
             )}
           </div>
         </div>
-      )}
+        )
+      })()}
 
       {/* Candidate bar chart */}
       {(() => {

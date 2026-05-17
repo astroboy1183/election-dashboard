@@ -182,3 +182,15 @@
     border-right-color: var(--border);
   }
 }
+
+/* Hover affordance for the "Who Represents You" cards on ConstituencyDetail —
+   they navigate to /representation#ls-N when clicked. */
+.rep-card-clickable:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -8px rgba(0, 0, 0, 0.5);
+  filter: brightness(1.06);
+}
+.rep-card-clickable:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
