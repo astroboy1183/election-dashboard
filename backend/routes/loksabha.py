@@ -85,6 +85,7 @@ def loksabha_projection(state: str, session: Session = Depends(get_session)):
             segments.append({
                 "ac_number": con.ac_number,
                 "name": con.name,
+                "district": con.district,
                 "segment_votes": [
                     {
                         "party": p,
@@ -95,6 +96,8 @@ def loksabha_projection(state: str, session: Session = Depends(get_session)):
                 ],
                 "winner": winner.name if winner else "",
                 "winner_party": winner.party if winner else "",
+                "winner_party_color": party_map.get(winner.party, {}).get("color", "#999") if winner else "#94a3b8",
+                "winner_party_full_name": party_map.get(winner.party, {}).get("full_name") if winner else None,
                 "status": "pending" if is_pending else "declared",
             })
 

@@ -30,6 +30,7 @@ const NAV_SECTIONS: { heading: string; items: { to: string; label: string; icon:
     heading: 'Candidates',
     items: [
       { to: 'assets',         label: 'Criminality & Assets',icon: '⚖️' },
+      { to: 'representation', label: 'MPs & MLAs',          icon: '🪪' },
     ],
   },
 ]

@@ -14,6 +14,7 @@ import Swing from './pages/Swing'
 import Geography from './pages/Geography'
 import MapView from './pages/MapView'
 import Assets from './pages/Assets'
+import Representation from './pages/Representation'
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: Infinity, retry: 1 } },
@@ -41,6 +42,7 @@ export default function App() {
               <Route path="geography" element={<Geography />} />
               <Route path="map" element={<MapView />} />
               <Route path="assets" element={<Assets />} />
+              <Route path="representation" element={<Representation />} />
             </Route>
           </Routes>
         </AIToolsProvider>
