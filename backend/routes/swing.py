@@ -1,11 +1,11 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlmodel import Session, select, func
-from sqlalchemy import Integer
 from backend.db import get_session
 from backend.models import Candidate, Constituency, HistoricalResult, LokSabhaSeat
 from backend.config.states import STATE_CONFIG
 from backend.config.alliances import ALLIANCES
 from backend._cache import ttl_cache
+from backend._utils import norm_name
 
 router = APIRouter()
 
@@ -280,8 +280,6 @@ def swing_analysis(state: str, session: Session = Depends(get_session)):
 _NAME_MATCH_STATES = {"assam"}
 
 
-def _norm_name(s: str) -> str:
-    return (s or "").upper().strip()
 
 
 @router.get("/{state}/seat-flips")
@@ -331,7 +329,7 @@ def seat_flips(
     ).all()
 
     def _key(h):
-        return _norm_name(h.constituency_name) if use_name_match else h.ac_number
+        return norm_name(h.constituency_name) if use_name_match else h.ac_number
 
     winners_prev = {_key(h): {
         "party": h.party, "votes": h.votes,
@@ -355,7 +353,7 @@ def seat_flips(
         if not w2026:
             continue
 
-        key = _norm_name(c.name) if use_name_match else c.ac_number
+        key = norm_name(c.name) if use_name_match else c.ac_number
         w2021 = winners_prev.get(key)
         if w2021 is not None:
             matched_2021_keys.add(key)
@@ -488,7 +486,7 @@ def district_swing(state: str, session: Session = Depends(get_session)):
         .where(HistoricalResult.is_winner == True)
     ).all()
     winners_prev = {
-        (_norm_name(h.constituency_name) if use_name_match else h.ac_number): h.party
+        (norm_name(h.constituency_name) if use_name_match else h.ac_number): h.party
         for h in hist_winners
     }
 
@@ -528,7 +526,7 @@ def district_swing(state: str, session: Session = Depends(get_session)):
         runner = next((x for x in cands if not x.is_winner), None) if winner else None
 
         # 2021 winner mapped via key
-        key = _norm_name(c.name) if use_name_match else c.ac_number
+        key = norm_name(c.name) if use_name_match else c.ac_number
         w21_party = winners_prev.get(key)
 
         winner_party = winner.party if winner else None
@@ -661,7 +659,7 @@ def _ls_segment_swing_core(state: str, session: Session, baseline_year: int = 20
         .where(HistoricalResult.is_winner == True)
     ).all()
     winners_prev = {
-        (_norm_name(h.constituency_name) if use_name_match else h.ac_number): h.party
+        (norm_name(h.constituency_name) if use_name_match else h.ac_number): h.party
         for h in hist_winners
     }
 
@@ -711,7 +709,7 @@ def _ls_segment_swing_core(state: str, session: Session, baseline_year: int = 20
         winner = next((x for x in cands if x.is_winner), None)
         runner = next((x for x in cands if not x.is_winner), None) if winner else None
 
-        key = _norm_name(c.name) if use_name_match else c.ac_number
+        key = norm_name(c.name) if use_name_match else c.ac_number
         w21_party = winners_prev.get(key)
 
         winner_party = winner.party if winner else None
@@ -846,7 +844,7 @@ def flip_matrix(state: str, session: Session = Depends(get_session)):
         .where(HistoricalResult.is_winner == True)
     ).all()
     winners_prev = {
-        (_norm_name(h.constituency_name) if use_name_match else h.ac_number): {
+        (norm_name(h.constituency_name) if use_name_match else h.ac_number): {
             "party": h.party, "votes": h.votes,
             "ac_2021": h.ac_number, "name_2021": h.constituency_name,
         } for h in hist_winners
@@ -877,7 +875,7 @@ def flip_matrix(state: str, session: Session = Depends(get_session)):
 
     for cid, w26 in winners_2026.items():
         c = consts_by_id[cid]
-        key = _norm_name(c.name) if use_name_match else c.ac_number
+        key = norm_name(c.name) if use_name_match else c.ac_number
         w21 = winners_prev.get(key)
         if w21 is None or w21["party"] == w26.party:
             continue
@@ -995,8 +993,8 @@ def alliance_breakdown(state: str, alliance_id: str, session: Session = Depends(
 
     def _key(h_or_c):
         if hasattr(h_or_c, "constituency_name"):  # HistoricalResult
-            return _norm_name(h_or_c.constituency_name) if use_name_match else h_or_c.ac_number
-        return _norm_name(h_or_c.name) if use_name_match else h_or_c.ac_number
+            return norm_name(h_or_c.constituency_name) if use_name_match else h_or_c.ac_number
+        return norm_name(h_or_c.name) if use_name_match else h_or_c.ac_number
 
     winners_prev = {_key(h): {
         "party": h.party, "votes": h.votes,

@@ -37,6 +37,3 @@ export function partySymbol(party: string): string {
   return SYMBOLS[party] ?? '🏛️'
 }
 
-export function partyLabel(party: string): string {
-  return `${partySymbol(party)} ${party}`
-}

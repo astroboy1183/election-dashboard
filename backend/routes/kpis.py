@@ -13,6 +13,8 @@ from typing import Any
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlmodel import Session, select, func
+
+from backend._utils import norm_name
 from backend._cache import ttl_cache
 
 from backend.config.states import STATE_CONFIG
@@ -23,19 +25,6 @@ router = APIRouter()
 
 
 # Helpers ─────────────────────────────────────────────────────────────────────
-
-def _norm_name(s: str | None) -> str:
-    """Normalize constituency / candidate names for cross-year matching.
-    Same approach as backend/routes/swing.py — strip case, parenthetical
-    suffixes like (SC)/(ST), and extra whitespace."""
-    if not s:
-        return ""
-    out = s.upper().strip()
-    # Drop reservation suffixes
-    for marker in ("(SC)", "(ST)", "(GEN)"):
-        out = out.replace(marker, "")
-    return " ".join(out.split())
-
 
 def _ac_match_2021_to_2026(state: str, session: Session) -> dict[int, dict]:
     """Returns: { ac_number_2026: {2021_winner_party, 2021_winner_name} }.
@@ -53,14 +42,14 @@ def _ac_match_2021_to_2026(state: str, session: Session) -> dict[int, dict]:
         .where(HistoricalResult.constituency_name != "ECI_AGGREGATE")
     ).all()
     by_ac = {h.ac_number: h for h in hist_winners if h.ac_number}
-    by_name = {_norm_name(h.constituency_name): h for h in hist_winners}
+    by_name = {norm_name(h.constituency_name): h for h in hist_winners}
 
     for c in constituencies:
         # 1) Same AC number (works for TN, KL, WB, PY)
         h = by_ac.get(c.ac_number)
         # 2) Fall back to name match (Assam delimitation)
         if h is None:
-            h = by_name.get(_norm_name(c.name))
+            h = by_name.get(norm_name(c.name))
         if h:
             out[c.ac_number] = {"party_2021": h.party, "name_2021": h.constituency_name}
     return out

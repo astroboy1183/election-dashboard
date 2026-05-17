@@ -4,7 +4,6 @@ Serves per-state assembly-constituency GeoJSON from data/geojson/<state>.geojson
 Source: datameet/maps India_AC shapefile (converted to GeoJSON with pyshp).
 Properties on each feature: { ac_no, ac_name, district }.
 """
-import json
 from pathlib import Path
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import Response

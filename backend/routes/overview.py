@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException, Response
 from sqlmodel import Session, select, func
 from sqlalchemy import case, text
 from backend.db import get_session
-from backend.models import State, Candidate, Constituency, Alliance, Party, HistoricalResult, NotaPerAC
+from backend.models import Candidate, Constituency, HistoricalResult, NotaPerAC
 from backend.config.states import STATE_CONFIG
 from backend.config.alliances import ALLIANCES
 from backend._cache import ttl_cache

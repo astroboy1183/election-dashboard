@@ -11,7 +11,7 @@ Endpoints:
 """
 from __future__ import annotations
 
-from typing import Any, Literal, Optional
+from typing import Literal
 
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
@@ -22,7 +22,7 @@ from backend.db import get_session
 from backend.routes.candidates import party_analytics, list_candidates
 from backend.routes.constituencies import list_constituencies, constituency_detail
 from backend.routes.overview import state_overview
-from backend.routes.swing import district_swing, swing_analysis
+from backend.routes.swing import swing_analysis
 
 router = APIRouter()
 

@@ -1,21 +1,12 @@
 /**
  * Shared chart styling so the 7+ Recharts BarCharts across the dashboard
- * have consistent typography, tooltips, axis ticks, and reference lines.
+ * have consistent typography, tooltips, and reference lines.
  */
 import { fmtCompact, fmtIN } from './format'
 
 // ─────────────────────────  Axis defaults  ─────────────────────────
 
 export const axisTickStyle = { fontSize: 11, fill: 'var(--text-secondary)' } as const
-
-/** Use as `tickFormatter={fmtAxisTick}` on numeric axes. */
-export const fmtAxisTick = (v: any) => fmtCompact(typeof v === 'number' ? v : Number(v) || 0)
-
-/** Use for axes that already speak in 1000s ("vps_k" etc.) — keeps "k" suffix. */
-export const fmtAxisTickKilo = (v: any) => `${v}k`
-
-/** Use for percent axes. */
-export const fmtAxisTickPct = (v: any) => `${v}%`
 
 // ─────────────────────────  Tooltip ─────────────────────────
 
@@ -34,32 +25,12 @@ export const tooltipLabelStyle: React.CSSProperties = {
   marginBottom: 4,
 }
 
-export const tooltipItemStyle: React.CSSProperties = {
-  color: 'var(--text-secondary)',
-}
-
 // ─────────────────────────  Reference lines  ─────────────────────────
 
 export const refLineStyle = {
   stroke: '#eab308',
   strokeWidth: 1.5,
   strokeDasharray: '4 4',
-}
-
-export const zeroLineStyle = {
-  stroke: '#64748b',
-  strokeWidth: 1,
-}
-
-// ─────────────────────────  Color helpers  ─────────────────────────
-
-/** Lighten a hex color by mixing with white. */
-export const lighten = (hex: string, amount = 0.2): string => {
-  const m = hex.replace('#', '').match(/.{1,2}/g)
-  if (!m || m.length < 3) return hex
-  const [r, g, b] = m.slice(0, 3).map(h => parseInt(h, 16))
-  const mix = (c: number) => Math.round(c + (255 - c) * amount)
-  return `#${[mix(r), mix(g), mix(b)].map(v => v.toString(16).padStart(2, '0')).join('')}`
 }
 
 // ─────────────────────────  Rank labels  ─────────────────────────

@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
-from sqlmodel import Session, select, func
+from sqlmodel import Session, select
 from statistics import median
 from backend.db import get_session
 from backend.models import Candidate, Constituency

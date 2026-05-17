@@ -15,10 +15,8 @@ returns HTTP 503 so the rest of the dashboard keeps working normally.
 """
 from __future__ import annotations
 
-import hashlib
 import json
 import os
-from pathlib import Path
 from typing import Any
 
 from fastapi import APIRouter, Depends, HTTPException
