@@ -1,16 +1,23 @@
 import { useState, useMemo, useRef, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
-import { useLokSabha, useConstituencies, useDistrictSwing } from '../lib/api'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
+import { useLokSabha, useConstituencies, useDistrictSwing, useLsSegmentSwing, useLs2024VsA2026Swing, useLs2024PcWinners } from '../lib/api'
 import InsightsCard, { type Insight } from '../components/InsightsCard'
 import PartyLogo from '../components/PartyLogo'
 import SortableTh from '../components/SortableTh'
 import { useSortable } from '../lib/useSortable'
 import { fmtIN } from '../lib/format'
+import { DistrictChurnCard } from '../components/charts/DistrictChurnCard'
+import { Ls2024VsProjectionCard } from '../components/charts/Ls2024VsProjectionCard'
 
 export default function Geography() {
   const { state } = useParams<{ state: string }>()
   const navigate = useNavigate()
-  const [tab, setTab] = useState<'district' | 'loksabha'>('district')
+  const location = useLocation()
+  // If the URL hash targets one of the churn cards, auto-select the matching
+  // tab so the card is actually mounted before we try to scroll to it.
+  const initialTab: 'district' | 'loksabha' =
+    location.hash === '#ls-segment-churn' ? 'loksabha' : 'district'
+  const [tab, setTab] = useState<'district' | 'loksabha'>(initialTab)
   const [selectedLs, setSelectedLs] = useState<number | null>(null)
   // Smooth-scroll the LS detail panel into view whenever the user picks a new seat
   // (from the scoreboard table or any alliance-row expansion).
@@ -35,6 +42,35 @@ export default function Geography() {
   const { data: lsData, isLoading: lsLoading } = useLokSabha(state!)
   const { data: constituencies } = useConstituencies(state!)
   const { data: districtSwing } = useDistrictSwing(state!)
+  const { data: lsSegmentSwing } = useLsSegmentSwing(state!)
+  const { data: lsVsA26Swing } = useLs2024VsA2026Swing(state!)
+  const { data: ls2024PcWinners } = useLs2024PcWinners(state!)
+  // Expanded-row state for the churn cards (one per tab — separate state so
+  // jumping between tabs doesn't reset the other tab's open row).
+  const [expandedDistrictChurn, setExpandedDistrictChurn] = useState<string | null>(null)
+  const [expandedLsChurn, setExpandedLsChurn] = useState<string | null>(null)
+  const [expandedLs24Churn, setExpandedLs24Churn] = useState<string | null>(null)
+  // Sub-tab inside the LS view to pick which comparison the user wants to see.
+  // Default = the headline "LS 2024 actual vs 2026 projection" PC-level view.
+  type LsCompareView = 'projection' | 'churn-2021' | 'churn-2024'
+  const [lsCompareView, setLsCompareView] = useState<LsCompareView>('projection')
+
+  // Deep-link scroll: handles #district-churn (used by Overview's anti-
+  // incumbency modal) and the three LS sub-tab hashes (#ls-segment-churn,
+  // #ls24-vs-a26-churn, #ls2024-vs-projection). Selecting the matching
+  // sub-tab before scrolling so the target element is actually mounted.
+  useEffect(() => {
+    if (!location.hash) return
+    const id = location.hash.replace(/^#/, '')
+    if (id === 'ls-segment-churn') setLsCompareView('churn-2021')
+    else if (id === 'ls24-vs-a26-churn') setLsCompareView('churn-2024')
+    else if (id === 'ls2024-vs-projection') setLsCompareView('projection')
+    // Defer scroll one frame so the conditionally-mounted card renders first
+    requestAnimationFrame(() => {
+      const el = document.getElementById(id)
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    })
+  }, [location.hash, districtSwing, lsSegmentSwing, lsVsA26Swing, ls2024PcWinners, tab])
 
   // Lookup: district name → enriched swing data (flipped count, leader swing, etc.)
   const swingByDistrict: Record<string, any> = useMemo(() => {
@@ -449,6 +485,21 @@ export default function Geography() {
             </div>
           )}
           </div>
+
+          {/* District-Wise Churn — moved here from Swing & Trends. Sortable
+              table with per-district drill-down (flipped/held/new seats).
+              id="district-churn" preserved so deep-links from Overview's
+              anti-incumbency modal still work. */}
+          {districtSwing && districtSwing.districts && districtSwing.districts.length > 0 && (
+            <div id="district-churn" style={{ scrollMarginTop: 16, marginTop: '1.5rem' }}>
+              <DistrictChurnCard
+                districts={districtSwing.districts}
+                state={state!}
+                expandedDistrict={expandedDistrictChurn}
+                setExpandedDistrict={setExpandedDistrictChurn}
+              />
+            </div>
+          )}
         </>
       )}
 
@@ -459,6 +510,11 @@ export default function Geography() {
           {lsData && (
             <>
               <InsightsCard insights={lsInsights} subtitle="What the LS projection reveals from this state's assembly votes" />
+
+              {/* (LS 2024 vs 2026 projection card moved to the "Compare LS
+                  outcomes" tabbed section at the bottom of this tab so the
+                  three comparison cards are grouped together with a sub-tab
+                  picker — keeps the LS view from stacking similar tables.) */}
 
               {/* Tally — alliance-level, clickable rows expand to show that alliance's projected LS seats */}
               <div className="card" style={{ marginBottom: '1.25rem' }}>
@@ -614,6 +670,36 @@ export default function Geography() {
                         </div>
                       </div>
 
+                      {/* Sitting MP from LS 2024 — pairs the projection above
+                          with the real person currently representing this PC. */}
+                      {(selectedSeat as any).sitting_mp_2024 && (() => {
+                        const mp = (selectedSeat as any).sitting_mp_2024
+                        return (
+                          <div style={{
+                            padding: '0.7rem 0.85rem', borderRadius: 8, marginBottom: 14,
+                            background: `${mp.party_color}0c`, border: `1px solid ${mp.party_color}44`,
+                          }}>
+                            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', flexWrap: 'wrap', gap: 6 }}>
+                              <div style={{ fontSize: '0.66rem', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 700 }}>
+                                🪪 Sitting MP (Lok Sabha 2024)
+                              </div>
+                              {mp.seat_type && mp.seat_type !== 'GEN' && (
+                                <span style={{ fontSize: '0.65rem', padding: '0.12rem 0.45rem', borderRadius: 10,
+                                               background: 'rgba(167,139,250,0.10)', border: '1px solid rgba(167,139,250,0.30)', color: '#a78bfa' }}>
+                                  Reserved ({mp.seat_type})
+                                </span>
+                              )}
+                            </div>
+                            <div style={{ fontSize: '0.98rem', fontWeight: 800, marginTop: 4 }}>{mp.name}</div>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 4, fontSize: '0.78rem' }}>
+                              <PartyLogo party={mp.party} size={16} />
+                              <span style={{ color: mp.party_color, fontWeight: 700 }}>{mp.party}</span>
+                              {mp.gender && <span style={{ color: 'var(--text-muted)' }}>· {mp.gender}</span>}
+                            </div>
+                          </div>
+                        )
+                      })()}
+
                       {/* Alliance-level breakdown (the projection that matters) */}
                       {(selectedSeat as any).alliance_breakdown && (
                         <>
@@ -763,6 +849,90 @@ export default function Geography() {
                 )}
               </div>
             </>
+          )}
+
+          {/* ── Compare LS outcomes — tabbed section ──────────────
+              Three structurally-similar comparison views (LS 2024 actual vs
+              2026 projection at PC-level; AC-segment churn 2021→2026; AC-
+              segment churn LS24→A26) live behind a single sub-tab picker so
+              the LS view stops stacking near-identical tables. User picks
+              which comparison to drill into. */}
+          {((ls2024PcWinners?.seats?.length ?? 0) > 0
+            || (lsSegmentSwing?.ls_seats?.length ?? 0) > 0
+            || (lsVsA26Swing?.ls_seats?.length ?? 0) > 0) && (
+            <div id="ls-compare" style={{ scrollMarginTop: 16, marginTop: '1.5rem' }}>
+              <div style={{ marginBottom: 10 }}>
+                <div className="section-title" style={{ marginBottom: 6 }}>Compare LS Outcomes</div>
+                <div style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', marginBottom: 10 }}>
+                  Three ways to compare what happened across cycles. Pick a view to drill in.
+                </div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                  {([
+                    { id: 'projection', label: '🆚 LS 2024 vs 2026 Projection (PC-level)',
+                      hint: 'Per-PC table: actual LS 2024 alliance winner vs 2026-assembly-vote projection' },
+                    { id: 'churn-2021', label: '🔁 AC-Segment Churn: 2021 → 2026',
+                      hint: 'Assembly-to-assembly: which AC segments stayed vs flipped, grouped by parent LS seat' },
+                    { id: 'churn-2024', label: '🔁 AC-Segment Churn: LS 2024 → 2026',
+                      hint: 'LS-cycle to assembly-cycle: did LS 2024 momentum carry forward to A 2026?' },
+                  ] as const).map(t => {
+                    const active = lsCompareView === t.id
+                    return (
+                      <button key={t.id} onClick={() => setLsCompareView(t.id)} title={t.hint}
+                        style={{
+                          padding: '0.45rem 0.85rem', borderRadius: 8, cursor: 'pointer',
+                          background: active ? 'rgba(167,139,250,0.18)' : 'var(--bg-card)',
+                          border: `1px solid ${active ? 'rgba(167,139,250,0.5)' : 'var(--border)'}`,
+                          color: active ? 'var(--accent)' : 'var(--text-secondary)',
+                          fontSize: '0.78rem', fontWeight: 700,
+                        }}>
+                        {t.label}
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+
+              {lsCompareView === 'projection' && ls2024PcWinners?.seats?.length > 0 && (
+                <Ls2024VsProjectionCard
+                  ls2024Seats={ls2024PcWinners.seats}
+                  projectionSeats={(lsData as any).seats}
+                />
+              )}
+
+              {lsCompareView === 'churn-2021' && lsSegmentSwing?.ls_seats?.length > 0 && (
+                <div id="ls-segment-churn">
+                  <DistrictChurnCard
+                    districts={lsSegmentSwing.ls_seats}
+                    state={state!}
+                    expandedDistrict={expandedLsChurn}
+                    setExpandedDistrict={setExpandedLsChurn}
+                    title="LS-Wise Assembly Segment Churn (2021 → 2026)"
+                    subtitle="How assembly-segment winners changed between the 2021 and 2026 assembly elections, grouped by parent Lok Sabha seat. Click a row to see which seats."
+                    columnLabel="Lok Sabha Seat"
+                    prevLabel="2021 Leader"
+                    prevLabelShort="2021"
+                    groupNoun="Lok Sabha seat"
+                  />
+                </div>
+              )}
+
+              {lsCompareView === 'churn-2024' && lsVsA26Swing?.ls_seats?.length > 0 && (
+                <div id="ls24-vs-a26-churn">
+                  <DistrictChurnCard
+                    districts={lsVsA26Swing.ls_seats}
+                    state={state!}
+                    expandedDistrict={expandedLs24Churn}
+                    setExpandedDistrict={setExpandedLs24Churn}
+                    title="LS-Wise Assembly Segment Churn (LS 2024 → Assembly 2026)"
+                    subtitle="Compares each AC's LS 2024 vote leader against its Assembly 2026 winner. Shows how much LS-cycle momentum carried into the assembly cycle."
+                    columnLabel="Lok Sabha Seat"
+                    prevLabel="LS 2024 Leader"
+                    prevLabelShort="LS 2024"
+                    groupNoun="Lok Sabha seat"
+                  />
+                </div>
+              )}
+            </div>
           )}
         </div>
       )}

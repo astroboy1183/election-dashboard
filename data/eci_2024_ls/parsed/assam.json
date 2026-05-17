@@ -1,0 +1,5689 @@
+{
+  "state": "assam",
+  "year": 2024,
+  "constituencies": [
+    {
+      "ac_number": 1,
+      "ac_name": "Gossaigaon",
+      "pc_number": 1,
+      "pc_name": "Kokrajhar",
+      "candidates": [
+        {
+          "party": "UPPL",
+          "votes": 35173,
+          "is_winner": true
+        },
+        {
+          "party": "BOPF",
+          "votes": 20330,
+          "is_winner": false
+        },
+        {
+          "party": "INC",
+          "votes": 20021,
+          "is_winner": false
+        },
+        {
+          "party": "AITC",
+          "votes": 6387,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 4397,
+          "is_winner": false
+        },
+        {
+          "party": "GNASURKP",
+          "votes": 3562,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 869,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 2,
+      "ac_name": "Dotma",
+      "pc_number": 1,
+      "pc_name": "Kokrajhar",
+      "candidates": [
+        {
+          "party": "UPPL",
+          "votes": 36490,
+          "is_winner": true
+        },
+        {
+          "party": "BOPF",
+          "votes": 31933,
+          "is_winner": false
+        },
+        {
+          "party": "INC",
+          "votes": 6137,
+          "is_winner": false
+        },
+        {
+          "party": "GNASURKP",
+          "votes": 5255,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 4318,
+          "is_winner": false
+        },
+        {
+          "party": "AITC",
+          "votes": 2431,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 689,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 3,
+      "ac_name": "Kokrajhar",
+      "pc_number": 1,
+      "pc_name": "Kokrajhar",
+      "candidates": [
+        {
+          "party": "BOPF",
+          "votes": 48207,
+          "is_winner": true
+        },
+        {
+          "party": "UPPL",
+          "votes": 46032,
+          "is_winner": false
+        },
+        {
+          "party": "GNASURKP",
+          "votes": 9094,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 5510,
+          "is_winner": false
+        },
+        {
+          "party": "INC",
+          "votes": 3345,
+          "is_winner": false
+        },
+        {
+          "party": "AITC",
+          "votes": 1722,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 563,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 4,
+      "ac_name": "Baokhungri",
+      "pc_number": 1,
+      "pc_name": "Kokrajhar",
+      "candidates": [
+        {
+          "party": "UPPL",
+          "votes": 55015,
+          "is_winner": true
+        },
+        {
+          "party": "BOPF",
+          "votes": 48660,
+          "is_winner": false
+        },
+        {
+          "party": "INC",
+          "votes": 12665,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 7295,
+          "is_winner": false
+        },
+        {
+          "party": "GNASURKP",
+          "votes": 6067,
+          "is_winner": false
+        },
+        {
+          "party": "AITC",
+          "votes": 1851,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 391,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 5,
+      "ac_name": "Parbatjhora",
+      "pc_number": 1,
+      "pc_name": "Kokrajhar",
+      "candidates": [
+        {
+          "party": "BOPF",
+          "votes": 56840,
+          "is_winner": true
+        },
+        {
+          "party": "UPPL",
+          "votes": 47302,
+          "is_winner": false
+        },
+        {
+          "party": "INC",
+          "votes": 34108,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 6218,
+          "is_winner": false
+        },
+        {
+          "party": "AITC",
+          "votes": 2748,
+          "is_winner": false
+        },
+        {
+          "party": "GNASURKP",
+          "votes": 1770,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 505,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 6,
+      "ac_name": "Golakganj",
+      "pc_number": 2,
+      "pc_name": "Dhubri",
+      "candidates": [
+        {
+          "party": "AGP",
+          "votes": 97833,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 68808,
+          "is_winner": false
+        },
+        {
+          "party": "AIUDF",
+          "votes": 11402,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 2169,
+          "is_winner": false
+        },
+        {
+          "party": "TNRMPI",
+          "votes": 783,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 663,
+          "is_winner": false
+        },
+        {
+          "party": "HSP",
+          "votes": 543,
+          "is_winner": false
+        },
+        {
+          "party": "AJM",
+          "votes": 321,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 193,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 161,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 161,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 7,
+      "ac_name": "Gauripur",
+      "pc_number": 2,
+      "pc_name": "Dhubri",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 191689,
+          "is_winner": true
+        },
+        {
+          "party": "AIUDF",
+          "votes": 39451,
+          "is_winner": false
+        },
+        {
+          "party": "AGP",
+          "votes": 37563,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 2866,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 1556,
+          "is_winner": false
+        },
+        {
+          "party": "TNRMPI",
+          "votes": 631,
+          "is_winner": false
+        },
+        {
+          "party": "HSP",
+          "votes": 582,
+          "is_winner": false
+        },
+        {
+          "party": "AJM",
+          "votes": 449,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 442,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 317,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 250,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 8,
+      "ac_name": "Dhubri",
+      "pc_number": 2,
+      "pc_name": "Dhubri",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 125094,
+          "is_winner": true
+        },
+        {
+          "party": "AGP",
+          "votes": 43393,
+          "is_winner": false
+        },
+        {
+          "party": "AIUDF",
+          "votes": 35790,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 1843,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 917,
+          "is_winner": false
+        },
+        {
+          "party": "HSP",
+          "votes": 418,
+          "is_winner": false
+        },
+        {
+          "party": "TNRMPI",
+          "votes": 390,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 316,
+          "is_winner": false
+        },
+        {
+          "party": "AJM",
+          "votes": 287,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 176,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 171,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 9,
+      "ac_name": "Birsing-Jarua",
+      "pc_number": 2,
+      "pc_name": "Dhubri",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 163211,
+          "is_winner": true
+        },
+        {
+          "party": "AIUDF",
+          "votes": 66305,
+          "is_winner": false
+        },
+        {
+          "party": "AGP",
+          "votes": 14484,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 2540,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 1237,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 739,
+          "is_winner": false
+        },
+        {
+          "party": "TNRMPI",
+          "votes": 665,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 639,
+          "is_winner": false
+        },
+        {
+          "party": "HSP",
+          "votes": 541,
+          "is_winner": false
+        },
+        {
+          "party": "AJM",
+          "votes": 389,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 309,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 10,
+      "ac_name": "Bilasipara",
+      "pc_number": 2,
+      "pc_name": "Dhubri",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 78371,
+          "is_winner": true
+        },
+        {
+          "party": "AGP",
+          "votes": 73948,
+          "is_winner": false
+        },
+        {
+          "party": "AIUDF",
+          "votes": 13260,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 1942,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 676,
+          "is_winner": false
+        },
+        {
+          "party": "HSP",
+          "votes": 524,
+          "is_winner": false
+        },
+        {
+          "party": "TNRMPI",
+          "votes": 495,
+          "is_winner": false
+        },
+        {
+          "party": "AJM",
+          "votes": 421,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 256,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 229,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 204,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 11,
+      "ac_name": "Mankachar",
+      "pc_number": 2,
+      "pc_name": "Dhubri",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 163792,
+          "is_winner": true
+        },
+        {
+          "party": "AGP",
+          "votes": 63960,
+          "is_winner": false
+        },
+        {
+          "party": "AIUDF",
+          "votes": 38446,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 2772,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 1205,
+          "is_winner": false
+        },
+        {
+          "party": "TNRMPI",
+          "votes": 1051,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 692,
+          "is_winner": false
+        },
+        {
+          "party": "AJM",
+          "votes": 540,
+          "is_winner": false
+        },
+        {
+          "party": "HSP",
+          "votes": 497,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 468,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 414,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 12,
+      "ac_name": "Jaleswar",
+      "pc_number": 2,
+      "pc_name": "Dhubri",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 137048,
+          "is_winner": true
+        },
+        {
+          "party": "AIUDF",
+          "votes": 56545,
+          "is_winner": false
+        },
+        {
+          "party": "AGP",
+          "votes": 14819,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 2445,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 1229,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 841,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 654,
+          "is_winner": false
+        },
+        {
+          "party": "TNRMPI",
+          "votes": 599,
+          "is_winner": false
+        },
+        {
+          "party": "HSP",
+          "votes": 572,
+          "is_winner": false
+        },
+        {
+          "party": "AJM",
+          "votes": 447,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 344,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 13,
+      "ac_name": "Goalpara West",
+      "pc_number": 5,
+      "pc_name": "Guwahati",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 80825,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 52053,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 1296,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 1213,
+          "is_winner": false
+        },
+        {
+          "party": "ESBD",
+          "votes": 610,
+          "is_winner": false
+        },
+        {
+          "party": "BAHUMP",
+          "votes": 422,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 416,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 14,
+      "ac_name": "Goalpara East",
+      "pc_number": 2,
+      "pc_name": "Dhubri",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 126453,
+          "is_winner": true
+        },
+        {
+          "party": "AGP",
+          "votes": 41691,
+          "is_winner": false
+        },
+        {
+          "party": "AIUDF",
+          "votes": 25878,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 2472,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 1160,
+          "is_winner": false
+        },
+        {
+          "party": "HSP",
+          "votes": 754,
+          "is_winner": false
+        },
+        {
+          "party": "TNRMPI",
+          "votes": 719,
+          "is_winner": false
+        },
+        {
+          "party": "AJM",
+          "votes": 553,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 538,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 531,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 308,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 15,
+      "ac_name": "Dudhnoi",
+      "pc_number": 5,
+      "pc_name": "Guwahati",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 90502,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 52008,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 2395,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 1559,
+          "is_winner": false
+        },
+        {
+          "party": "ESBD",
+          "votes": 724,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 590,
+          "is_winner": false
+        },
+        {
+          "party": "BAHUMP",
+          "votes": 571,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 16,
+      "ac_name": "Abhayapuri",
+      "pc_number": 3,
+      "pc_name": "Barpeta",
+      "candidates": [
+        {
+          "party": "AGP",
+          "votes": 98791,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 43682,
+          "is_winner": false
+        },
+        {
+          "party": "CPI(M)",
+          "votes": 6639,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 3085,
+          "is_winner": false
+        },
+        {
+          "party": "AITC",
+          "votes": 1487,
+          "is_winner": false
+        },
+        {
+          "party": "BOPF",
+          "votes": 529,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 467,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 283,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 258,
+          "is_winner": false
+        },
+        {
+          "party": "RUC",
+          "votes": 253,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 17,
+      "ac_name": "Srijangram",
+      "pc_number": 2,
+      "pc_name": "Dhubri",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 120369,
+          "is_winner": true
+        },
+        {
+          "party": "AIUDF",
+          "votes": 48602,
+          "is_winner": false
+        },
+        {
+          "party": "AGP",
+          "votes": 25298,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 1911,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 895,
+          "is_winner": false
+        },
+        {
+          "party": "HSP",
+          "votes": 469,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 434,
+          "is_winner": false
+        },
+        {
+          "party": "TNRMPI",
+          "votes": 425,
+          "is_winner": false
+        },
+        {
+          "party": "AJM",
+          "votes": 350,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 226,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 165,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 18,
+      "ac_name": "Bongaigaon",
+      "pc_number": 3,
+      "pc_name": "Barpeta",
+      "candidates": [
+        {
+          "party": "AGP",
+          "votes": 98323,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 38723,
+          "is_winner": false
+        },
+        {
+          "party": "CPI(M)",
+          "votes": 4036,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 3177,
+          "is_winner": false
+        },
+        {
+          "party": "AITC",
+          "votes": 1647,
+          "is_winner": false
+        },
+        {
+          "party": "BOPF",
+          "votes": 958,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 512,
+          "is_winner": false
+        },
+        {
+          "party": "RUC",
+          "votes": 333,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 309,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 265,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 19,
+      "ac_name": "Sidli Chirang",
+      "pc_number": 1,
+      "pc_name": "Kokrajhar",
+      "candidates": [
+        {
+          "party": "UPPL",
+          "votes": 75317,
+          "is_winner": true
+        },
+        {
+          "party": "BOPF",
+          "votes": 67788,
+          "is_winner": false
+        },
+        {
+          "party": "INC",
+          "votes": 11003,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 9787,
+          "is_winner": false
+        },
+        {
+          "party": "GNASURKP",
+          "votes": 8184,
+          "is_winner": false
+        },
+        {
+          "party": "AITC",
+          "votes": 2204,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 1280,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 20,
+      "ac_name": "Bijni",
+      "pc_number": 1,
+      "pc_name": "Kokrajhar",
+      "candidates": [
+        {
+          "party": "UPPL",
+          "votes": 62763,
+          "is_winner": true
+        },
+        {
+          "party": "BOPF",
+          "votes": 47609,
+          "is_winner": false
+        },
+        {
+          "party": "GNASURKP",
+          "votes": 21098,
+          "is_winner": false
+        },
+        {
+          "party": "INC",
+          "votes": 10721,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 8019,
+          "is_winner": false
+        },
+        {
+          "party": "AITC",
+          "votes": 2215,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 795,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 21,
+      "ac_name": "Bhowanipur-Sorbhog",
+      "pc_number": 3,
+      "pc_name": "Barpeta",
+      "candidates": [
+        {
+          "party": "AGP",
+          "votes": 93927,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 57174,
+          "is_winner": false
+        },
+        {
+          "party": "CPI(M)",
+          "votes": 18198,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 3521,
+          "is_winner": false
+        },
+        {
+          "party": "AITC",
+          "votes": 1651,
+          "is_winner": false
+        },
+        {
+          "party": "BOPF",
+          "votes": 1449,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 486,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 292,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 262,
+          "is_winner": false
+        },
+        {
+          "party": "RUC",
+          "votes": 241,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 22,
+      "ac_name": "Mandia",
+      "pc_number": 2,
+      "pc_name": "Dhubri",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 144773,
+          "is_winner": true
+        },
+        {
+          "party": "AIUDF",
+          "votes": 70152,
+          "is_winner": false
+        },
+        {
+          "party": "AGP",
+          "votes": 12046,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 2229,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 1102,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 776,
+          "is_winner": false
+        },
+        {
+          "party": "HSP",
+          "votes": 626,
+          "is_winner": false
+        },
+        {
+          "party": "TNRMPI",
+          "votes": 573,
+          "is_winner": false
+        },
+        {
+          "party": "AJM",
+          "votes": 452,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 319,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 211,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 23,
+      "ac_name": "Chenga",
+      "pc_number": 2,
+      "pc_name": "Dhubri",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 148941,
+          "is_winner": true
+        },
+        {
+          "party": "AIUDF",
+          "votes": 52371,
+          "is_winner": false
+        },
+        {
+          "party": "AGP",
+          "votes": 10787,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 2362,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 1338,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 734,
+          "is_winner": false
+        },
+        {
+          "party": "HSP",
+          "votes": 611,
+          "is_winner": false
+        },
+        {
+          "party": "TNRMPI",
+          "votes": 603,
+          "is_winner": false
+        },
+        {
+          "party": "AJM",
+          "votes": 540,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 389,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 242,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 24,
+      "ac_name": "Barpeta",
+      "pc_number": 3,
+      "pc_name": "Barpeta",
+      "candidates": [
+        {
+          "party": "AGP",
+          "votes": 91587,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 34159,
+          "is_winner": false
+        },
+        {
+          "party": "CPI(M)",
+          "votes": 8409,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 2509,
+          "is_winner": false
+        },
+        {
+          "party": "AITC",
+          "votes": 805,
+          "is_winner": false
+        },
+        {
+          "party": "BOPF",
+          "votes": 646,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 406,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 227,
+          "is_winner": false
+        },
+        {
+          "party": "RUC",
+          "votes": 173,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 163,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 25,
+      "ac_name": "Pakabetbari",
+      "pc_number": 3,
+      "pc_name": "Barpeta",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 175341,
+          "is_winner": true
+        },
+        {
+          "party": "AGP",
+          "votes": 25355,
+          "is_winner": false
+        },
+        {
+          "party": "CPI(M)",
+          "votes": 22157,
+          "is_winner": false
+        },
+        {
+          "party": "AITC",
+          "votes": 4442,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 3861,
+          "is_winner": false
+        },
+        {
+          "party": "BOPF",
+          "votes": 967,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 587,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 507,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 316,
+          "is_winner": false
+        },
+        {
+          "party": "RUC",
+          "votes": 311,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 26,
+      "ac_name": "Bajali",
+      "pc_number": 3,
+      "pc_name": "Barpeta",
+      "candidates": [
+        {
+          "party": "AGP",
+          "votes": 76170,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 34584,
+          "is_winner": false
+        },
+        {
+          "party": "CPI(M)",
+          "votes": 10492,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 2888,
+          "is_winner": false
+        },
+        {
+          "party": "BOPF",
+          "votes": 1396,
+          "is_winner": false
+        },
+        {
+          "party": "AITC",
+          "votes": 1363,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 388,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 300,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 228,
+          "is_winner": false
+        },
+        {
+          "party": "RUC",
+          "votes": 219,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 27,
+      "ac_name": "Chamaria",
+      "pc_number": 5,
+      "pc_name": "Guwahati",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 181943,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 21674,
+          "is_winner": false
+        },
+        {
+          "party": "ESBD",
+          "votes": 1893,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 1724,
+          "is_winner": false
+        },
+        {
+          "party": "BAHUMP",
+          "votes": 655,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 638,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 572,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 28,
+      "ac_name": "Boko-Chaygaon",
+      "pc_number": 5,
+      "pc_name": "Guwahati",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 96937,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 53583,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 2194,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 1450,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 852,
+          "is_winner": false
+        },
+        {
+          "party": "ESBD",
+          "votes": 848,
+          "is_winner": false
+        },
+        {
+          "party": "BAHUMP",
+          "votes": 731,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 29,
+      "ac_name": "Palasbari",
+      "pc_number": 5,
+      "pc_name": "Guwahati",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 104347,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 59998,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 2307,
+          "is_winner": false
+        },
+        {
+          "party": "ESBD",
+          "votes": 976,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 919,
+          "is_winner": false
+        },
+        {
+          "party": "BAHUMP",
+          "votes": 858,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 849,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 30,
+      "ac_name": "Hajo-Sualkuchi",
+      "pc_number": 3,
+      "pc_name": "Barpeta",
+      "candidates": [
+        {
+          "party": "AGP",
+          "votes": 80230,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 65866,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 5153,
+          "is_winner": false
+        },
+        {
+          "party": "CPI(M)",
+          "votes": 4158,
+          "is_winner": false
+        },
+        {
+          "party": "AITC",
+          "votes": 1427,
+          "is_winner": false
+        },
+        {
+          "party": "BOPF",
+          "votes": 591,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 406,
+          "is_winner": false
+        },
+        {
+          "party": "RUC",
+          "votes": 265,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 241,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 241,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 31,
+      "ac_name": "Rangia",
+      "pc_number": 4,
+      "pc_name": "Darrang-Udalguri",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 99469,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 59219,
+          "is_winner": false
+        },
+        {
+          "party": "BOPF",
+          "votes": 6786,
+          "is_winner": false
+        },
+        {
+          "party": "BHRJWNKP",
+          "votes": 995,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 574,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 514,
+          "is_winner": false
+        },
+        {
+          "party": "GNASURKP",
+          "votes": 506,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 369,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 360,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 299,
+          "is_winner": false
+        },
+        {
+          "party": "RUC",
+          "votes": 279,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 32,
+      "ac_name": "Kamalpur",
+      "pc_number": 4,
+      "pc_name": "Darrang-Udalguri",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 98247,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 43282,
+          "is_winner": false
+        },
+        {
+          "party": "BOPF",
+          "votes": 6263,
+          "is_winner": false
+        },
+        {
+          "party": "BHRJWNKP",
+          "votes": 856,
+          "is_winner": false
+        },
+        {
+          "party": "GNASURKP",
+          "votes": 464,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 424,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 371,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 299,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 266,
+          "is_winner": false
+        },
+        {
+          "party": "RUC",
+          "votes": 235,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 215,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 33,
+      "ac_name": "Dispur",
+      "pc_number": 5,
+      "pc_name": "Guwahati",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 103933,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 59631,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 1131,
+          "is_winner": false
+        },
+        {
+          "party": "ESBD",
+          "votes": 496,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 425,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 308,
+          "is_winner": false
+        },
+        {
+          "party": "BAHUMP",
+          "votes": 274,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 34,
+      "ac_name": "Dimoria",
+      "pc_number": 5,
+      "pc_name": "Guwahati",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 108983,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 52496,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 1741,
+          "is_winner": false
+        },
+        {
+          "party": "ESBD",
+          "votes": 652,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 556,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 551,
+          "is_winner": false
+        },
+        {
+          "party": "BAHUMP",
+          "votes": 500,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 35,
+      "ac_name": "New Guwahati",
+      "pc_number": 5,
+      "pc_name": "Guwahati",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 78387,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 49629,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 748,
+          "is_winner": false
+        },
+        {
+          "party": "ESBD",
+          "votes": 416,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 251,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 224,
+          "is_winner": false
+        },
+        {
+          "party": "BAHUMP",
+          "votes": 208,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 36,
+      "ac_name": "Guwahati Central",
+      "pc_number": 5,
+      "pc_name": "Guwahati",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 102578,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 33611,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 774,
+          "is_winner": false
+        },
+        {
+          "party": "ESBD",
+          "votes": 356,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 290,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 248,
+          "is_winner": false
+        },
+        {
+          "party": "BAHUMP",
+          "votes": 241,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 37,
+      "ac_name": "Jalukbari",
+      "pc_number": 5,
+      "pc_name": "Guwahati",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 103735,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 47401,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 1006,
+          "is_winner": false
+        },
+        {
+          "party": "ESBD",
+          "votes": 537,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 387,
+          "is_winner": false
+        },
+        {
+          "party": "BAHUMP",
+          "votes": 366,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 358,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 38,
+      "ac_name": "Barkhetri",
+      "pc_number": 3,
+      "pc_name": "Barpeta",
+      "candidates": [
+        {
+          "party": "AGP",
+          "votes": 94944,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 81755,
+          "is_winner": false
+        },
+        {
+          "party": "CPI(M)",
+          "votes": 4657,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 4001,
+          "is_winner": false
+        },
+        {
+          "party": "AITC",
+          "votes": 1102,
+          "is_winner": false
+        },
+        {
+          "party": "BOPF",
+          "votes": 515,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 436,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 301,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 233,
+          "is_winner": false
+        },
+        {
+          "party": "RUC",
+          "votes": 202,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 39,
+      "ac_name": "Nalbari",
+      "pc_number": 3,
+      "pc_name": "Barpeta",
+      "candidates": [
+        {
+          "party": "AGP",
+          "votes": 104817,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 48515,
+          "is_winner": false
+        },
+        {
+          "party": "CPI(M)",
+          "votes": 6560,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 3831,
+          "is_winner": false
+        },
+        {
+          "party": "AITC",
+          "votes": 1250,
+          "is_winner": false
+        },
+        {
+          "party": "BOPF",
+          "votes": 1148,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 445,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 378,
+          "is_winner": false
+        },
+        {
+          "party": "RUC",
+          "votes": 231,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 205,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 40,
+      "ac_name": "Tihu",
+      "pc_number": 3,
+      "pc_name": "Barpeta",
+      "candidates": [
+        {
+          "party": "AGP",
+          "votes": 89498,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 55612,
+          "is_winner": false
+        },
+        {
+          "party": "CPI(M)",
+          "votes": 9714,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 3747,
+          "is_winner": false
+        },
+        {
+          "party": "BOPF",
+          "votes": 1316,
+          "is_winner": false
+        },
+        {
+          "party": "AITC",
+          "votes": 1185,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 413,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 388,
+          "is_winner": false
+        },
+        {
+          "party": "RUC",
+          "votes": 235,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 215,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 41,
+      "ac_name": "Manas",
+      "pc_number": 1,
+      "pc_name": "Kokrajhar",
+      "candidates": [
+        {
+          "party": "UPPL",
+          "votes": 68623,
+          "is_winner": true
+        },
+        {
+          "party": "BOPF",
+          "votes": 57927,
+          "is_winner": false
+        },
+        {
+          "party": "GNASURKP",
+          "votes": 14206,
+          "is_winner": false
+        },
+        {
+          "party": "INC",
+          "votes": 10143,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 8095,
+          "is_winner": false
+        },
+        {
+          "party": "AITC",
+          "votes": 2127,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 1118,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 42,
+      "ac_name": "Baksa",
+      "pc_number": 1,
+      "pc_name": "Kokrajhar",
+      "candidates": [
+        {
+          "party": "UPPL",
+          "votes": 57966,
+          "is_winner": true
+        },
+        {
+          "party": "BOPF",
+          "votes": 53474,
+          "is_winner": false
+        },
+        {
+          "party": "GNASURKP",
+          "votes": 24030,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 7653,
+          "is_winner": false
+        },
+        {
+          "party": "INC",
+          "votes": 4481,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 1681,
+          "is_winner": false
+        },
+        {
+          "party": "AITC",
+          "votes": 1677,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 43,
+      "ac_name": "Tamulpur",
+      "pc_number": 4,
+      "pc_name": "Darrang-Udalguri",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 80412,
+          "is_winner": true
+        },
+        {
+          "party": "BOPF",
+          "votes": 52887,
+          "is_winner": false
+        },
+        {
+          "party": "INC",
+          "votes": 14609,
+          "is_winner": false
+        },
+        {
+          "party": "GNASURKP",
+          "votes": 3348,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 2929,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 1714,
+          "is_winner": false
+        },
+        {
+          "party": "BHRJWNKP",
+          "votes": 1305,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 638,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 556,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 540,
+          "is_winner": false
+        },
+        {
+          "party": "RUC",
+          "votes": 532,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 44,
+      "ac_name": "Goreswar",
+      "pc_number": 4,
+      "pc_name": "Darrang-Udalguri",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 86494,
+          "is_winner": true
+        },
+        {
+          "party": "BOPF",
+          "votes": 37580,
+          "is_winner": false
+        },
+        {
+          "party": "INC",
+          "votes": 23677,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 2000,
+          "is_winner": false
+        },
+        {
+          "party": "GNASURKP",
+          "votes": 1448,
+          "is_winner": false
+        },
+        {
+          "party": "BHRJWNKP",
+          "votes": 1343,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 1180,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 721,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 654,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 552,
+          "is_winner": false
+        },
+        {
+          "party": "RUC",
+          "votes": 412,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 45,
+      "ac_name": "Bhergaon",
+      "pc_number": 4,
+      "pc_name": "Darrang-Udalguri",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 68980,
+          "is_winner": true
+        },
+        {
+          "party": "BOPF",
+          "votes": 34045,
+          "is_winner": false
+        },
+        {
+          "party": "INC",
+          "votes": 13204,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 1414,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 1389,
+          "is_winner": false
+        },
+        {
+          "party": "BHRJWNKP",
+          "votes": 960,
+          "is_winner": false
+        },
+        {
+          "party": "GNASURKP",
+          "votes": 895,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 549,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 471,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 403,
+          "is_winner": false
+        },
+        {
+          "party": "RUC",
+          "votes": 365,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 46,
+      "ac_name": "Udalguri",
+      "pc_number": 4,
+      "pc_name": "Darrang-Udalguri",
+      "candidates": [
+        {
+          "party": "BOPF",
+          "votes": 50374,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 46949,
+          "is_winner": false
+        },
+        {
+          "party": "INC",
+          "votes": 23751,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 2431,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 1587,
+          "is_winner": false
+        },
+        {
+          "party": "GNASURKP",
+          "votes": 948,
+          "is_winner": false
+        },
+        {
+          "party": "BHRJWNKP",
+          "votes": 941,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 522,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 449,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 387,
+          "is_winner": false
+        },
+        {
+          "party": "RUC",
+          "votes": 352,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 47,
+      "ac_name": "Mazbat",
+      "pc_number": 4,
+      "pc_name": "Darrang-Udalguri",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 70656,
+          "is_winner": true
+        },
+        {
+          "party": "BOPF",
+          "votes": 44383,
+          "is_winner": false
+        },
+        {
+          "party": "INC",
+          "votes": 23090,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 1608,
+          "is_winner": false
+        },
+        {
+          "party": "BHRJWNKP",
+          "votes": 1108,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 1060,
+          "is_winner": false
+        },
+        {
+          "party": "GNASURKP",
+          "votes": 829,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 501,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 431,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 363,
+          "is_winner": false
+        },
+        {
+          "party": "RUC",
+          "votes": 322,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 48,
+      "ac_name": "Tangla",
+      "pc_number": 4,
+      "pc_name": "Darrang-Udalguri",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 74089,
+          "is_winner": true
+        },
+        {
+          "party": "BOPF",
+          "votes": 30319,
+          "is_winner": false
+        },
+        {
+          "party": "INC",
+          "votes": 27274,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 1281,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 1074,
+          "is_winner": false
+        },
+        {
+          "party": "BHRJWNKP",
+          "votes": 1003,
+          "is_winner": false
+        },
+        {
+          "party": "GNASURKP",
+          "votes": 813,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 562,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 383,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 354,
+          "is_winner": false
+        },
+        {
+          "party": "RUC",
+          "votes": 313,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 49,
+      "ac_name": "Sipajhar",
+      "pc_number": 4,
+      "pc_name": "Darrang-Udalguri",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 111781,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 43903,
+          "is_winner": false
+        },
+        {
+          "party": "BOPF",
+          "votes": 6495,
+          "is_winner": false
+        },
+        {
+          "party": "BHRJWNKP",
+          "votes": 975,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 670,
+          "is_winner": false
+        },
+        {
+          "party": "GNASURKP",
+          "votes": 530,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 525,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 453,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 323,
+          "is_winner": false
+        },
+        {
+          "party": "RUC",
+          "votes": 277,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 237,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 50,
+      "ac_name": "Mangaldai",
+      "pc_number": 4,
+      "pc_name": "Darrang-Udalguri",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 96213,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 58288,
+          "is_winner": false
+        },
+        {
+          "party": "BOPF",
+          "votes": 5853,
+          "is_winner": false
+        },
+        {
+          "party": "BHRJWNKP",
+          "votes": 1007,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 747,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 656,
+          "is_winner": false
+        },
+        {
+          "party": "GNASURKP",
+          "votes": 529,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 449,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 361,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 287,
+          "is_winner": false
+        },
+        {
+          "party": "RUC",
+          "votes": 194,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 51,
+      "ac_name": "Dalgaon",
+      "pc_number": 4,
+      "pc_name": "Darrang-Udalguri",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 207735,
+          "is_winner": true
+        },
+        {
+          "party": "BOPF",
+          "votes": 34055,
+          "is_winner": false
+        },
+        {
+          "party": "BJP",
+          "votes": 31293,
+          "is_winner": false
+        },
+        {
+          "party": "BHRJWNKP",
+          "votes": 2026,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 1941,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 998,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 806,
+          "is_winner": false
+        },
+        {
+          "party": "GNASURKP",
+          "votes": 757,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 727,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 572,
+          "is_winner": false
+        },
+        {
+          "party": "RUC",
+          "votes": 440,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 52,
+      "ac_name": "Jagiroad",
+      "pc_number": 9,
+      "pc_name": "Nagaon",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 134665,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 57865,
+          "is_winner": false
+        },
+        {
+          "party": "AIUDF",
+          "votes": 4035,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 3427,
+          "is_winner": false
+        },
+        {
+          "party": "JPJD",
+          "votes": 806,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 236,
+          "is_winner": false
+        },
+        {
+          "party": "RUC",
+          "votes": 227,
+          "is_winner": false
+        },
+        {
+          "party": "AJM",
+          "votes": 212,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 53,
+      "ac_name": "Laharighat",
+      "pc_number": 9,
+      "pc_name": "Nagaon",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 172340,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 40803,
+          "is_winner": false
+        },
+        {
+          "party": "AIUDF",
+          "votes": 36186,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 4085,
+          "is_winner": false
+        },
+        {
+          "party": "JPJD",
+          "votes": 620,
+          "is_winner": false
+        },
+        {
+          "party": "RUC",
+          "votes": 459,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 353,
+          "is_winner": false
+        },
+        {
+          "party": "AJM",
+          "votes": 328,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 54,
+      "ac_name": "Morigaon",
+      "pc_number": 9,
+      "pc_name": "Nagaon",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 107984,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 48642,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 2920,
+          "is_winner": false
+        },
+        {
+          "party": "AIUDF",
+          "votes": 2110,
+          "is_winner": false
+        },
+        {
+          "party": "JPJD",
+          "votes": 601,
+          "is_winner": false
+        },
+        {
+          "party": "RUC",
+          "votes": 199,
+          "is_winner": false
+        },
+        {
+          "party": "AJM",
+          "votes": 197,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 176,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 55,
+      "ac_name": "Dhing",
+      "pc_number": 9,
+      "pc_name": "Nagaon",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 128337,
+          "is_winner": true
+        },
+        {
+          "party": "AIUDF",
+          "votes": 32170,
+          "is_winner": false
+        },
+        {
+          "party": "BJP",
+          "votes": 28253,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 3144,
+          "is_winner": false
+        },
+        {
+          "party": "RUC",
+          "votes": 537,
+          "is_winner": false
+        },
+        {
+          "party": "JPJD",
+          "votes": 450,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 339,
+          "is_winner": false
+        },
+        {
+          "party": "AJM",
+          "votes": 265,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 56,
+      "ac_name": "Rupahihat",
+      "pc_number": 9,
+      "pc_name": "Nagaon",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 131562,
+          "is_winner": true
+        },
+        {
+          "party": "AIUDF",
+          "votes": 28938,
+          "is_winner": false
+        },
+        {
+          "party": "BJP",
+          "votes": 24593,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 3066,
+          "is_winner": false
+        },
+        {
+          "party": "RUC",
+          "votes": 409,
+          "is_winner": false
+        },
+        {
+          "party": "JPJD",
+          "votes": 393,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 280,
+          "is_winner": false
+        },
+        {
+          "party": "AJM",
+          "votes": 232,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 57,
+      "ac_name": "Kaliabor",
+      "pc_number": 10,
+      "pc_name": "Kaziranga",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 105247,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 41126,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 3622,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 781,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 362,
+          "is_winner": false
+        },
+        {
+          "party": "AJM",
+          "votes": 317,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 267,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 58,
+      "ac_name": "Samaguri",
+      "pc_number": 9,
+      "pc_name": "Nagaon",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 128580,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 42017,
+          "is_winner": false
+        },
+        {
+          "party": "AIUDF",
+          "votes": 14547,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 3163,
+          "is_winner": false
+        },
+        {
+          "party": "JPJD",
+          "votes": 423,
+          "is_winner": false
+        },
+        {
+          "party": "RUC",
+          "votes": 268,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 225,
+          "is_winner": false
+        },
+        {
+          "party": "AJM",
+          "votes": 180,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 59,
+      "ac_name": "Barhampur",
+      "pc_number": 10,
+      "pc_name": "Kaziranga",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 102625,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 68686,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 3521,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 992,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 364,
+          "is_winner": false
+        },
+        {
+          "party": "AJM",
+          "votes": 313,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 307,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 60,
+      "ac_name": "Nagaon-Batadraba",
+      "pc_number": 9,
+      "pc_name": "Nagaon",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 90730,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 57540,
+          "is_winner": false
+        },
+        {
+          "party": "AIUDF",
+          "votes": 2026,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 1682,
+          "is_winner": false
+        },
+        {
+          "party": "JPJD",
+          "votes": 367,
+          "is_winner": false
+        },
+        {
+          "party": "AJM",
+          "votes": 186,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 166,
+          "is_winner": false
+        },
+        {
+          "party": "RUC",
+          "votes": 128,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 61,
+      "ac_name": "Raha",
+      "pc_number": 9,
+      "pc_name": "Nagaon",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 104534,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 61754,
+          "is_winner": false
+        },
+        {
+          "party": "AIUDF",
+          "votes": 17021,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 2844,
+          "is_winner": false
+        },
+        {
+          "party": "JPJD",
+          "votes": 630,
+          "is_winner": false
+        },
+        {
+          "party": "RUC",
+          "votes": 320,
+          "is_winner": false
+        },
+        {
+          "party": "AJM",
+          "votes": 223,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 218,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 62,
+      "ac_name": "Binnakandi",
+      "pc_number": 10,
+      "pc_name": "Kaziranga",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 154164,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 40920,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 8927,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 1321,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 532,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 403,
+          "is_winner": false
+        },
+        {
+          "party": "AJM",
+          "votes": 335,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 63,
+      "ac_name": "Hojai",
+      "pc_number": 10,
+      "pc_name": "Kaziranga",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 131715,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 64473,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 3712,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 790,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 563,
+          "is_winner": false
+        },
+        {
+          "party": "AJM",
+          "votes": 286,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 257,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 64,
+      "ac_name": "Lumding",
+      "pc_number": 10,
+      "pc_name": "Kaziranga",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 129014,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 61253,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 4185,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 872,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 490,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 342,
+          "is_winner": false
+        },
+        {
+          "party": "AJM",
+          "votes": 314,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 65,
+      "ac_name": "Dhekiajuli",
+      "pc_number": 11,
+      "pc_name": "Sonitpur",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 111235,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 46241,
+          "is_winner": false
+        },
+        {
+          "party": "BOPF",
+          "votes": 4707,
+          "is_winner": false
+        },
+        {
+          "party": "AAAP",
+          "votes": 3055,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 1841,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 1177,
+          "is_winner": false
+        },
+        {
+          "party": "GNASURKP",
+          "votes": 901,
+          "is_winner": false
+        },
+        {
+          "party": "BAHUMP",
+          "votes": 638,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 66,
+      "ac_name": "Barchalla",
+      "pc_number": 11,
+      "pc_name": "Sonitpur",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 84207,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 51100,
+          "is_winner": false
+        },
+        {
+          "party": "AAAP",
+          "votes": 4086,
+          "is_winner": false
+        },
+        {
+          "party": "BOPF",
+          "votes": 1752,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 1018,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 943,
+          "is_winner": false
+        },
+        {
+          "party": "GNASURKP",
+          "votes": 802,
+          "is_winner": false
+        },
+        {
+          "party": "BAHUMP",
+          "votes": 558,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 67,
+      "ac_name": "Tezpur",
+      "pc_number": 11,
+      "pc_name": "Sonitpur",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 78268,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 48168,
+          "is_winner": false
+        },
+        {
+          "party": "AAAP",
+          "votes": 5890,
+          "is_winner": false
+        },
+        {
+          "party": "BOPF",
+          "votes": 784,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 599,
+          "is_winner": false
+        },
+        {
+          "party": "GNASURKP",
+          "votes": 518,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 366,
+          "is_winner": false
+        },
+        {
+          "party": "BAHUMP",
+          "votes": 345,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 68,
+      "ac_name": "Rangapara",
+      "pc_number": 11,
+      "pc_name": "Sonitpur",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 77337,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 45716,
+          "is_winner": false
+        },
+        {
+          "party": "AAAP",
+          "votes": 3324,
+          "is_winner": false
+        },
+        {
+          "party": "BOPF",
+          "votes": 1788,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 884,
+          "is_winner": false
+        },
+        {
+          "party": "GNASURKP",
+          "votes": 876,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 795,
+          "is_winner": false
+        },
+        {
+          "party": "BAHUMP",
+          "votes": 466,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 69,
+      "ac_name": "Naduar",
+      "pc_number": 11,
+      "pc_name": "Sonitpur",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 98282,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 50063,
+          "is_winner": false
+        },
+        {
+          "party": "AAAP",
+          "votes": 2805,
+          "is_winner": false
+        },
+        {
+          "party": "BOPF",
+          "votes": 1707,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 766,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 748,
+          "is_winner": false
+        },
+        {
+          "party": "GNASURKP",
+          "votes": 644,
+          "is_winner": false
+        },
+        {
+          "party": "BAHUMP",
+          "votes": 403,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 70,
+      "ac_name": "Biswanath",
+      "pc_number": 11,
+      "pc_name": "Sonitpur",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 87267,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 50048,
+          "is_winner": false
+        },
+        {
+          "party": "AAAP",
+          "votes": 4275,
+          "is_winner": false
+        },
+        {
+          "party": "BOPF",
+          "votes": 2391,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 1275,
+          "is_winner": false
+        },
+        {
+          "party": "GNASURKP",
+          "votes": 1072,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 778,
+          "is_winner": false
+        },
+        {
+          "party": "BAHUMP",
+          "votes": 538,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 71,
+      "ac_name": "Behali",
+      "pc_number": 11,
+      "pc_name": "Sonitpur",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 70919,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 43595,
+          "is_winner": false
+        },
+        {
+          "party": "AAAP",
+          "votes": 3102,
+          "is_winner": false
+        },
+        {
+          "party": "BOPF",
+          "votes": 1538,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 1156,
+          "is_winner": false
+        },
+        {
+          "party": "GNASURKP",
+          "votes": 928,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 671,
+          "is_winner": false
+        },
+        {
+          "party": "BAHUMP",
+          "votes": 544,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 72,
+      "ac_name": "Gohpur",
+      "pc_number": 11,
+      "pc_name": "Sonitpur",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 92668,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 32841,
+          "is_winner": false
+        },
+        {
+          "party": "AAAP",
+          "votes": 3170,
+          "is_winner": false
+        },
+        {
+          "party": "BOPF",
+          "votes": 2627,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 731,
+          "is_winner": false
+        },
+        {
+          "party": "GNASURKP",
+          "votes": 601,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 597,
+          "is_winner": false
+        },
+        {
+          "party": "BAHUMP",
+          "votes": 396,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 73,
+      "ac_name": "Bihpuria",
+      "pc_number": 11,
+      "pc_name": "Sonitpur",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 70835,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 44781,
+          "is_winner": false
+        },
+        {
+          "party": "AAAP",
+          "votes": 3064,
+          "is_winner": false
+        },
+        {
+          "party": "BOPF",
+          "votes": 2481,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 563,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 548,
+          "is_winner": false
+        },
+        {
+          "party": "GNASURKP",
+          "votes": 438,
+          "is_winner": false
+        },
+        {
+          "party": "BAHUMP",
+          "votes": 298,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 74,
+      "ac_name": "Rongonadi",
+      "pc_number": 12,
+      "pc_name": "Lakhimpur",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 71182,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 63268,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 2845,
+          "is_winner": false
+        },
+        {
+          "party": "CPI",
+          "votes": 2119,
+          "is_winner": false
+        },
+        {
+          "party": "AITC",
+          "votes": 1038,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 668,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 477,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 75,
+      "ac_name": "Nowboicha",
+      "pc_number": 12,
+      "pc_name": "Lakhimpur",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 69066,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 62014,
+          "is_winner": false
+        },
+        {
+          "party": "CPI",
+          "votes": 2148,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 1323,
+          "is_winner": false
+        },
+        {
+          "party": "AITC",
+          "votes": 952,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 579,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 497,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 76,
+      "ac_name": "Lakhimpur",
+      "pc_number": 12,
+      "pc_name": "Lakhimpur",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 65030,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 56548,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 1935,
+          "is_winner": false
+        },
+        {
+          "party": "CPI",
+          "votes": 1721,
+          "is_winner": false
+        },
+        {
+          "party": "AITC",
+          "votes": 1360,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 650,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 469,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 77,
+      "ac_name": "Dhakuakhana",
+      "pc_number": 12,
+      "pc_name": "Lakhimpur",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 67017,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 49713,
+          "is_winner": false
+        },
+        {
+          "party": "CPI",
+          "votes": 2315,
+          "is_winner": false
+        },
+        {
+          "party": "AITC",
+          "votes": 1252,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 1190,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 471,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 408,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 78,
+      "ac_name": "Dhemaji",
+      "pc_number": 12,
+      "pc_name": "Lakhimpur",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 70066,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 47423,
+          "is_winner": false
+        },
+        {
+          "party": "AITC",
+          "votes": 2871,
+          "is_winner": false
+        },
+        {
+          "party": "CPI",
+          "votes": 2614,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 2169,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 823,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 804,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 79,
+      "ac_name": "Sissiborgaon",
+      "pc_number": 12,
+      "pc_name": "Lakhimpur",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 73053,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 45332,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 2796,
+          "is_winner": false
+        },
+        {
+          "party": "CPI",
+          "votes": 2152,
+          "is_winner": false
+        },
+        {
+          "party": "AITC",
+          "votes": 1849,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 553,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 496,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 80,
+      "ac_name": "Jonai",
+      "pc_number": 12,
+      "pc_name": "Lakhimpur",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 109121,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 40675,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 5243,
+          "is_winner": false
+        },
+        {
+          "party": "CPI",
+          "votes": 2364,
+          "is_winner": false
+        },
+        {
+          "party": "AITC",
+          "votes": 1825,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 1150,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 915,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 81,
+      "ac_name": "Sadiya",
+      "pc_number": 12,
+      "pc_name": "Lakhimpur",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 78254,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 51526,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 2995,
+          "is_winner": false
+        },
+        {
+          "party": "CPI",
+          "votes": 2495,
+          "is_winner": false
+        },
+        {
+          "party": "AITC",
+          "votes": 1736,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 693,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 606,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 82,
+      "ac_name": "Doomdooma",
+      "pc_number": 12,
+      "pc_name": "Lakhimpur",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 63570,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 35169,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 3326,
+          "is_winner": false
+        },
+        {
+          "party": "CPI",
+          "votes": 1634,
+          "is_winner": false
+        },
+        {
+          "party": "AITC",
+          "votes": 1172,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 565,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 556,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 83,
+      "ac_name": "Margherita",
+      "pc_number": 13,
+      "pc_name": "Dibrugarh",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 76537,
+          "is_winner": true
+        },
+        {
+          "party": "ASMJTYP",
+          "votes": 35904,
+          "is_winner": false
+        },
+        {
+          "party": "AAAP",
+          "votes": 13979,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 84,
+      "ac_name": "Digboi",
+      "pc_number": 13,
+      "pc_name": "Dibrugarh",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 52034,
+          "is_winner": true
+        },
+        {
+          "party": "ASMJTYP",
+          "votes": 37167,
+          "is_winner": false
+        },
+        {
+          "party": "AAAP",
+          "votes": 15214,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 85,
+      "ac_name": "Makum",
+      "pc_number": 13,
+      "pc_name": "Dibrugarh",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 61627,
+          "is_winner": true
+        },
+        {
+          "party": "ASMJTYP",
+          "votes": 36416,
+          "is_winner": false
+        },
+        {
+          "party": "AAAP",
+          "votes": 17068,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 86,
+      "ac_name": "Tinsukia",
+      "pc_number": 13,
+      "pc_name": "Dibrugarh",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 84563,
+          "is_winner": true
+        },
+        {
+          "party": "ASMJTYP",
+          "votes": 27650,
+          "is_winner": false
+        },
+        {
+          "party": "AAAP",
+          "votes": 12094,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 87,
+      "ac_name": "Chabua-Lahowal",
+      "pc_number": 13,
+      "pc_name": "Dibrugarh",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 71170,
+          "is_winner": true
+        },
+        {
+          "party": "ASMJTYP",
+          "votes": 41860,
+          "is_winner": false
+        },
+        {
+          "party": "AAAP",
+          "votes": 20217,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 88,
+      "ac_name": "Dibrugarh",
+      "pc_number": 13,
+      "pc_name": "Dibrugarh",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 89335,
+          "is_winner": true
+        },
+        {
+          "party": "ASMJTYP",
+          "votes": 42240,
+          "is_winner": false
+        },
+        {
+          "party": "AAAP",
+          "votes": 12294,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 89,
+      "ac_name": "Khowang",
+      "pc_number": 13,
+      "pc_name": "Dibrugarh",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 60624,
+          "is_winner": true
+        },
+        {
+          "party": "ASMJTYP",
+          "votes": 46851,
+          "is_winner": false
+        },
+        {
+          "party": "AAAP",
+          "votes": 12173,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 90,
+      "ac_name": "Duliajan",
+      "pc_number": 13,
+      "pc_name": "Dibrugarh",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 69559,
+          "is_winner": true
+        },
+        {
+          "party": "ASMJTYP",
+          "votes": 43309,
+          "is_winner": false
+        },
+        {
+          "party": "AAAP",
+          "votes": 13775,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 91,
+      "ac_name": "Tingkhong",
+      "pc_number": 13,
+      "pc_name": "Dibrugarh",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 68017,
+          "is_winner": true
+        },
+        {
+          "party": "ASMJTYP",
+          "votes": 50366,
+          "is_winner": false
+        },
+        {
+          "party": "AAAP",
+          "votes": 14295,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 92,
+      "ac_name": "Naharkatia",
+      "pc_number": 13,
+      "pc_name": "Dibrugarh",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 57687,
+          "is_winner": true
+        },
+        {
+          "party": "ASMJTYP",
+          "votes": 51030,
+          "is_winner": false
+        },
+        {
+          "party": "AAAP",
+          "votes": 6509,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 93,
+      "ac_name": "Sonari",
+      "pc_number": 14,
+      "pc_name": "Jorhat",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 71603,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 61269,
+          "is_winner": false
+        },
+        {
+          "party": "ESBD",
+          "votes": 1311,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 1211,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 94,
+      "ac_name": "Mahmora",
+      "pc_number": 14,
+      "pc_name": "Jorhat",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 62680,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 53030,
+          "is_winner": false
+        },
+        {
+          "party": "ESBD",
+          "votes": 982,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 943,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 95,
+      "ac_name": "Demow",
+      "pc_number": 14,
+      "pc_name": "Jorhat",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 77934,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 61879,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 880,
+          "is_winner": false
+        },
+        {
+          "party": "ESBD",
+          "votes": 879,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 96,
+      "ac_name": "Sibsagar",
+      "pc_number": 14,
+      "pc_name": "Jorhat",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 91843,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 73095,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 728,
+          "is_winner": false
+        },
+        {
+          "party": "ESBD",
+          "votes": 612,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 97,
+      "ac_name": "Nazira",
+      "pc_number": 14,
+      "pc_name": "Jorhat",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 70727,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 70600,
+          "is_winner": false
+        },
+        {
+          "party": "ESBD",
+          "votes": 1230,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 1126,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 98,
+      "ac_name": "Majuli",
+      "pc_number": 14,
+      "pc_name": "Jorhat",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 59276,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 52690,
+          "is_winner": false
+        },
+        {
+          "party": "ESBD",
+          "votes": 682,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 490,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 99,
+      "ac_name": "Teok",
+      "pc_number": 14,
+      "pc_name": "Jorhat",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 86712,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 63335,
+          "is_winner": false
+        },
+        {
+          "party": "ESBD",
+          "votes": 933,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 830,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 100,
+      "ac_name": "Jorhat",
+      "pc_number": 14,
+      "pc_name": "Jorhat",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 60697,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 48567,
+          "is_winner": false
+        },
+        {
+          "party": "ESBD",
+          "votes": 523,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 503,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 101,
+      "ac_name": "Mariani",
+      "pc_number": 14,
+      "pc_name": "Jorhat",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 70916,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 54131,
+          "is_winner": false
+        },
+        {
+          "party": "ESBD",
+          "votes": 845,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 739,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 102,
+      "ac_name": "Titabor",
+      "pc_number": 14,
+      "pc_name": "Jorhat",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 97392,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 56837,
+          "is_winner": false
+        },
+        {
+          "party": "ESBD",
+          "votes": 1001,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 865,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 103,
+      "ac_name": "Golaghat",
+      "pc_number": 10,
+      "pc_name": "Kaziranga",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 81932,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 62367,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 2867,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 789,
+          "is_winner": false
+        },
+        {
+          "party": "AJM",
+          "votes": 348,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 229,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 222,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 104,
+      "ac_name": "Dergaon",
+      "pc_number": 10,
+      "pc_name": "Kaziranga",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 75890,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 52060,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 3125,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 771,
+          "is_winner": false
+        },
+        {
+          "party": "AJM",
+          "votes": 315,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 301,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 255,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 105,
+      "ac_name": "Bokakhat",
+      "pc_number": 10,
+      "pc_name": "Kaziranga",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 73434,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 38364,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 4009,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 671,
+          "is_winner": false
+        },
+        {
+          "party": "AJM",
+          "votes": 333,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 330,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 326,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 106,
+      "ac_name": "Khumtai",
+      "pc_number": 10,
+      "pc_name": "Kaziranga",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 71250,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 50989,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 3540,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 837,
+          "is_winner": false
+        },
+        {
+          "party": "AJM",
+          "votes": 340,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 307,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 295,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 107,
+      "ac_name": "Sarupathar",
+      "pc_number": 10,
+      "pc_name": "Kaziranga",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 80739,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 52641,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 3816,
+          "is_winner": false
+        },
+        {
+          "party": "VPI",
+          "votes": 817,
+          "is_winner": false
+        },
+        {
+          "party": "BGanP",
+          "votes": 368,
+          "is_winner": false
+        },
+        {
+          "party": "AJM",
+          "votes": 342,
+          "is_winner": false
+        },
+        {
+          "party": "RPPRINAT",
+          "votes": 338,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 108,
+      "ac_name": "Bokajan",
+      "pc_number": 6,
+      "pc_name": "Diphu",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 52097,
+          "is_winner": true
+        },
+        {
+          "party": "IND",
+          "votes": 31180,
+          "is_winner": false
+        },
+        {
+          "party": "INC",
+          "votes": 26461,
+          "is_winner": false
+        },
+        {
+          "party": "GNASURKP",
+          "votes": 2131,
+          "is_winner": false
+        },
+        {
+          "party": "ASDC",
+          "votes": 1106,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 109,
+      "ac_name": "Howraghat",
+      "pc_number": 6,
+      "pc_name": "Diphu",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 74427,
+          "is_winner": true
+        },
+        {
+          "party": "IND",
+          "votes": 37995,
+          "is_winner": false
+        },
+        {
+          "party": "INC",
+          "votes": 20836,
+          "is_winner": false
+        },
+        {
+          "party": "GNASURKP",
+          "votes": 2909,
+          "is_winner": false
+        },
+        {
+          "party": "ASDC",
+          "votes": 2385,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 110,
+      "ac_name": "Diphu",
+      "pc_number": 6,
+      "pc_name": "Diphu",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 58621,
+          "is_winner": true
+        },
+        {
+          "party": "IND",
+          "votes": 47247,
+          "is_winner": false
+        },
+        {
+          "party": "INC",
+          "votes": 18546,
+          "is_winner": false
+        },
+        {
+          "party": "GNASURKP",
+          "votes": 2627,
+          "is_winner": false
+        },
+        {
+          "party": "ASDC",
+          "votes": 2000,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 111,
+      "ac_name": "Rongkhang",
+      "pc_number": 6,
+      "pc_name": "Diphu",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 57261,
+          "is_winner": true
+        },
+        {
+          "party": "IND",
+          "votes": 24408,
+          "is_winner": false
+        },
+        {
+          "party": "INC",
+          "votes": 12616,
+          "is_winner": false
+        },
+        {
+          "party": "ASDC",
+          "votes": 1787,
+          "is_winner": false
+        },
+        {
+          "party": "GNASURKP",
+          "votes": 1329,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 112,
+      "ac_name": "Amri",
+      "pc_number": 6,
+      "pc_name": "Diphu",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 30413,
+          "is_winner": true
+        },
+        {
+          "party": "IND",
+          "votes": 27458,
+          "is_winner": false
+        },
+        {
+          "party": "INC",
+          "votes": 9326,
+          "is_winner": false
+        },
+        {
+          "party": "ASDC",
+          "votes": 1643,
+          "is_winner": false
+        },
+        {
+          "party": "GNASURKP",
+          "votes": 1094,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 113,
+      "ac_name": "Haflong",
+      "pc_number": 6,
+      "pc_name": "Diphu",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 59621,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 35270,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 17576,
+          "is_winner": false
+        },
+        {
+          "party": "GNASURKP",
+          "votes": 1151,
+          "is_winner": false
+        },
+        {
+          "party": "ASDC",
+          "votes": 640,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 114,
+      "ac_name": "Lakhipur",
+      "pc_number": 8,
+      "pc_name": "Silchar",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 91152,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 35381,
+          "is_winner": false
+        },
+        {
+          "party": "AITC",
+          "votes": 1320,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 1036,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 505,
+          "is_winner": false
+        },
+        {
+          "party": "BAHUMP",
+          "votes": 267,
+          "is_winner": false
+        },
+        {
+          "party": "BNGNBNRMS",
+          "votes": 200,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 115,
+      "ac_name": "Udharbond",
+      "pc_number": 8,
+      "pc_name": "Silchar",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 96680,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 44517,
+          "is_winner": false
+        },
+        {
+          "party": "AITC",
+          "votes": 1504,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 981,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 525,
+          "is_winner": false
+        },
+        {
+          "party": "BAHUMP",
+          "votes": 224,
+          "is_winner": false
+        },
+        {
+          "party": "BNGNBNRMS",
+          "votes": 206,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 116,
+      "ac_name": "Katigorah",
+      "pc_number": 8,
+      "pc_name": "Silchar",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 101904,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 68409,
+          "is_winner": false
+        },
+        {
+          "party": "AITC",
+          "votes": 1269,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 1060,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 601,
+          "is_winner": false
+        },
+        {
+          "party": "BAHUMP",
+          "votes": 244,
+          "is_winner": false
+        },
+        {
+          "party": "BNGNBNRMS",
+          "votes": 189,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 117,
+      "ac_name": "Borkhola",
+      "pc_number": 8,
+      "pc_name": "Silchar",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 103071,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 57596,
+          "is_winner": false
+        },
+        {
+          "party": "AITC",
+          "votes": 1655,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 1137,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 625,
+          "is_winner": false
+        },
+        {
+          "party": "BAHUMP",
+          "votes": 275,
+          "is_winner": false
+        },
+        {
+          "party": "BNGNBNRMS",
+          "votes": 234,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 118,
+      "ac_name": "Silchar",
+      "pc_number": 8,
+      "pc_name": "Silchar",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 108626,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 45248,
+          "is_winner": false
+        },
+        {
+          "party": "AITC",
+          "votes": 4540,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 700,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 637,
+          "is_winner": false
+        },
+        {
+          "party": "BNGNBNRMS",
+          "votes": 237,
+          "is_winner": false
+        },
+        {
+          "party": "BAHUMP",
+          "votes": 196,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 119,
+      "ac_name": "Sonai",
+      "pc_number": 8,
+      "pc_name": "Silchar",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 94466,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 44241,
+          "is_winner": false
+        },
+        {
+          "party": "AITC",
+          "votes": 6325,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 1230,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 722,
+          "is_winner": false
+        },
+        {
+          "party": "BAHUMP",
+          "votes": 272,
+          "is_winner": false
+        },
+        {
+          "party": "BNGNBNRMS",
+          "votes": 242,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 120,
+      "ac_name": "Dholai",
+      "pc_number": 8,
+      "pc_name": "Silchar",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 101898,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 40836,
+          "is_winner": false
+        },
+        {
+          "party": "AITC",
+          "votes": 3771,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 1549,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 879,
+          "is_winner": false
+        },
+        {
+          "party": "BAHUMP",
+          "votes": 365,
+          "is_winner": false
+        },
+        {
+          "party": "BNGNBNRMS",
+          "votes": 267,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 121,
+      "ac_name": "Hailakandi",
+      "pc_number": 7,
+      "pc_name": "Karimganj",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 110083,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 55556,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 5850,
+          "is_winner": false
+        },
+        {
+          "party": "AIUDF",
+          "votes": 2076,
+          "is_winner": false
+        },
+        {
+          "party": "RUC",
+          "votes": 535,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 214,
+          "is_winner": false
+        },
+        {
+          "party": "BNGNBNRMS",
+          "votes": 107,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 122,
+      "ac_name": "Algapur-Katlicherra",
+      "pc_number": 7,
+      "pc_name": "Karimganj",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 159994,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 40757,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 7659,
+          "is_winner": false
+        },
+        {
+          "party": "AIUDF",
+          "votes": 6498,
+          "is_winner": false
+        },
+        {
+          "party": "RUC",
+          "votes": 1094,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 154,
+          "is_winner": false
+        },
+        {
+          "party": "BNGNBNRMS",
+          "votes": 132,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 123,
+      "ac_name": "Karimganj North",
+      "pc_number": 7,
+      "pc_name": "Karimganj",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 103230,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 96328,
+          "is_winner": false
+        },
+        {
+          "party": "AIUDF",
+          "votes": 6540,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 5502,
+          "is_winner": false
+        },
+        {
+          "party": "RUC",
+          "votes": 683,
+          "is_winner": false
+        },
+        {
+          "party": "BNGNBNRMS",
+          "votes": 233,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 223,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 124,
+      "ac_name": "Karimganj South",
+      "pc_number": 7,
+      "pc_name": "Karimganj",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 136384,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 60357,
+          "is_winner": false
+        },
+        {
+          "party": "AIUDF",
+          "votes": 10579,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 8098,
+          "is_winner": false
+        },
+        {
+          "party": "RUC",
+          "votes": 1094,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 156,
+          "is_winner": false
+        },
+        {
+          "party": "BNGNBNRMS",
+          "votes": 123,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 125,
+      "ac_name": "Patharkandi",
+      "pc_number": 7,
+      "pc_name": "Karimganj",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 109547,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 30734,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 3883,
+          "is_winner": false
+        },
+        {
+          "party": "AIUDF",
+          "votes": 1960,
+          "is_winner": false
+        },
+        {
+          "party": "RUC",
+          "votes": 307,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 95,
+          "is_winner": false
+        },
+        {
+          "party": "BNGNBNRMS",
+          "votes": 81,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 126,
+      "ac_name": "Ram Krishna Nagar",
+      "pc_number": 7,
+      "pc_name": "Karimganj",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 117246,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 45394,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 5846,
+          "is_winner": false
+        },
+        {
+          "party": "AIUDF",
+          "votes": 1417,
+          "is_winner": false
+        },
+        {
+          "party": "RUC",
+          "votes": 473,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 152,
+          "is_winner": false
+        },
+        {
+          "party": "BNGNBNRMS",
+          "votes": 124,
+          "is_winner": false
+        }
+      ]
+    }
+  ]
+}

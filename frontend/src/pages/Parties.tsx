@@ -685,6 +685,214 @@ function DominantDistrictBody({ party, state }: { party: any; state: string }) {
   )
 }
 
+/**
+ * Tabbed card: per-party stacked-bar breakdown of MLA Age / Assets / Criminal cases.
+ * One card with three views keeps the page lean instead of stacking three near-identical sections.
+ */
+type ProfileTab = 'age' | 'assets' | 'criminal'
+
+const PROFILE_TABS: {
+  key: ProfileTab
+  emoji: string
+  label: string
+  distField: string                // field on party row holding the bucket counts
+  totalField: string               // field with the denominator (mla_with_age / mla_with_assets / ...)
+  avgField?: string                // optional avg field shown on the right
+  avgPrefix?: string               // optional prefix like '₹' for assets
+  avgSuffix?: string               // optional suffix like ' cr'
+  subtitle: string
+  buckets: { key: string; label: string; color: string; titleSingular: string }[]
+}[] = [
+  {
+    key: 'age', emoji: '🎂', label: 'Age',
+    distField: 'mla_age_distribution',
+    totalField: 'mla_with_age',
+    avgField: 'mla_avg_age',
+    subtitle: 'Younger MLAs on the left of each bar; older on the right. Cool blues = young, warm reds = older.',
+    // Clean cool→warm sequential ramp (cyan → teal → amber → orange → crimson)
+    // — no jarring purple in the middle, gradient reads as "age progression".
+    buckets: [
+      { key: 'u35',   label: '<35',   color: '#06b6d4', titleSingular: 'aged under 35' },
+      { key: '35_44', label: '35-44', color: '#14b8a6', titleSingular: 'aged 35-44' },
+      { key: '45_54', label: '45-54', color: '#eab308', titleSingular: 'aged 45-54' },
+      { key: '55_64', label: '55-64', color: '#f97316', titleSingular: 'aged 55-64' },
+      { key: '65p',   label: '65+',   color: '#dc2626', titleSingular: 'aged 65+' },
+    ],
+  },
+  {
+    key: 'assets', emoji: '💰', label: 'Assets',
+    distField: 'mla_asset_distribution',
+    totalField: 'mla_with_assets',
+    avgField: 'mla_avg_assets_cr',
+    avgPrefix: '₹', avgSuffix: ' cr',
+    subtitle: 'Modest assets on the left; ultra-rich ₹50 cr+ tier on the right.',
+    // Distinct wealth-tier ramp: slate (modest) → teal → blue → indigo → magenta
+    // — clearer separation between adjacent tiers than the old gray/green/yellow mix.
+    buckets: [
+      { key: 'u0_5',  label: '<₹0.5 cr',  color: '#64748b', titleSingular: 'with declared assets <₹0.5 cr' },
+      { key: '0_5_2', label: '₹0.5-2 cr', color: '#14b8a6', titleSingular: 'with declared assets ₹0.5-2 cr' },
+      { key: '2_10',  label: '₹2-10 cr',  color: '#3b82f6', titleSingular: 'with declared assets ₹2-10 cr' },
+      { key: '10_50', label: '₹10-50 cr', color: '#8b5cf6', titleSingular: 'with declared assets ₹10-50 cr' },
+      { key: '50p',   label: '₹50 cr+',   color: '#ec4899', titleSingular: 'with declared assets ₹50 cr+' },
+    ],
+  },
+  {
+    key: 'criminal', emoji: '⚖️', label: 'Criminal Cases',
+    distField: 'mla_criminal_distribution',
+    totalField: 'mla_with_crim_data',
+    subtitle: 'Clean MLAs on the left; ≥3-case "serious" tier in red. Deliberate green→red judgment ramp.',
+    // Punchier green→red judgment ramp — deeper greens for "clean", stronger
+    // orange/red for "serious" so the visual contrast matches the meaning.
+    buckets: [
+      { key: 'clean', label: '0 cases',   color: '#16a34a', titleSingular: 'with no criminal cases' },
+      { key: '1_2',   label: '1-2 cases', color: '#eab308', titleSingular: 'with 1-2 cases' },
+      { key: '3_5',   label: '3-5 cases', color: '#ea580c', titleSingular: 'with 3-5 cases' },
+      { key: '6p',    label: '6+ cases',  color: '#dc2626', titleSingular: 'with 6+ cases' },
+    ],
+  },
+]
+
+function MlaProfilesCard({ parties }: { parties: any[] }) {
+  const [tab, setTab] = useState<ProfileTab>('age')
+  const config = PROFILE_TABS.find(t => t.key === tab)!
+
+  // Show every party that has at least 1 MLA. If the party has no data for
+  // the current dimension (totalField == 0), render a "no data" stub instead
+  // of an empty bar — keeps every winning party visible and transparently
+  // labels missing data rather than silently dropping the row.
+  const partiesWithMLA = parties.filter((p: any) => (p.won ?? 0) >= 1)
+  if (partiesWithMLA.length === 0) return null
+  const sorted = [...partiesWithMLA].sort((a: any, b: any) => b.won - a.won)
+  const totalMLAs = sorted.reduce((s, p) => s + (p.won ?? 0), 0)
+  const partiesMissingData = sorted.filter(p => (p[config.totalField] ?? 0) === 0)
+  const missingMLAs = partiesMissingData.reduce((s, p) => s + (p.won ?? 0), 0)
+
+  return (
+    <div className="card" style={{ marginBottom: '1.5rem' }}>
+      {/* Tabs */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8, flexWrap: 'wrap' }}>
+        <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 700, marginRight: 8 }}>
+          MLA Profile by Party
+        </div>
+        {PROFILE_TABS.map(t => {
+          const active = t.key === tab
+          return (
+            <button key={t.key} onClick={() => setTab(t.key)}
+              style={{
+                padding: '0.3rem 0.7rem', borderRadius: 6, cursor: 'pointer',
+                fontSize: '0.78rem', fontWeight: 700,
+                background: active ? 'rgba(167,139,250,0.18)' : 'var(--bg-card)',
+                border: `1px solid ${active ? 'rgba(167,139,250,0.5)' : 'var(--border)'}`,
+                color: active ? 'var(--accent)' : 'var(--text-secondary)',
+              }}>
+              {t.emoji} {t.label}
+            </button>
+          )
+        })}
+      </div>
+
+      {/* Header + legend */}
+      <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 8, flexWrap: 'wrap', gap: 8 }}>
+        <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)' }}>
+          {config.subtitle}
+        </div>
+        <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', fontSize: '0.72rem' }}>
+          {config.buckets.map(b => (
+            <span key={b.key} style={{ display: 'inline-flex', alignItems: 'center', gap: 5, color: 'var(--text-secondary)' }}>
+              <span style={{ width: 14, height: 14, borderRadius: 3, background: b.color, boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.08)' }} />
+              {b.label}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Per-party rows. Render a "no data" stub when a party has 0 MLAs
+          with data for this dimension. */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+        {sorted.map((p: any) => {
+          const dist = p[config.distField] || {}
+          const dataCount = p[config.totalField] ?? 0
+          const total = dataCount || 1
+          const avgRaw = config.avgField ? p[config.avgField] : null
+          const noData = dataCount === 0
+          const totalMLAs = p.won ?? 0
+          return (
+            <div key={p.party} style={{ display: 'grid', gridTemplateColumns: '80px 1fr 110px', alignItems: 'center', gap: 10 }}>
+              <span style={{ fontWeight: 700, fontSize: '0.82rem', color: p.color }}>
+                {p.party} <span style={{ color: 'var(--text-secondary)', fontWeight: 500, fontSize: '0.7rem' }}>({totalMLAs})</span>
+              </span>
+              {noData ? (
+                // Empty-state stub for this dimension
+                <div style={{
+                  height: 22, borderRadius: 5,
+                  background: 'repeating-linear-gradient(45deg, rgba(148,163,184,0.08) 0 6px, rgba(148,163,184,0.16) 6px 12px)',
+                  border: '1px dashed var(--border)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: '0.7rem', color: 'var(--text-secondary)', fontStyle: 'italic',
+                }}
+                  title={`No ${config.label.toLowerCase()} data for ${p.party}'s ${totalMLAs} MLA${totalMLAs === 1 ? '' : 's'} — affidavit not in MyNeta`}>
+                  no {config.label.toLowerCase()} data on file
+                </div>
+              ) : (
+                <div style={{
+                  display: 'flex', height: 22, borderRadius: 5, overflow: 'hidden',
+                  background: 'var(--bg-secondary)',
+                  boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.04)',
+                }}>
+                  {config.buckets.map(b => {
+                    const v = dist[b.key] ?? 0
+                    if (!v) return null
+                    const pct = (v / total) * 100
+                    return (
+                      <div
+                        key={b.key}
+                        style={{
+                          width: `${pct}%`, background: b.color,
+                          display: 'flex', alignItems: 'center', justifyContent: 'center',
+                          fontSize: '0.72rem', fontWeight: 800, color: '#0b1020',
+                          textShadow: '0 1px 0 rgba(255,255,255,0.25)',
+                        }}
+                        title={`${v} MLA${v === 1 ? '' : 's'} ${b.titleSingular} (${pct.toFixed(1)}%)`}
+                      >
+                        {pct >= 7 ? v : ''}
+                      </div>
+                    )
+                  })}
+                </div>
+              )}
+              <span className="tabular" style={{ fontSize: '0.74rem', color: 'var(--text-secondary)', textAlign: 'right' }}>
+                {noData ? (
+                  <span style={{ opacity: 0.7 }}>—</span>
+                ) : avgRaw != null ? (
+                  <>avg <strong style={{ color: 'var(--text-primary)' }}>{config.avgPrefix ?? ''}{avgRaw}{config.avgSuffix ?? ''}</strong>
+                    {dataCount < totalMLAs && (
+                      <span style={{ color: 'var(--text-muted)', fontSize: '0.66rem' }} title={`Based on ${dataCount} of ${totalMLAs} MLAs with affidavit data`}>
+                        {' '}({dataCount}/{totalMLAs})
+                      </span>
+                    )}
+                  </>
+                ) : (
+                  <>n=<strong style={{ color: 'var(--text-primary)' }}>{dataCount}</strong>{dataCount < totalMLAs && <span style={{ color: 'var(--text-muted)' }}>/{totalMLAs}</span>}</>
+                )}
+              </span>
+            </div>
+          )
+        })}
+      </div>
+
+      <div style={{ marginTop: 10, fontSize: '0.7rem', color: 'var(--text-secondary)' }}>
+        Showing all {sorted.length} parties with ≥1 MLA ({totalMLAs} total).
+        {missingMLAs > 0 && (
+          <span style={{ color: '#f59e0b' }}>
+            {' '}⚠ {missingMLAs} MLA{missingMLAs === 1 ? '' : 's'} across {partiesMissingData.length} part{partiesMissingData.length === 1 ? 'y' : 'ies'} have no {config.label.toLowerCase()} data (affidavits not in MyNeta — listed transparently above).
+          </span>
+        )}
+      </div>
+    </div>
+  )
+}
+
+
 type LeaderMetric = 'strike_rate' | 'votes_per_seat' | 'districts_won_count' | 'won'
 
 const METRIC_META: Record<LeaderMetric, { label: string; unit: string; lowerIsBetter: boolean; describe: string }> = {
@@ -1075,6 +1283,9 @@ export default function Parties() {
           </div>
         )}
       </div>
+
+      {/* MLA Profile by Party — tabbed card (Age / Assets / Criminal Cases). */}
+      <MlaProfilesCard parties={parties} />
 
       {/* Analytics table */}
       <div className="card" style={{ padding: 0, overflow: 'hidden' }}>

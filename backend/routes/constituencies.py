@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlmodel import Session, select, func
 from backend.db import get_session
-from backend.models import Candidate, Constituency, HistoricalResult
+from backend.models import Candidate, Constituency, HistoricalResult, LokSabhaSeat
 from backend.config.states import STATE_CONFIG
 from backend.config.alliances import ALLIANCES
 
@@ -143,6 +143,48 @@ def constituency_detail(
         .order_by(HistoricalResult.votes.desc())
     ).all()
 
+    # Representation block: who represents the voters of this AC, in both
+    # the State Legislative Assembly (MLA = our 2026 winner) and the Lok
+    # Sabha (MP = the 2024 winner of the parent LS seat, from LokSabhaSeat).
+    # Powers the "Who Represents You" card on ConstituencyDetail.
+    ls_seat = None
+    if constituency.ls_seat_id:
+        ls_seat = session.exec(
+            select(LokSabhaSeat).where(LokSabhaSeat.id == constituency.ls_seat_id)
+        ).first()
+
+    mla_row = next((c for c in candidates if c.is_winner), None)
+    representation = {
+        "mla": {
+            "name": mla_row.name if mla_row else None,
+            "party": mla_row.party if mla_row else None,
+            "party_color": party_map.get(mla_row.party, {}).get("color", "#999") if mla_row else None,
+            "party_full_name": party_map.get(mla_row.party, {}).get("full_name") if mla_row else None,
+            "votes": mla_row.votes if mla_row else 0,
+            "vote_share": round(mla_row.votes / total_votes * 100, 2) if mla_row and total_votes else 0,
+            "margin": margin,
+            "gender": mla_row.gender if mla_row else None,
+            "age": mla_row.age if mla_row else None,
+            "assets_cr": mla_row.assets_cr if mla_row else None,
+            "criminal_cases": mla_row.criminal_cases if mla_row else None,
+            "education": mla_row.education if mla_row else None,
+            "constituency_name": constituency.name,
+            "ac_number": ac_number,
+        } if mla_row else None,
+        "mp": {
+            "name": ls_seat.mp_2024_name,
+            "party": ls_seat.mp_2024_party,
+            "party_color": party_map.get(ls_seat.mp_2024_party or "", {}).get("color", "#999"),
+            "party_full_name": party_map.get(ls_seat.mp_2024_party or "", {}).get("full_name"),
+            "gender": ls_seat.mp_2024_gender,
+            "social_category": ls_seat.mp_2024_category,
+            "seat_type": ls_seat.mp_2024_seat_type,
+            "ls_name": ls_seat.name,
+            "ls_number": ls_seat.ls_number,
+            "elected_year": 2024,
+        } if (ls_seat and ls_seat.mp_2024_name) else None,
+    }
+
     return {
         "ac_number": ac_number,
         "name": constituency.name,
@@ -154,4 +196,5 @@ def constituency_detail(
             {"party": h.party, "votes": h.votes, "is_winner": h.is_winner}
             for h in hist
         ],
+        "representation": representation,
     }

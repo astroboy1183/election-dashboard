@@ -1,0 +1,1446 @@
+{
+  "state": "puducherry",
+  "year": 2024,
+  "constituencies": [
+    {
+      "ac_number": 1,
+      "ac_name": "MANNADIPET",
+      "pc_number": 1,
+      "pc_name": "PUDUCHERRY",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 13251,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 12656,
+          "is_winner": false
+        },
+        {
+          "party": "NTK",
+          "votes": 834,
+          "is_winner": false
+        },
+        {
+          "party": "AIADMK",
+          "votes": 674,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 524,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 85,
+          "is_winner": false
+        },
+        {
+          "party": "BSP",
+          "votes": 36,
+          "is_winner": false
+        },
+        {
+          "party": "URPI",
+          "votes": 25,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 2,
+      "ac_name": "THIRUBHUVANAI",
+      "pc_number": 1,
+      "pc_name": "PUDUCHERRY",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 14363,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 10932,
+          "is_winner": false
+        },
+        {
+          "party": "NTK",
+          "votes": 945,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 610,
+          "is_winner": false
+        },
+        {
+          "party": "AIADMK",
+          "votes": 590,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 100,
+          "is_winner": false
+        },
+        {
+          "party": "URPI",
+          "votes": 59,
+          "is_winner": false
+        },
+        {
+          "party": "BSP",
+          "votes": 53,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 3,
+      "ac_name": "OUSSUDU",
+      "pc_number": 1,
+      "pc_name": "PUDUCHERRY",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 16285,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 9733,
+          "is_winner": false
+        },
+        {
+          "party": "NTK",
+          "votes": 1070,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 520,
+          "is_winner": false
+        },
+        {
+          "party": "AIADMK",
+          "votes": 517,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 66,
+          "is_winner": false
+        },
+        {
+          "party": "BSP",
+          "votes": 50,
+          "is_winner": false
+        },
+        {
+          "party": "URPI",
+          "votes": 16,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 4,
+      "ac_name": "MANGALAM",
+      "pc_number": 1,
+      "pc_name": "PUDUCHERRY",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 15544,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 14646,
+          "is_winner": false
+        },
+        {
+          "party": "NTK",
+          "votes": 1304,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 762,
+          "is_winner": false
+        },
+        {
+          "party": "AIADMK",
+          "votes": 682,
+          "is_winner": false
+        },
+        {
+          "party": "BSP",
+          "votes": 94,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 78,
+          "is_winner": false
+        },
+        {
+          "party": "URPI",
+          "votes": 29,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 5,
+      "ac_name": "VILLIANUR",
+      "pc_number": 1,
+      "pc_name": "PUDUCHERRY",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 22846,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 10317,
+          "is_winner": false
+        },
+        {
+          "party": "NTK",
+          "votes": 1537,
+          "is_winner": false
+        },
+        {
+          "party": "AIADMK",
+          "votes": 590,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 562,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 73,
+          "is_winner": false
+        },
+        {
+          "party": "BSP",
+          "votes": 39,
+          "is_winner": false
+        },
+        {
+          "party": "URPI",
+          "votes": 17,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 6,
+      "ac_name": "OZHUKARAI",
+      "pc_number": 1,
+      "pc_name": "PUDUCHERRY",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 20196,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 8733,
+          "is_winner": false
+        },
+        {
+          "party": "NTK",
+          "votes": 1590,
+          "is_winner": false
+        },
+        {
+          "party": "AIADMK",
+          "votes": 690,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 397,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 102,
+          "is_winner": false
+        },
+        {
+          "party": "BSP",
+          "votes": 32,
+          "is_winner": false
+        },
+        {
+          "party": "URPI",
+          "votes": 27,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 7,
+      "ac_name": "KADIRGAMAM",
+      "pc_number": 1,
+      "pc_name": "PUDUCHERRY",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 12206,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 10924,
+          "is_winner": false
+        },
+        {
+          "party": "NTK",
+          "votes": 1812,
+          "is_winner": false
+        },
+        {
+          "party": "AIADMK",
+          "votes": 571,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 352,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 78,
+          "is_winner": false
+        },
+        {
+          "party": "BSP",
+          "votes": 37,
+          "is_winner": false
+        },
+        {
+          "party": "URPI",
+          "votes": 17,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 8,
+      "ac_name": "INDIRA NAGAR",
+      "pc_number": 1,
+      "pc_name": "PUDUCHERRY",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 13464,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 11526,
+          "is_winner": false
+        },
+        {
+          "party": "NTK",
+          "votes": 2049,
+          "is_winner": false
+        },
+        {
+          "party": "AIADMK",
+          "votes": 595,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 466,
+          "is_winner": false
+        },
+        {
+          "party": "BSP",
+          "votes": 53,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 52,
+          "is_winner": false
+        },
+        {
+          "party": "URPI",
+          "votes": 27,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 9,
+      "ac_name": "THATTANCHAVADY",
+      "pc_number": 1,
+      "pc_name": "PUDUCHERRY",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 11324,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 7921,
+          "is_winner": false
+        },
+        {
+          "party": "NTK",
+          "votes": 1522,
+          "is_winner": false
+        },
+        {
+          "party": "AIADMK",
+          "votes": 679,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 353,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 60,
+          "is_winner": false
+        },
+        {
+          "party": "BSP",
+          "votes": 55,
+          "is_winner": false
+        },
+        {
+          "party": "URPI",
+          "votes": 20,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 10,
+      "ac_name": "KAMARAJ NAGAR",
+      "pc_number": 1,
+      "pc_name": "PUDUCHERRY",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 15314,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 10299,
+          "is_winner": false
+        },
+        {
+          "party": "NTK",
+          "votes": 1693,
+          "is_winner": false
+        },
+        {
+          "party": "AIADMK",
+          "votes": 749,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 422,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 98,
+          "is_winner": false
+        },
+        {
+          "party": "BSP",
+          "votes": 47,
+          "is_winner": false
+        },
+        {
+          "party": "URPI",
+          "votes": 19,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 11,
+      "ac_name": "LAWSPET",
+      "pc_number": 1,
+      "pc_name": "PUDUCHERRY",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 14871,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 6604,
+          "is_winner": false
+        },
+        {
+          "party": "NTK",
+          "votes": 1556,
+          "is_winner": false
+        },
+        {
+          "party": "AIADMK",
+          "votes": 770,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 348,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 86,
+          "is_winner": false
+        },
+        {
+          "party": "BSP",
+          "votes": 31,
+          "is_winner": false
+        },
+        {
+          "party": "URPI",
+          "votes": 24,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 12,
+      "ac_name": "KALAPET",
+      "pc_number": 1,
+      "pc_name": "PUDUCHERRY",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 13465,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 10859,
+          "is_winner": false
+        },
+        {
+          "party": "NTK",
+          "votes": 2098,
+          "is_winner": false
+        },
+        {
+          "party": "AIADMK",
+          "votes": 971,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 417,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 105,
+          "is_winner": false
+        },
+        {
+          "party": "BSP",
+          "votes": 39,
+          "is_winner": false
+        },
+        {
+          "party": "URPI",
+          "votes": 23,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 13,
+      "ac_name": "MUTHIALPET",
+      "pc_number": 1,
+      "pc_name": "PUDUCHERRY",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 12098,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 5545,
+          "is_winner": false
+        },
+        {
+          "party": "NTK",
+          "votes": 1546,
+          "is_winner": false
+        },
+        {
+          "party": "AIADMK",
+          "votes": 1266,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 289,
+          "is_winner": false
+        },
+        {
+          "party": "BSP",
+          "votes": 102,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 87,
+          "is_winner": false
+        },
+        {
+          "party": "URPI",
+          "votes": 19,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 14,
+      "ac_name": "RAJ BHAVAN",
+      "pc_number": 1,
+      "pc_name": "PUDUCHERRY",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 9591,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 6743,
+          "is_winner": false
+        },
+        {
+          "party": "NTK",
+          "votes": 980,
+          "is_winner": false
+        },
+        {
+          "party": "AIADMK",
+          "votes": 591,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 276,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 39,
+          "is_winner": false
+        },
+        {
+          "party": "BSP",
+          "votes": 35,
+          "is_winner": false
+        },
+        {
+          "party": "URPI",
+          "votes": 12,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 15,
+      "ac_name": "OUPALAM",
+      "pc_number": 1,
+      "pc_name": "PUDUCHERRY",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 13917,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 3426,
+          "is_winner": false
+        },
+        {
+          "party": "AIADMK",
+          "votes": 2916,
+          "is_winner": false
+        },
+        {
+          "party": "NTK",
+          "votes": 1202,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 376,
+          "is_winner": false
+        },
+        {
+          "party": "BSP",
+          "votes": 83,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 65,
+          "is_winner": false
+        },
+        {
+          "party": "URPI",
+          "votes": 16,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 16,
+      "ac_name": "ORLEAMPETH",
+      "pc_number": 1,
+      "pc_name": "PUDUCHERRY",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 12496,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 4400,
+          "is_winner": false
+        },
+        {
+          "party": "NTK",
+          "votes": 1050,
+          "is_winner": false
+        },
+        {
+          "party": "AIADMK",
+          "votes": 351,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 241,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 46,
+          "is_winner": false
+        },
+        {
+          "party": "BSP",
+          "votes": 17,
+          "is_winner": false
+        },
+        {
+          "party": "URPI",
+          "votes": 8,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 17,
+      "ac_name": "NELLITHOPE",
+      "pc_number": 1,
+      "pc_name": "PUDUCHERRY",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 14346,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 7052,
+          "is_winner": false
+        },
+        {
+          "party": "NTK",
+          "votes": 1382,
+          "is_winner": false
+        },
+        {
+          "party": "AIADMK",
+          "votes": 829,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 391,
+          "is_winner": false
+        },
+        {
+          "party": "BSP",
+          "votes": 50,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 49,
+          "is_winner": false
+        },
+        {
+          "party": "URPI",
+          "votes": 9,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 18,
+      "ac_name": "MUDALIARPET",
+      "pc_number": 1,
+      "pc_name": "PUDUCHERRY",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 14459,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 9103,
+          "is_winner": false
+        },
+        {
+          "party": "NTK",
+          "votes": 2025,
+          "is_winner": false
+        },
+        {
+          "party": "AIADMK",
+          "votes": 1898,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 323,
+          "is_winner": false
+        },
+        {
+          "party": "BSP",
+          "votes": 63,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 62,
+          "is_winner": false
+        },
+        {
+          "party": "URPI",
+          "votes": 24,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 19,
+      "ac_name": "ARIANKUPPAM",
+      "pc_number": 1,
+      "pc_name": "PUDUCHERRY",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 16370,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 10109,
+          "is_winner": false
+        },
+        {
+          "party": "NTK",
+          "votes": 2341,
+          "is_winner": false
+        },
+        {
+          "party": "AIADMK",
+          "votes": 2286,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 456,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 76,
+          "is_winner": false
+        },
+        {
+          "party": "BSP",
+          "votes": 57,
+          "is_winner": false
+        },
+        {
+          "party": "URPI",
+          "votes": 22,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 20,
+      "ac_name": "MANAVELY",
+      "pc_number": 1,
+      "pc_name": "PUDUCHERRY",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 14947,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 10356,
+          "is_winner": false
+        },
+        {
+          "party": "NTK",
+          "votes": 2208,
+          "is_winner": false
+        },
+        {
+          "party": "AIADMK",
+          "votes": 1164,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 603,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 80,
+          "is_winner": false
+        },
+        {
+          "party": "BSP",
+          "votes": 74,
+          "is_winner": false
+        },
+        {
+          "party": "URPI",
+          "votes": 26,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 21,
+      "ac_name": "EMBALAM",
+      "pc_number": 1,
+      "pc_name": "PUDUCHERRY",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 16564,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 11078,
+          "is_winner": false
+        },
+        {
+          "party": "NTK",
+          "votes": 1099,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 481,
+          "is_winner": false
+        },
+        {
+          "party": "AIADMK",
+          "votes": 427,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 62,
+          "is_winner": false
+        },
+        {
+          "party": "BSP",
+          "votes": 52,
+          "is_winner": false
+        },
+        {
+          "party": "URPI",
+          "votes": 18,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 22,
+      "ac_name": "NETTAPAKKAM",
+      "pc_number": 1,
+      "pc_name": "PUDUCHERRY",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 14929,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 11077,
+          "is_winner": false
+        },
+        {
+          "party": "NTK",
+          "votes": 774,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 512,
+          "is_winner": false
+        },
+        {
+          "party": "AIADMK",
+          "votes": 387,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 102,
+          "is_winner": false
+        },
+        {
+          "party": "BSP",
+          "votes": 51,
+          "is_winner": false
+        },
+        {
+          "party": "URPI",
+          "votes": 19,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 23,
+      "ac_name": "BAHOUR",
+      "pc_number": 1,
+      "pc_name": "PUDUCHERRY",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 13592,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 10452,
+          "is_winner": false
+        },
+        {
+          "party": "NTK",
+          "votes": 765,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 433,
+          "is_winner": false
+        },
+        {
+          "party": "AIADMK",
+          "votes": 431,
+          "is_winner": false
+        },
+        {
+          "party": "BSP",
+          "votes": 49,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 47,
+          "is_winner": false
+        },
+        {
+          "party": "URPI",
+          "votes": 17,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 24,
+      "ac_name": "NEDUNGADU",
+      "pc_number": 1,
+      "pc_name": "PUDUCHERRY",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 14673,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 8550,
+          "is_winner": false
+        },
+        {
+          "party": "NTK",
+          "votes": 1382,
+          "is_winner": false
+        },
+        {
+          "party": "AIADMK",
+          "votes": 901,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 516,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 55,
+          "is_winner": false
+        },
+        {
+          "party": "BSP",
+          "votes": 44,
+          "is_winner": false
+        },
+        {
+          "party": "URPI",
+          "votes": 18,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 25,
+      "ac_name": "THIRUNALLAR",
+      "pc_number": 1,
+      "pc_name": "PUDUCHERRY",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 14402,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 9145,
+          "is_winner": false
+        },
+        {
+          "party": "NTK",
+          "votes": 968,
+          "is_winner": false
+        },
+        {
+          "party": "AIADMK",
+          "votes": 498,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 415,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 52,
+          "is_winner": false
+        },
+        {
+          "party": "BSP",
+          "votes": 49,
+          "is_winner": false
+        },
+        {
+          "party": "URPI",
+          "votes": 17,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 26,
+      "ac_name": "KARAIKAL NORTH",
+      "pc_number": 1,
+      "pc_name": "PUDUCHERRY",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 13762,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 9476,
+          "is_winner": false
+        },
+        {
+          "party": "NTK",
+          "votes": 1644,
+          "is_winner": false
+        },
+        {
+          "party": "AIADMK",
+          "votes": 1315,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 386,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 48,
+          "is_winner": false
+        },
+        {
+          "party": "BSP",
+          "votes": 38,
+          "is_winner": false
+        },
+        {
+          "party": "URPI",
+          "votes": 21,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 27,
+      "ac_name": "KARAIKAL SOUTH",
+      "pc_number": 1,
+      "pc_name": "PUDUCHERRY",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 15922,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 5461,
+          "is_winner": false
+        },
+        {
+          "party": "NTK",
+          "votes": 822,
+          "is_winner": false
+        },
+        {
+          "party": "AIADMK",
+          "votes": 656,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 248,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 48,
+          "is_winner": false
+        },
+        {
+          "party": "BSP",
+          "votes": 26,
+          "is_winner": false
+        },
+        {
+          "party": "URPI",
+          "votes": 15,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 28,
+      "ac_name": "NERAVY-T.R.PATTINAM",
+      "pc_number": 1,
+      "pc_name": "PUDUCHERRY",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 12499,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 9495,
+          "is_winner": false
+        },
+        {
+          "party": "NTK",
+          "votes": 1281,
+          "is_winner": false
+        },
+        {
+          "party": "AIADMK",
+          "votes": 761,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 493,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 55,
+          "is_winner": false
+        },
+        {
+          "party": "BSP",
+          "votes": 45,
+          "is_winner": false
+        },
+        {
+          "party": "URPI",
+          "votes": 11,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 29,
+      "ac_name": "MAHE",
+      "pc_number": 1,
+      "pc_name": "PUDUCHERRY",
+      "candidates": [
+        {
+          "party": "INC",
+          "votes": 11587,
+          "is_winner": true
+        },
+        {
+          "party": "BJP",
+          "votes": 7367,
+          "is_winner": false
+        },
+        {
+          "party": "URPI",
+          "votes": 387,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 291,
+          "is_winner": false
+        },
+        {
+          "party": "AIADMK",
+          "votes": 97,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 53,
+          "is_winner": false
+        },
+        {
+          "party": "BSP",
+          "votes": 43,
+          "is_winner": false
+        },
+        {
+          "party": "NTK",
+          "votes": 38,
+          "is_winner": false
+        }
+      ]
+    },
+    {
+      "ac_number": 30,
+      "ac_name": "YANAM",
+      "pc_number": 1,
+      "pc_name": "PUDUCHERRY",
+      "candidates": [
+        {
+          "party": "BJP",
+          "votes": 22127,
+          "is_winner": true
+        },
+        {
+          "party": "INC",
+          "votes": 6947,
+          "is_winner": false
+        },
+        {
+          "party": "IND",
+          "votes": 752,
+          "is_winner": false
+        },
+        {
+          "party": "AIADMK",
+          "votes": 207,
+          "is_winner": false
+        },
+        {
+          "party": "BSP",
+          "votes": 90,
+          "is_winner": false
+        },
+        {
+          "party": "SUCI",
+          "votes": 48,
+          "is_winner": false
+        },
+        {
+          "party": "NTK",
+          "votes": 28,
+          "is_winner": false
+        },
+        {
+          "party": "URPI",
+          "votes": 19,
+          "is_winner": false
+        }
+      ]
+    }
+  ]
+}

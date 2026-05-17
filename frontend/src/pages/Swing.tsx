@@ -1,10 +1,10 @@
-import { useParams, useLocation } from 'react-router-dom'
-import { useEffect, useMemo, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { useMemo, useState } from 'react'
 import {
   XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, ReferenceLine,
   ScatterChart, Scatter, ZAxis, LabelList,
 } from 'recharts'
-import { useSwing, useOverview, useSeatFlips, useAllianceBreakdown, useFlipMatrix, useDistrictSwing, useStateKPIs } from '../lib/api'
+import { useSwing, useOverview, useSeatFlips, useAllianceBreakdown, useFlipMatrix, useStateKPIs } from '../lib/api'
 import { useSortable, sortIcon } from '../lib/useSortable'
 import PartyLogo from '../components/PartyLogo'
 import SortableTh from '../components/SortableTh'
@@ -14,7 +14,6 @@ import { Sparkline } from '../components/Sparkline'
 import { useEscapeKey } from '../lib/useEscapeKey'
 import { EmptyState } from '../components/EmptyState'
 import { fmtIN } from '../lib/format'
-import { DistrictChurnCard } from '../components/charts/DistrictChurnCard'
 
 
 
@@ -313,7 +312,6 @@ function FlipsTable({
 
 export default function Swing() {
   const { state } = useParams<{ state: string }>()
-  const location = useLocation()
   const { data, isLoading, isError, refetch } = useSwing(state!)
   const { data: overview } = useOverview(state!)
   const { data: kpis } = useStateKPIs(state!)
@@ -333,18 +331,8 @@ export default function Swing() {
     state!, allianceModal?.id ?? '', !!allianceModal,
   )
   const { data: flipMatrix } = useFlipMatrix(state!)
-  const { data: districtSwing } = useDistrictSwing(state!)
-
-  // Deep-link support: if the URL has e.g. #district-churn, scroll that section
-  // into view once its data is loaded. Re-runs when districtSwing arrives so
-  // the target element actually exists by the time we try to scroll.
-  useEffect(() => {
-    if (!location.hash) return
-    const id = location.hash.replace(/^#/, '')
-    const el = document.getElementById(id)
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }, [location.hash, districtSwing])
-  const [expandedDistrict, setExpandedDistrict] = useState<string | null>(null)
+  // (Churn cards previously lived here; moved to Geography page. The
+  // hash-scroll for #district-churn now belongs to Geography too.)
 
   // Per-year alliance lookup. Some parties switched alliances between 2021 and
   // 2026 (e.g. UPPL was in Assam NDA in 2021 but contested independently in 2026);
@@ -718,18 +706,11 @@ export default function Swing() {
         </div>
       )}
 
-      {/* District-Wise Churn — sortable table with expandable rows.
-          id="district-churn" used by deep-links from Overview's anti-incumbency modal. */}
-      {districtSwing && districtSwing.districts && districtSwing.districts.length > 0 && (
-        <div id="district-churn" style={{ scrollMarginTop: 16 }}>
-        <DistrictChurnCard
-          districts={districtSwing.districts}
-          state={state!}
-          expandedDistrict={expandedDistrict}
-          setExpandedDistrict={setExpandedDistrict}
-        />
-        </div>
-      )}
+      {/* District-Wise Churn + LS-Wise Segment Churn cards moved to the
+          Geography page (under District View and Lok Sabha View tabs
+          respectively) — they're a better fit alongside the rest of the
+          area-aggregation views. Deep-link IDs (#district-churn,
+          #ls-segment-churn) are preserved at their new home. */}
 
       {/* Seat transfers — who snatched from whom / who lost to whom */}
       {flipMatrix && flipMatrix.total_flips > 0 && (

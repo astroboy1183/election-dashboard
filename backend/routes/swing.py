@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlmodel import Session, select, func
 from sqlalchemy import Integer
 from backend.db import get_session
-from backend.models import Candidate, Constituency, HistoricalResult
+from backend.models import Candidate, Constituency, HistoricalResult, LokSabhaSeat
 from backend.config.states import STATE_CONFIG
 from backend.config.alliances import ALLIANCES
 from backend._cache import ttl_cache
@@ -333,7 +333,7 @@ def seat_flips(
     def _key(h):
         return _norm_name(h.constituency_name) if use_name_match else h.ac_number
 
-    winners_2021 = {_key(h): {
+    winners_prev = {_key(h): {
         "party": h.party, "votes": h.votes,
         "ac_2021": h.ac_number, "name_2021": h.constituency_name,
     } for h in hist_winners}
@@ -356,7 +356,7 @@ def seat_flips(
             continue
 
         key = _norm_name(c.name) if use_name_match else c.ac_number
-        w2021 = winners_2021.get(key)
+        w2021 = winners_prev.get(key)
         if w2021 is not None:
             matched_2021_keys.add(key)
         runner_up = session.exec(
@@ -427,7 +427,7 @@ def seat_flips(
     # redistricting"; for AC#-matched states it's "AC# no longer exists",
     # which currently is empty for all our states.
     delimited_seats = []
-    for k, w in winners_2021.items():
+    for k, w in winners_prev.items():
         if w["party"] != party:
             continue
         if k in matched_2021_keys:
@@ -487,7 +487,7 @@ def district_swing(state: str, session: Session = Depends(get_session)):
         .where(HistoricalResult.constituency_name != "")
         .where(HistoricalResult.is_winner == True)
     ).all()
-    winners_2021 = {
+    winners_prev = {
         (_norm_name(h.constituency_name) if use_name_match else h.ac_number): h.party
         for h in hist_winners
     }
@@ -529,7 +529,7 @@ def district_swing(state: str, session: Session = Depends(get_session)):
 
         # 2021 winner mapped via key
         key = _norm_name(c.name) if use_name_match else c.ac_number
-        w21_party = winners_2021.get(key)
+        w21_party = winners_prev.get(key)
 
         winner_party = winner.party if winner else None
         margin = (winner.votes - runner.votes) if (winner and runner) else None
@@ -630,6 +630,195 @@ def district_swing(state: str, session: Session = Depends(get_session)):
     }
 
 
+def _ls_segment_swing_core(state: str, session: Session, baseline_year: int = 2021):
+    """
+    Per-Lok-Sabha-seat churn: same shape as district_swing but groups
+    assembly segments by their parent LS seat instead of by district.
+
+    `baseline_year` selects what we compare 2026 against:
+      • 2021 → previous assembly election (default, uses name-match for
+        delimitation states like Assam)
+      • 2024 → 2024 Lok Sabha AC-segment leads (no name-match needed —
+        LS 2024 was already held under post-delimitation boundaries)
+    """
+    if state not in STATE_CONFIG:
+        raise HTTPException(404, "State not found")
+
+    party_map = ALLIANCES.get(state, {}).get("parties", {})
+    # LS 2024 was held under the post-delimitation Assam boundaries (same as
+    # 2026), so name-matching is only needed for 2021 baseline.
+    use_name_match = (state in _NAME_MATCH_STATES) and (baseline_year == 2021)
+
+    def color_of(p: str) -> str:
+        return party_map.get(p, {}).get("color", "#94a3b8")
+
+    # Baseline-year winners — keyed by name (for delimitation states) or AC number
+    hist_winners = session.exec(
+        select(HistoricalResult)
+        .where(HistoricalResult.state_slug == state)
+        .where(HistoricalResult.year == baseline_year)
+        .where(HistoricalResult.constituency_name != "")
+        .where(HistoricalResult.is_winner == True)
+    ).all()
+    winners_prev = {
+        (_norm_name(h.constituency_name) if use_name_match else h.ac_number): h.party
+        for h in hist_winners
+    }
+
+    # LS-seat lookup so we can attach name + ls_number to each group
+    ls_seats = session.exec(
+        select(LokSabhaSeat).where(LokSabhaSeat.state_slug == state)
+    ).all()
+    ls_by_id = {ls.id: ls for ls in ls_seats}
+
+    # 2026 candidates + their constituency rows
+    all_cands = session.exec(
+        select(Candidate, Constituency)
+        .join(Constituency, Constituency.id == Candidate.constituency_id)
+        .where(Constituency.state_slug == state)
+    ).all()
+    cand_by_const: dict[int, list] = {}
+    const_by_id: dict[int, Constituency] = {}
+    for cand, c in all_cands:
+        const_by_id[c.id] = c
+        cand_by_const.setdefault(c.id, []).append(cand)
+
+    ls_groups: dict[int, dict] = {}
+    for c in const_by_id.values():
+        if c.ls_seat_id is None:
+            continue
+        ls = ls_by_id.get(c.ls_seat_id)
+        if ls is None:
+            continue
+        if c.ls_seat_id not in ls_groups:
+            ls_groups[c.ls_seat_id] = {
+                "ls_seat_id": ls.id,
+                "ls_number": ls.ls_number,
+                "name": ls.name,
+                "seats_2026": 0,
+                "parties_2026": {},
+                "parties_2021": {},
+                "flipped_count": 0,
+                "margins": [],
+                "ac_count_with_margin": 0,
+                "close_seats_2026": 0,
+                "acs": [],
+            }
+        info = ls_groups[c.ls_seat_id]
+        info["seats_2026"] += 1
+
+        cands = sorted(cand_by_const.get(c.id, []), key=lambda x: -x.votes)
+        winner = next((x for x in cands if x.is_winner), None)
+        runner = next((x for x in cands if not x.is_winner), None) if winner else None
+
+        key = _norm_name(c.name) if use_name_match else c.ac_number
+        w21_party = winners_prev.get(key)
+
+        winner_party = winner.party if winner else None
+        margin = (winner.votes - runner.votes) if (winner and runner) else None
+        flipped = bool(w21_party and winner_party and w21_party != winner_party)
+
+        if winner:
+            info["parties_2026"][winner_party] = info["parties_2026"].get(winner_party, 0) + 1
+            if margin is not None:
+                info["margins"].append(margin)
+                info["ac_count_with_margin"] += 1
+                if margin < 5000:
+                    info["close_seats_2026"] += 1
+
+        if w21_party:
+            info["parties_2021"][w21_party] = info["parties_2021"].get(w21_party, 0) + 1
+            if flipped:
+                info["flipped_count"] += 1
+
+        info["acs"].append({
+            "ac_number": c.ac_number,
+            "name": c.name,
+            "district": c.district,
+            "winner_party_2026": winner_party,
+            "winner_party_2026_color": color_of(winner_party) if winner_party else "#94a3b8",
+            "winner_name_2026": winner.name if winner else None,
+            "winner_votes_2026": winner.votes if winner else 0,
+            "runner_up_party_2026": runner.party if runner else None,
+            "runner_up_party_2026_color": color_of(runner.party) if runner else "#94a3b8",
+            "margin_2026": margin or 0,
+            "winner_party_2021": w21_party,
+            "winner_party_2021_color": color_of(w21_party) if w21_party else "#94a3b8",
+            "flipped": flipped,
+        })
+
+    # Same post-processing as district_swing
+    rows = []
+    for g in ls_groups.values():
+        sorted_2026 = sorted(g["parties_2026"].items(), key=lambda x: -x[1])
+        sorted_2021 = sorted(g["parties_2021"].items(), key=lambda x: -x[1])
+        leader = sorted_2026[0] if sorted_2026 else (None, 0)
+        leader_2021_count = g["parties_2021"].get(leader[0], 0) if leader[0] else 0
+        leader_swing = (leader[1] - leader_2021_count) if leader[0] else 0
+        all_parties = set(g["parties_2026"].keys()) | set(g["parties_2021"].keys())
+        distinct_winner_count = len(g["parties_2026"])
+        avg_margin = round(sum(g["margins"]) / g["ac_count_with_margin"]) if g["ac_count_with_margin"] else 0
+        sweep_party = None
+        if leader[0] and g["seats_2026"] > 0 and leader[1] / g["seats_2026"] >= 0.75:
+            sweep_party = leader[0]
+        party_comparison = []
+        for p in sorted(all_parties, key=lambda x: -(g["parties_2026"].get(x, 0))):
+            party_comparison.append({
+                "party": p,
+                "color": color_of(p),
+                "seats_2021": g["parties_2021"].get(p, 0),
+                "seats_2026": g["parties_2026"].get(p, 0),
+                "change": g["parties_2026"].get(p, 0) - g["parties_2021"].get(p, 0),
+            })
+        rows.append({
+            "ls_seat_id": g["ls_seat_id"],
+            "ls_number": g["ls_number"],
+            "name": g["name"],
+            "seats_2026": g["seats_2026"],
+            "leader_party": leader[0],
+            "leader_seats": leader[1],
+            "leader_color": color_of(leader[0]) if leader[0] else "#94a3b8",
+            "leader_swing": leader_swing,
+            "leader_seats_2021": leader_2021_count,
+            "flipped_count": g["flipped_count"],
+            "avg_margin": avg_margin,
+            "close_seats": g["close_seats_2026"],
+            "distinct_winners": distinct_winner_count,
+            "sweep_party": sweep_party,
+            "sweep_party_color": color_of(sweep_party) if sweep_party else None,
+            "party_comparison": party_comparison,
+            "acs": sorted(g["acs"], key=lambda x: x["ac_number"]),
+        })
+    rows.sort(key=lambda x: x["ls_number"])
+
+    return {
+        "state": state,
+        "uses_name_match": use_name_match,
+        "baseline_year": baseline_year,
+        "ls_seats": rows,
+    }
+
+
+@router.get("/{state}/ls-segment-swing")
+@ttl_cache(seconds=600)
+def ls_segment_swing(state: str, session: Session = Depends(get_session)):
+    """Assembly-2021 → Assembly-2026 churn, grouped by parent LS seat."""
+    return _ls_segment_swing_core(state, session, baseline_year=2021)
+
+
+@router.get("/{state}/ls2024-vs-a2026-swing")
+@ttl_cache(seconds=600)
+def ls2024_vs_a2026_swing(state: str, session: Session = Depends(get_session)):
+    """
+    LS-2024 AC-segment lead → Assembly-2026 winner churn, grouped by parent
+    LS seat. Powers the "How AC segments shifted from LS 2024 to Assembly
+    2026" card. Field names still suffixed with `_2021` so the existing
+    frontend DistrictChurnCard renders without changes — they're just the
+    "previous-period" slots.
+    """
+    return _ls_segment_swing_core(state, session, baseline_year=2024)
+
+
 @router.get("/{state}/flip-matrix")
 def flip_matrix(state: str, session: Session = Depends(get_session)):
     """
@@ -656,7 +845,7 @@ def flip_matrix(state: str, session: Session = Depends(get_session)):
         .where(HistoricalResult.constituency_name != "")
         .where(HistoricalResult.is_winner == True)
     ).all()
-    winners_2021 = {
+    winners_prev = {
         (_norm_name(h.constituency_name) if use_name_match else h.ac_number): {
             "party": h.party, "votes": h.votes,
             "ac_2021": h.ac_number, "name_2021": h.constituency_name,
@@ -689,7 +878,7 @@ def flip_matrix(state: str, session: Session = Depends(get_session)):
     for cid, w26 in winners_2026.items():
         c = consts_by_id[cid]
         key = _norm_name(c.name) if use_name_match else c.ac_number
-        w21 = winners_2021.get(key)
+        w21 = winners_prev.get(key)
         if w21 is None or w21["party"] == w26.party:
             continue
         ru = runners_2026.get(cid)
@@ -809,7 +998,7 @@ def alliance_breakdown(state: str, alliance_id: str, session: Session = Depends(
             return _norm_name(h_or_c.constituency_name) if use_name_match else h_or_c.ac_number
         return _norm_name(h_or_c.name) if use_name_match else h_or_c.ac_number
 
-    winners_2021 = {_key(h): {
+    winners_prev = {_key(h): {
         "party": h.party, "votes": h.votes,
         "ac_2021": h.ac_number, "name_2021": h.constituency_name,
     } for h in hist_winners}
@@ -854,7 +1043,7 @@ def alliance_breakdown(state: str, alliance_id: str, session: Session = Depends(
         if not w2026:
             continue
         key = _key(c)
-        w2021 = winners_2021.get(key)
+        w2021 = winners_prev.get(key)
         if w2021 is not None:
             matched_2021_keys.add(key)
         ru = runner_ups_2026.get(c.id)
@@ -893,7 +1082,7 @@ def alliance_breakdown(state: str, alliance_id: str, session: Session = Depends(
             })
 
     # Delimited seats: 2021 wins by an alliance party whose seat didn't survive
-    for k, w in winners_2021.items():
+    for k, w in winners_prev.items():
         if w["party"] not in per_party:
             continue
         if k in matched_2021_keys:

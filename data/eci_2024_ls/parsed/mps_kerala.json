@@ -1,0 +1,206 @@
+{
+  "state": "kerala",
+  "year": 2024,
+  "mps": [
+    {
+      "ls_number": 1,
+      "ls_name": "Kasaragod",
+      "constituency_type": "GEN",
+      "mp_name": "RAJMOHAN UNNITHAN",
+      "mp_party": "INC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1105434
+    },
+    {
+      "ls_number": 2,
+      "ls_name": "Kannur",
+      "constituency_type": "GEN",
+      "mp_name": "K. SUDHAKARAN",
+      "mp_party": "INC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1054982
+    },
+    {
+      "ls_number": 3,
+      "ls_name": "Vadakara",
+      "constituency_type": "GEN",
+      "mp_name": "SHAFI PARAMBIL",
+      "mp_party": "INC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1120038
+    },
+    {
+      "ls_number": 4,
+      "ls_name": "Wayanad",
+      "constituency_type": "GEN",
+      "mp_name": "RAHUL GANDHI",
+      "mp_party": "INC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1077654
+    },
+    {
+      "ls_number": 5,
+      "ls_name": "Kozhikode",
+      "constituency_type": "GEN",
+      "mp_name": "M. K. RAGHAVAN",
+      "mp_party": "INC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1083734
+    },
+    {
+      "ls_number": 6,
+      "ls_name": "Malappuram",
+      "constituency_type": "GEN",
+      "mp_name": "E.T. MOHAMMED BASHEER",
+      "mp_party": "IUML",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1078416
+    },
+    {
+      "ls_number": 7,
+      "ls_name": "Ponnani",
+      "constituency_type": "GEN",
+      "mp_name": "DR. M.P ABDUSSAMAD SAMADANI",
+      "mp_party": "IUML",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1019735
+    },
+    {
+      "ls_number": 8,
+      "ls_name": "Palakkad",
+      "constituency_type": "GEN",
+      "mp_name": "V K SREEKANDAN",
+      "mp_party": "INC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1027043
+    },
+    {
+      "ls_number": 9,
+      "ls_name": "Alathur",
+      "constituency_type": "SC",
+      "mp_name": "K.RADHAKRISHNAN",
+      "mp_party": "CPI(M)",
+      "mp_gender": "Male",
+      "mp_social_category": "SC",
+      "total_valid_votes": 980235
+    },
+    {
+      "ls_number": 10,
+      "ls_name": "Thrissur",
+      "constituency_type": "GEN",
+      "mp_name": "SURESH GOPI",
+      "mp_party": "BJP",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1084804
+    },
+    {
+      "ls_number": 11,
+      "ls_name": "Chalakudy",
+      "constituency_type": "GEN",
+      "mp_name": "BENNY BEHANAN",
+      "mp_party": "INC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 943224
+    },
+    {
+      "ls_number": 12,
+      "ls_name": "Ernakulam",
+      "constituency_type": "GEN",
+      "mp_name": "HIBI EDEN",
+      "mp_party": "INC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 902744
+    },
+    {
+      "ls_number": 13,
+      "ls_name": "Idukki",
+      "constituency_type": "GEN",
+      "mp_name": "ADV. DEAN KURIAKOSE",
+      "mp_party": "INC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 831138
+    },
+    {
+      "ls_number": 14,
+      "ls_name": "Kottayam",
+      "constituency_type": "GEN",
+      "mp_name": "ADV K FRANCIS GEORGE",
+      "mp_party": "KEC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 824290
+    },
+    {
+      "ls_number": 15,
+      "ls_name": "Alappuzha",
+      "constituency_type": "GEN",
+      "mp_name": "K. C VENUGOPAL",
+      "mp_party": "INC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1051338
+    },
+    {
+      "ls_number": 16,
+      "ls_name": "Mavelikkara",
+      "constituency_type": "SC",
+      "mp_name": "KODIKUNNIL SURESH",
+      "mp_party": "INC",
+      "mp_gender": "Male",
+      "mp_social_category": "SC",
+      "total_valid_votes": 885088
+    },
+    {
+      "ls_number": 17,
+      "ls_name": "Pathanamthitta",
+      "constituency_type": "GEN",
+      "mp_name": "ANTO ANTONY",
+      "mp_party": "INC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 911158
+    },
+    {
+      "ls_number": 18,
+      "ls_name": "Kollam",
+      "constituency_type": "GEN",
+      "mp_name": "N K PREMACHANDRAN",
+      "mp_party": "RSP",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 909145
+    },
+    {
+      "ls_number": 19,
+      "ls_name": "Attingal",
+      "constituency_type": "GEN",
+      "mp_name": "ADOOR PRAKASH",
+      "mp_party": "INC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 975550
+    },
+    {
+      "ls_number": 20,
+      "ls_name": "Thiruvananthapuram",
+      "constituency_type": "GEN",
+      "mp_name": "SHASHI THAROOR",
+      "mp_party": "INC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 956230
+    }
+  ]
+}

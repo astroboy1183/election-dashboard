@@ -73,6 +73,9 @@ def party_analytics(state: str, session: Session = Depends(get_session)):
                 "total_votes": 0,
                 "won_districts": {},
                 "ages": [],
+                "winner_ages": [],          # MLA ages only (is_winner=True)
+                "winner_assets_cr": [],     # MLA assets in crore (winners only)
+                "winner_crim_counts": [],   # MLA criminal-case counts (winners only)
                 "female_count": 0,
                 "male_count": 0,
                 "other_gender_count": 0,
@@ -90,6 +93,8 @@ def party_analytics(state: str, session: Session = Depends(get_session)):
             d["won_districts"][district] = d["won_districts"].get(district, 0) + 1
         if cand.age is not None:
             d["ages"].append(cand.age)
+            if cand.is_winner:
+                d["winner_ages"].append(cand.age)
         if cand.gender == "Female":
             d["female_count"] += 1
         elif cand.gender == "Male":
@@ -100,8 +105,12 @@ def party_analytics(state: str, session: Session = Depends(get_session)):
             d["criminal_counts"].append(cand.criminal_cases)
             if cand.criminal_cases > 0:
                 d["with_criminal_count"] += 1
+            if cand.is_winner:
+                d["winner_crim_counts"].append(cand.criminal_cases)
         if cand.assets_cr is not None:
             d["assets_values_cr"].append(float(cand.assets_cr))
+            if cand.is_winner:
+                d["winner_assets_cr"].append(float(cand.assets_cr))
 
     def fmt_avg(xs):
         return round(sum(xs) / len(xs), 1) if xs else None
@@ -135,6 +144,40 @@ def party_analytics(state: str, session: Session = Depends(get_session)):
             "avg_age": fmt_avg(d["ages"]),
             "youngest": min(d["ages"]) if d["ages"] else None,
             "oldest": max(d["ages"]) if d["ages"] else None,
+            # MLA age distribution per party (winners only). Same 5 buckets as the
+            # state-level /kpis endpoint so the UI can use one color scheme.
+            "mla_age_distribution": {
+                "u35":   sum(1 for a in d["winner_ages"] if a < 35),
+                "35_44": sum(1 for a in d["winner_ages"] if 35 <= a < 45),
+                "45_54": sum(1 for a in d["winner_ages"] if 45 <= a < 55),
+                "55_64": sum(1 for a in d["winner_ages"] if 55 <= a < 65),
+                "65p":   sum(1 for a in d["winner_ages"] if a >= 65),
+            },
+            "mla_avg_age": fmt_avg(d["winner_ages"]),
+            "mla_with_age": len(d["winner_ages"]),
+            # MLA asset distribution (winners only). Same 5 buckets as the
+            # Assets page modal so the colour scheme can be shared.
+            "mla_asset_distribution": {
+                "u0_5":   sum(1 for v in d["winner_assets_cr"] if v < 0.5),
+                "0_5_2":  sum(1 for v in d["winner_assets_cr"] if 0.5 <= v < 2),
+                "2_10":   sum(1 for v in d["winner_assets_cr"] if 2 <= v < 10),
+                "10_50":  sum(1 for v in d["winner_assets_cr"] if 10 <= v < 50),
+                "50p":    sum(1 for v in d["winner_assets_cr"] if v >= 50),
+            },
+            "mla_with_assets": len(d["winner_assets_cr"]),
+            "mla_avg_assets_cr": fmt_avg(d["winner_assets_cr"]),
+            "mla_median_assets_cr": round(median(d["winner_assets_cr"]), 2) if d["winner_assets_cr"] else None,
+            # MLA criminal-case distribution (winners only). 4 buckets:
+            # clean / 1-2 cases / 3-5 / 6+. Matches "serious" threshold of ≥3
+            # used elsewhere in the dashboard.
+            "mla_criminal_distribution": {
+                "clean": sum(1 for n in d["winner_crim_counts"] if n == 0),
+                "1_2":   sum(1 for n in d["winner_crim_counts"] if 1 <= n <= 2),
+                "3_5":   sum(1 for n in d["winner_crim_counts"] if 3 <= n <= 5),
+                "6p":    sum(1 for n in d["winner_crim_counts"] if n >= 6),
+            },
+            "mla_with_crim_data": len(d["winner_crim_counts"]),
+            "mla_with_any_crim": sum(1 for n in d["winner_crim_counts"] if n > 0),
             "female_count": d["female_count"],
             "female_pct": round(d["female_count"] / gender_known * 100, 1) if gender_known else None,
             "candidates_with_criminal": d["with_criminal_count"],

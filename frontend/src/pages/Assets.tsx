@@ -98,6 +98,70 @@ export default function Assets() {
   // Winners with cases
   const winnersWithCases = (winnersData?.candidates ?? []).filter(c => c.is_winner && (c.criminal_cases ?? 0) > 0)
 
+  // ─────────────────────  Wealth distribution  ─────────────────────
+  // Bucket all candidates with declared assets into wealth tiers. Powers
+  // the "Wealth distribution" histogram below — answers "are most candidates
+  // modest-net-worth, or is the field skewed toward the wealthy?"
+  const WEALTH_BUCKETS = [
+    { key: 'u_0_5',     label: '< ₹0.5 cr',    min: 0,     max: 0.5,   color: '#94a3b8' },
+    { key: '0_5_to_2',  label: '₹0.5 – 2 cr',  min: 0.5,   max: 2,     color: '#14b8a6' },
+    { key: '2_to_10',   label: '₹2 – 10 cr',   min: 2,     max: 10,    color: '#3b82f6' },
+    { key: '10_to_50',  label: '₹10 – 50 cr',  min: 10,    max: 50,    color: '#8b5cf6' },
+    { key: '50_to_100', label: '₹50 – 100 cr', min: 50,    max: 100,   color: '#ec4899' },
+    { key: '100p',      label: '₹100 cr+',     min: 100,   max: 1e9,   color: '#f43f5e' },
+  ] as const
+
+  const wealthBuckets = useMemo(() => {
+    // Dedup candidates who appear in two ACs (Vijay-style multi-seat) — same
+    // person should count once in the histogram. Same dedup logic as topAssets.
+    const seen = new Map<string, { assets_cr: number; is_winner: boolean }>()
+    for (const c of (allData?.candidates ?? [])) {
+      if (c.assets_cr == null) continue
+      const key = `${c.name.trim().toUpperCase()}|${c.party}|${c.assets_cr}`
+      if (!seen.has(key)) seen.set(key, { assets_cr: c.assets_cr, is_winner: c.is_winner })
+      else if (c.is_winner) seen.get(key)!.is_winner = true
+    }
+    const all = [...seen.values()]
+    return WEALTH_BUCKETS.map(b => {
+      const inBucket = all.filter(c => c.assets_cr >= b.min && c.assets_cr < b.max)
+      return {
+        ...b,
+        total: inBucket.length,
+        winners: inBucket.filter(c => c.is_winner).length,
+        losers: inBucket.filter(c => !c.is_winner).length,
+      }
+    })
+  }, [allData])
+
+  // Winner-vs-loser wealth gap
+  const wealthGap = useMemo(() => {
+    const all = (allData?.candidates ?? []).filter(c => c.assets_cr != null)
+    const winners = all.filter(c => c.is_winner)
+    const losers = all.filter(c => !c.is_winner)
+    const avg = (arr: any[]) => arr.length ? arr.reduce((s, c) => s + (c.assets_cr ?? 0), 0) / arr.length : 0
+    const median = (arr: any[]) => {
+      if (!arr.length) return 0
+      const sorted = [...arr].map(c => c.assets_cr).sort((a, b) => a - b)
+      const mid = Math.floor(sorted.length / 2)
+      return sorted.length % 2 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2
+    }
+    const wAvg = avg(winners)
+    const lAvg = avg(losers)
+    return {
+      winnerCount: winners.length,
+      loserCount: losers.length,
+      winnerAvg: wAvg,
+      loserAvg: lAvg,
+      winnerMedian: median(winners),
+      loserMedian: median(losers),
+      // multiplier — how many times wealthier is the avg winner vs avg loser
+      ratio: lAvg > 0 ? wAvg / lAvg : null,
+    }
+  }, [allData])
+
+  const totalWithAssets = wealthBuckets.reduce((s, b) => s + b.total, 0)
+  const maxBucket = Math.max(...wealthBuckets.map(b => b.total), 1)
+
   // Winners whose affidavits we could NOT match — surface them transparently.
   // A winner is "no affidavit" if both assets AND criminal data are absent (which
   // for our pipeline means MyNeta had no record for them at all).
@@ -408,6 +472,148 @@ export default function Assets() {
           )) ?? <div style={{ color: 'var(--text-secondary)', fontSize: '0.875rem' }}>No data available.</div>}
         </div>
       </div>
+
+      {/* Wealth distribution + winner-vs-loser comparison.
+          The histogram answers "is this a wealthy field or a modest one?"
+          The comparison answers "does money correlate with winning?" — a
+          recurring question for ADR/MyNeta data that no other card answers. */}
+      {totalWithAssets > 0 && (
+        <div className="col-2" style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '1.25rem', marginBottom: '1.5rem' }}>
+          {/* Histogram */}
+          <div className="card">
+            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 6, flexWrap: 'wrap', gap: 8 }}>
+              <div className="section-title" style={{ marginBottom: 0 }}>Wealth Distribution</div>
+              <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>
+                {totalWithAssets.toLocaleString('en-IN')} candidates with declared assets · green segments = winners
+              </div>
+            </div>
+            <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)', marginBottom: 12 }}>
+              How the entire candidate pool is distributed across wealth tiers. Each bar is split — solid color = candidates who lost, green stripe = candidates who won.
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              {wealthBuckets.map(b => {
+                const pct = (b.total / totalWithAssets) * 100
+                const barPct = (b.total / maxBucket) * 100
+                const winnerPct = b.total ? (b.winners / b.total) * 100 : 0
+                return (
+                  <div key={b.key} style={{ display: 'grid', gridTemplateColumns: '110px 1fr 90px', alignItems: 'center', gap: 10 }}>
+                    <span style={{ fontSize: '0.78rem', color: b.color, fontWeight: 700 }}>{b.label}</span>
+                    <div title={`${b.total} candidates · ${b.winners} won (${winnerPct.toFixed(1)}%), ${b.losers} lost`}
+                      style={{
+                        height: 22, borderRadius: 5, background: 'var(--bg-secondary)',
+                        overflow: 'hidden', position: 'relative',
+                        boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.04)',
+                      }}>
+                      {/* Outer bar = total count (relative to max bucket) */}
+                      <div style={{
+                        width: `${barPct}%`, height: '100%', display: 'flex',
+                      }}>
+                        {/* Losers segment */}
+                        {b.losers > 0 && (
+                          <div style={{
+                            width: `${(b.losers / b.total) * 100}%`, background: b.color,
+                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                            fontSize: '0.7rem', fontWeight: 700, color: '#0b1020',
+                          }}>
+                            {b.losers / b.total >= 0.18 ? b.losers : ''}
+                          </div>
+                        )}
+                        {/* Winners segment (highlighted) */}
+                        {b.winners > 0 && (
+                          <div style={{
+                            width: `${(b.winners / b.total) * 100}%`,
+                            background: `repeating-linear-gradient(45deg, #22c55e 0 5px, ${b.color} 5px 10px)`,
+                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                            fontSize: '0.7rem', fontWeight: 800, color: '#0b1020',
+                          }}>
+                            {b.winners / b.total >= 0.18 ? b.winners : ''}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    <span className="tabular" style={{ fontSize: '0.74rem', textAlign: 'right', color: 'var(--text-secondary)' }}>
+                      <strong style={{ color: 'var(--text-primary)' }}>{b.total}</strong>
+                      <span style={{ color: 'var(--text-muted)' }}> · {pct.toFixed(1)}%</span>
+                    </span>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* Winner vs Loser comparison */}
+          <div className="card" style={{ borderLeft: '4px solid #22c55e' }}>
+            <div className="section-title">Do Winners Have More Money?</div>
+            <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)', marginBottom: 14 }}>
+              Average declared assets — winners vs the candidates they beat.
+            </div>
+
+            {wealthGap.winnerCount > 0 && wealthGap.loserCount > 0 ? (
+              <>
+                <div style={{ marginBottom: 14 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 4 }}>
+                    <span style={{ fontSize: '0.78rem', color: '#22c55e', fontWeight: 700 }}>🏆 Winners ({wealthGap.winnerCount})</span>
+                    <span className="tabular" style={{ fontSize: '1.1rem', fontWeight: 800, color: '#22c55e' }}>
+                      ₹{wealthGap.winnerAvg.toFixed(1)} cr
+                    </span>
+                  </div>
+                  <div style={{ height: 10, background: 'var(--bg-secondary)', borderRadius: 5, overflow: 'hidden' }}>
+                    <div style={{ width: '100%', height: '100%', background: '#22c55e', borderRadius: 5 }} />
+                  </div>
+                  <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)', marginTop: 3 }}>
+                    median ₹{wealthGap.winnerMedian.toFixed(1)} cr
+                  </div>
+                </div>
+
+                <div style={{ marginBottom: 14 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 4 }}>
+                    <span style={{ fontSize: '0.78rem', color: '#94a3b8', fontWeight: 700 }}>📉 Losers ({wealthGap.loserCount.toLocaleString('en-IN')})</span>
+                    <span className="tabular" style={{ fontSize: '1.1rem', fontWeight: 800, color: '#94a3b8' }}>
+                      ₹{wealthGap.loserAvg.toFixed(1)} cr
+                    </span>
+                  </div>
+                  <div style={{ height: 10, background: 'var(--bg-secondary)', borderRadius: 5, overflow: 'hidden' }}>
+                    <div style={{
+                      width: `${Math.min(100, (wealthGap.loserAvg / wealthGap.winnerAvg) * 100)}%`,
+                      height: '100%', background: '#94a3b8', borderRadius: 5,
+                    }} />
+                  </div>
+                  <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)', marginTop: 3 }}>
+                    median ₹{wealthGap.loserMedian.toFixed(1)} cr
+                  </div>
+                </div>
+
+                {wealthGap.ratio !== null && (
+                  <div style={{
+                    padding: '0.7rem 0.85rem', borderRadius: 8,
+                    background: wealthGap.ratio >= 2 ? 'rgba(239,68,68,0.10)' : 'rgba(34,197,94,0.08)',
+                    border: `1px solid ${wealthGap.ratio >= 2 ? 'rgba(239,68,68,0.30)' : 'rgba(34,197,94,0.25)'}`,
+                    fontSize: '0.82rem', lineHeight: 1.45,
+                  }}>
+                    {wealthGap.ratio >= 1.5 ? (
+                      <>
+                        The average winner is <strong>{wealthGap.ratio.toFixed(1)}× wealthier</strong> than the average loser. Money correlates with electoral success here.
+                      </>
+                    ) : wealthGap.ratio >= 1.05 ? (
+                      <>
+                        Winners and losers are roughly comparable on declared assets ({wealthGap.ratio.toFixed(1)}× gap). Wealth isn't a strong predictor.
+                      </>
+                    ) : (
+                      <>
+                        Interestingly, the average loser declared <strong>{(1 / wealthGap.ratio).toFixed(1)}× more assets</strong> than the average winner — voters did not reward the wealthier contestant.
+                      </>
+                    )}
+                  </div>
+                )}
+              </>
+            ) : (
+              <div style={{ color: 'var(--text-secondary)', padding: '1rem 0', fontSize: '0.85rem' }}>
+                Insufficient data to compare — fewer than the threshold of candidates have declared assets.
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Top assets */}
       <div className="card">

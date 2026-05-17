@@ -109,6 +109,36 @@ export interface ConstituencyDetail {
   margin: number
   candidates: CandidateDetail[]
   historical_2021: { party: string; votes: number; is_winner: boolean }[]
+  representation?: {
+    mla: {
+      name: string
+      party: string
+      party_color: string
+      party_full_name: string | null
+      votes: number
+      vote_share: number
+      margin: number
+      gender: string | null
+      age: number | null
+      assets_cr: number | null
+      criminal_cases: number | null
+      education: string | null
+      constituency_name: string
+      ac_number: number
+    } | null
+    mp: {
+      name: string
+      party: string
+      party_color: string
+      party_full_name: string | null
+      gender: string | null
+      social_category: string | null
+      seat_type: string | null
+      ls_name: string
+      ls_number: number
+      elected_year: number
+    } | null
+  } | null
 }
 
 export interface SwingRow {

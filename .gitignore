@@ -54,8 +54,16 @@ data/election.db-shm
 
 # Local backup + sandbox copies of the DB — never commit (each is 1.4 MB and bloats history).
 data/election.db.backup-*
+data/election.db.before_*
 data/election.db.sandbox-*
 data/*.db-journal
+
+# Raw LS 2024 statistical-report XLS (13 MB) — too large for git history.
+# The parsed JSON under data/eci_2024_ls/parsed/ IS committed and is the
+# canonical input for ingest_2024_ls.py. To re-download the raw XLS, see
+# scripts/parse_2024_ls.py docstring for the ECI URL.
+data/eci_2024_ls/*.xls
+data/eci_2024_ls/*.xlsx
 
 # Local scratch / dev files.
 *.bak

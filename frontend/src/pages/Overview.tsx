@@ -478,34 +478,72 @@ export default function Overview() {
         </div>
       )}
 
-      {/* Seat tally bar */}
-      <div className="card" style={{ marginBottom: '1.5rem' }}>
-        <div className="section-title">Seat Tally</div>
-        <div style={{ marginBottom: '0.75rem' }}>
-          {data.alliances.map(a => (
-            <div key={a.alliance_id} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: 8 }}>
-              <div style={{ width: 120, fontSize: '0.8rem', color: 'var(--text-secondary)', flexShrink: 0 }}>
-                {a.name.split('(')[0].trim()}
+      {/* Seat tally bar + Vote-to-seat conversion — side-by-side. The conversion
+          tile is the single clearest "FPTP arithmetic" insight (e.g. "DMK got
+          35% of votes but won 60% of seats"), so it earns first-fold placement
+          here on Overview, not just buried in Swing. */}
+      <div style={{ display: 'grid', gridTemplateColumns: kpis ? '1.4fr 1fr' : '1fr', gap: '1rem', marginBottom: '1.5rem' }}>
+        <div className="card">
+          <div className="section-title">Seat Tally</div>
+          <div style={{ marginBottom: '0.75rem' }}>
+            {data.alliances.map(a => (
+              <div key={a.alliance_id} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: 8 }}>
+                <div style={{ width: 120, fontSize: '0.8rem', color: 'var(--text-secondary)', flexShrink: 0 }}>
+                  {a.name.split('(')[0].trim()}
+                </div>
+                <div style={{ flex: 1, background: 'var(--bg-secondary)', borderRadius: 4, height: 20, overflow: 'hidden' }}>
+                  <div style={{
+                    width: `${(a.seats / data.total_seats) * 100}%`,
+                    height: '100%',
+                    background: a.color,
+                    borderRadius: 4,
+                    transition: 'width 0.6s ease',
+                  }} />
+                </div>
+                <div style={{ width: 40, fontSize: '0.875rem', fontWeight: 600, textAlign: 'right' }}>{a.seats}</div>
               </div>
-              <div style={{ flex: 1, background: 'var(--bg-secondary)', borderRadius: 4, height: 20, overflow: 'hidden' }}>
-                <div style={{
-                  width: `${(a.seats / data.total_seats) * 100}%`,
-                  height: '100%',
-                  background: a.color,
-                  borderRadius: 4,
-                  transition: 'width 0.6s ease',
-                }} />
+            ))}
+            {/* Majority marker */}
+            <div style={{ position: 'relative', marginTop: 8 }}>
+              <div style={{ fontSize: '0.7rem', color: '#eab308', marginLeft: `calc(${majorityPct}% - 2px)` }}>
+                ▲ Majority ({data.majority})
               </div>
-              <div style={{ width: 40, fontSize: '0.875rem', fontWeight: 600, textAlign: 'right' }}>{a.seats}</div>
-            </div>
-          ))}
-          {/* Majority marker */}
-          <div style={{ position: 'relative', marginTop: 8 }}>
-            <div style={{ fontSize: '0.7rem', color: '#eab308', marginLeft: `calc(${majorityPct}% - 2px)` }}>
-              ▲ Majority ({data.majority})
             </div>
           </div>
         </div>
+
+        {kpis && kpis.efficiency && kpis.efficiency.length > 0 && (
+          <div className="card" style={{ borderLeft: `4px solid ${kpis.efficiency[0]?.color ?? 'var(--accent)'}` }}>
+            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 8 }}>
+              <div className="section-title" style={{ marginBottom: 0, fontSize: '0.78rem' }}>
+                📊 Vote-to-seat conversion
+              </div>
+              <div style={{ fontSize: '0.64rem', color: 'var(--text-muted)' }}>+pp = over-represented</div>
+            </div>
+            <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', marginBottom: 10 }}>
+              FPTP arithmetic — vote share ≠ seat share. Big deltas (in pp) reveal who got "lucky" with their geographic distribution of votes.
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
+              {kpis.efficiency.slice(0, 4).map((e: any) => (
+                <div key={e.alliance_id} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.82rem' }}>
+                  <span style={{ width: 8, height: 8, borderRadius: 2, background: e.color, flexShrink: 0 }} />
+                  <span style={{ flex: 1, color: e.color, fontWeight: 700, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                    {e.alliance_name.split('(')[0].trim()}
+                  </span>
+                  <span className="tabular" style={{ width: 48, textAlign: 'right' }}>{e.vote_share}%</span>
+                  <span style={{ color: 'var(--text-muted)' }}>→</span>
+                  <span className="tabular" style={{ width: 48, textAlign: 'right' }}>{e.seat_share}%</span>
+                  <span className="tabular" style={{
+                    width: 56, textAlign: 'right', fontWeight: 800,
+                    color: e.delta_pp > 5 ? '#22c55e' : e.delta_pp < -5 ? '#ef4444' : 'var(--text-secondary)',
+                  }}>
+                    {e.delta_pp > 0 ? '+' : ''}{e.delta_pp}pp
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Party-wise seats bar — alliance-level totals already shown in the Seat Tally above,
@@ -1301,7 +1339,7 @@ export default function Overview() {
                 ))}
               </div>
               <button
-                onClick={() => { setAntiIncOpen(false); navigate(`/${state}/swing#district-churn`) }}
+                onClick={() => { setAntiIncOpen(false); navigate(`/${state}/geography#district-churn`) }}
                 style={{
                   marginTop: 12, width: '100%', textAlign: 'left',
                   fontSize: '0.78rem', color: 'var(--accent)', fontStyle: 'italic',

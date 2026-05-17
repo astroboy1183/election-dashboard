@@ -42,6 +42,16 @@ class LokSabhaSeat(SQLModel, table=True):
     name: str
     ls_number: int
 
+    # 2024 Lok Sabha sitting MP (populated by scripts/ingest_2024_ls_mps.py
+    # from ECI's "List of Successful Candidate" file). Powers the "Who
+    # represents you" card on the ConstituencyDetail and Geography pages.
+    # Nullable because older rows existed before these columns were added.
+    mp_2024_name:     Optional[str] = Field(default=None)
+    mp_2024_party:    Optional[str] = Field(default=None)
+    mp_2024_gender:   Optional[str] = Field(default=None)   # 'Male' / 'Female'
+    mp_2024_category: Optional[str] = Field(default=None)   # GENERAL / SC / ST / OBC
+    mp_2024_seat_type: Optional[str] = Field(default=None)  # GEN / SC / ST (seat reservation)
+
     __table_args__ = (UniqueConstraint("state_slug", "ls_number"),)
 
 

@@ -1,0 +1,426 @@
+{
+  "state": "west-bengal",
+  "year": 2024,
+  "mps": [
+    {
+      "ls_number": 1,
+      "ls_name": "Coochbehar",
+      "constituency_type": "SC",
+      "mp_name": "JAGADISH CHANDRA BARMA BASUNIA",
+      "mp_party": "AITC",
+      "mp_gender": "Male",
+      "mp_social_category": "SC",
+      "total_valid_votes": 1607485
+    },
+    {
+      "ls_number": 2,
+      "ls_name": "Alipurduars",
+      "constituency_type": "ST",
+      "mp_name": "MANOJ TIGGA",
+      "mp_party": "BJP",
+      "mp_gender": "Male",
+      "mp_social_category": "ST",
+      "total_valid_votes": 1400091
+    },
+    {
+      "ls_number": 3,
+      "ls_name": "Jalpaiguri",
+      "constituency_type": "SC",
+      "mp_name": "DR JAYANTA KUMAR ROY",
+      "mp_party": "BJP",
+      "mp_gender": "Male",
+      "mp_social_category": "SC",
+      "total_valid_votes": 1561541
+    },
+    {
+      "ls_number": 4,
+      "ls_name": "Darjeeling",
+      "constituency_type": "GEN",
+      "mp_name": "RAJU BISTA",
+      "mp_party": "BJP",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1309391
+    },
+    {
+      "ls_number": 5,
+      "ls_name": "Raiganj",
+      "constituency_type": "GEN",
+      "mp_name": "KARTICK CHANDRA PAUL",
+      "mp_party": "BJP",
+      "mp_gender": "Male",
+      "mp_social_category": "SC",
+      "total_valid_votes": 1366531
+    },
+    {
+      "ls_number": 6,
+      "ls_name": "Balurghat",
+      "constituency_type": "GEN",
+      "mp_name": "SUKANTA MAJUMDAR",
+      "mp_party": "BJP",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1229871
+    },
+    {
+      "ls_number": 7,
+      "ls_name": "Maldaha Uttar",
+      "constituency_type": "GEN",
+      "mp_name": "KHAGEN MURMU",
+      "mp_party": "BJP",
+      "mp_gender": "Male",
+      "mp_social_category": "ST",
+      "total_valid_votes": 1410301
+    },
+    {
+      "ls_number": 8,
+      "ls_name": "Maldaha Dakshin",
+      "constituency_type": "GEN",
+      "mp_name": "ISHA KHAN CHOUDHURY",
+      "mp_party": "INC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1366992
+    },
+    {
+      "ls_number": 9,
+      "ls_name": "Jangipur",
+      "constituency_type": "GEN",
+      "mp_name": "KHALILUR RAHAMAN",
+      "mp_party": "AITC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1352475
+    },
+    {
+      "ls_number": 10,
+      "ls_name": "Baharampur",
+      "constituency_type": "GEN",
+      "mp_name": "PATHAN YUSUF",
+      "mp_party": "AITC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1377285
+    },
+    {
+      "ls_number": 11,
+      "ls_name": "Murshidabad",
+      "constituency_type": "GEN",
+      "mp_name": "ABU TAHER KHAN",
+      "mp_party": "AITC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1528289
+    },
+    {
+      "ls_number": 12,
+      "ls_name": "Krishnanagar",
+      "constituency_type": "GEN",
+      "mp_name": "MAHUA MOITRA",
+      "mp_party": "AITC",
+      "mp_gender": "Female",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1418901
+    },
+    {
+      "ls_number": 13,
+      "ls_name": "Ranaghat",
+      "constituency_type": "SC",
+      "mp_name": "JAGANNATH SARKAR",
+      "mp_party": "BJP",
+      "mp_gender": "Male",
+      "mp_social_category": "SC",
+      "total_valid_votes": 1530739
+    },
+    {
+      "ls_number": 14,
+      "ls_name": "Bangaon",
+      "constituency_type": "SC",
+      "mp_name": "SHANTANU THAKUR",
+      "mp_party": "BJP",
+      "mp_gender": "Male",
+      "mp_social_category": "SC",
+      "total_valid_votes": 1486423
+    },
+    {
+      "ls_number": 15,
+      "ls_name": "Barrackpur",
+      "constituency_type": "GEN",
+      "mp_name": "PARTHA BHOWMICK",
+      "mp_party": "AITC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1130778
+    },
+    {
+      "ls_number": 16,
+      "ls_name": "Dum dum",
+      "constituency_type": "GEN",
+      "mp_name": "SOUGATA RAY",
+      "mp_party": "AITC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1248712
+    },
+    {
+      "ls_number": 17,
+      "ls_name": "Barasat",
+      "constituency_type": "GEN",
+      "mp_name": "Dr. KAKOLI GHOSH DASTIDAR",
+      "mp_party": "AITC",
+      "mp_gender": "Female",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1514709
+    },
+    {
+      "ls_number": 18,
+      "ls_name": "Basirhat",
+      "constituency_type": "GEN",
+      "mp_name": "SK NURUL ISLAM",
+      "mp_party": "AITC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1518153
+    },
+    {
+      "ls_number": 19,
+      "ls_name": "Jaynagar",
+      "constituency_type": "SC",
+      "mp_name": "PRATIMA MONDAL",
+      "mp_party": "AITC",
+      "mp_gender": "Female",
+      "mp_social_category": "SC",
+      "total_valid_votes": 1472843
+    },
+    {
+      "ls_number": 20,
+      "ls_name": "Mathurapur",
+      "constituency_type": "SC",
+      "mp_name": "BAPI HALDAR",
+      "mp_party": "AITC",
+      "mp_gender": "Male",
+      "mp_social_category": "SC",
+      "total_valid_votes": 1487393
+    },
+    {
+      "ls_number": 21,
+      "ls_name": "Diamond harbour",
+      "constituency_type": "GEN",
+      "mp_name": "ABHISHEK BANERJEE",
+      "mp_party": "AITC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1520629
+    },
+    {
+      "ls_number": 22,
+      "ls_name": "Jadavpur",
+      "constituency_type": "GEN",
+      "mp_name": "SAYANI GHOSH",
+      "mp_party": "AITC",
+      "mp_gender": "Female",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1559094
+    },
+    {
+      "ls_number": 23,
+      "ls_name": "Kolkata Dakshin",
+      "constituency_type": "GEN",
+      "mp_name": "MALA ROY",
+      "mp_party": "AITC",
+      "mp_gender": "Female",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1237054
+    },
+    {
+      "ls_number": 24,
+      "ls_name": "Kolkata Uttar",
+      "constituency_type": "GEN",
+      "mp_name": "BANDYOPADHYAY SUDIP",
+      "mp_party": "AITC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 948389
+    },
+    {
+      "ls_number": 25,
+      "ls_name": "Howrah",
+      "constituency_type": "GEN",
+      "mp_name": "PRASUN BANERJEE",
+      "mp_party": "AITC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1261712
+    },
+    {
+      "ls_number": 26,
+      "ls_name": "Uluberia",
+      "constituency_type": "GEN",
+      "mp_name": "SAJDA AHMED",
+      "mp_party": "AITC",
+      "mp_gender": "Female",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1379476
+    },
+    {
+      "ls_number": 27,
+      "ls_name": "Sreerampur",
+      "constituency_type": "GEN",
+      "mp_name": "KALYAN BANERJEE",
+      "mp_party": "AITC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1461498
+    },
+    {
+      "ls_number": 28,
+      "ls_name": "Hooghly",
+      "constituency_type": "GEN",
+      "mp_name": "RACHNA BANERJEE",
+      "mp_party": "AITC",
+      "mp_gender": "Female",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1504159
+    },
+    {
+      "ls_number": 29,
+      "ls_name": "Arambag",
+      "constituency_type": "SC",
+      "mp_name": "BAG MITALI",
+      "mp_party": "AITC",
+      "mp_gender": "Female",
+      "mp_social_category": "SC",
+      "total_valid_votes": 1541048
+    },
+    {
+      "ls_number": 30,
+      "ls_name": "Tamluk",
+      "constituency_type": "GEN",
+      "mp_name": "ABHIJIT GANGOPADHYAY",
+      "mp_party": "BJP",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1569054
+    },
+    {
+      "ls_number": 31,
+      "ls_name": "Kanthi",
+      "constituency_type": "GEN",
+      "mp_name": "ADHIKARI SOUMENDU",
+      "mp_party": "BJP",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1522863
+    },
+    {
+      "ls_number": 32,
+      "ls_name": "Ghatal",
+      "constituency_type": "GEN",
+      "mp_name": "ADHIKARI DEEPAK (DEV)",
+      "mp_party": "AITC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1587590
+    },
+    {
+      "ls_number": 33,
+      "ls_name": "Jhargram",
+      "constituency_type": "ST",
+      "mp_name": "KALIPADA SAREN (KHERWAL)",
+      "mp_party": "AITC",
+      "mp_gender": "Male",
+      "mp_social_category": "ST",
+      "total_valid_votes": 1474923
+    },
+    {
+      "ls_number": 34,
+      "ls_name": "Medinipur",
+      "constituency_type": "GEN",
+      "mp_name": "JUNE MALIAH",
+      "mp_party": "AITC",
+      "mp_gender": "Female",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1469139
+    },
+    {
+      "ls_number": 35,
+      "ls_name": "Purulia",
+      "constituency_type": "GEN",
+      "mp_name": "JYOTIRMAY SINGH MAHATO",
+      "mp_party": "BJP",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1416089
+    },
+    {
+      "ls_number": 36,
+      "ls_name": "Bankura",
+      "constituency_type": "GEN",
+      "mp_name": "ARUP CHAKRABORTY",
+      "mp_party": "AITC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1421465
+    },
+    {
+      "ls_number": 37,
+      "ls_name": "Bishnupur",
+      "constituency_type": "SC",
+      "mp_name": "KHAN SAUMITRA",
+      "mp_party": "BJP",
+      "mp_gender": "Male",
+      "mp_social_category": "SC",
+      "total_valid_votes": 1494740
+    },
+    {
+      "ls_number": 38,
+      "ls_name": "Bardhaman Purba",
+      "constituency_type": "SC",
+      "mp_name": "DR. SHARMILA SARKAR",
+      "mp_party": "AITC",
+      "mp_gender": "Female",
+      "mp_social_category": "SC",
+      "total_valid_votes": 1484613
+    },
+    {
+      "ls_number": 39,
+      "ls_name": "Bardhaman-Durgapur",
+      "constituency_type": "GEN",
+      "mp_name": "AZAD KIRTI JHA",
+      "mp_party": "AITC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1480178
+    },
+    {
+      "ls_number": 40,
+      "ls_name": "Asansol",
+      "constituency_type": "GEN",
+      "mp_name": "SHATRUGHAN PRASAD SINHA",
+      "mp_party": "AITC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1286030
+    },
+    {
+      "ls_number": 41,
+      "ls_name": "Bolpur",
+      "constituency_type": "SC",
+      "mp_name": "ASIT KUMAR MAL",
+      "mp_party": "AITC",
+      "mp_gender": "Male",
+      "mp_social_category": "SC",
+      "total_valid_votes": 1506748
+    },
+    {
+      "ls_number": 42,
+      "ls_name": "Birbhum",
+      "constituency_type": "GEN",
+      "mp_name": "SATABDI ROY",
+      "mp_party": "AITC",
+      "mp_gender": "Female",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1513339
+    }
+  ]
+}

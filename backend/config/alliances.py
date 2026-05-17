@@ -68,6 +68,11 @@ ALLIANCES = {
             "IUML":   {"alliance": "udf",       "color": "#006400", "full_name": "Indian Union Muslim League"},
             # Kerala Congress (Joseph) — UDF.
             "KC":     {"alliance": "udf",       "color": "#FFA500", "full_name": "Kerala Congress"},
+            # ECI's LS-2024 abbreviation for the broader Kerala Congress
+            # (used in the Successful-Candidates XLS — e.g. Adv K Francis
+            # George who won Kottayam). Same UDF alignment as "KC" — kept
+            # as a separate token so we don't silently rename ingested data.
+            "KEC":    {"alliance": "udf",       "color": "#FFA500", "full_name": "Kerala Congress (KEC)"},
             # Kerala Congress (B) — Balakrishna Pillai faction; aligned with UDF in 2026.
             "KC(B)":  {"alliance": "udf",       "color": "#FF6347", "full_name": "Kerala Congress (B)"},
             "RSP":    {"alliance": "udf",       "color": "#8B0000", "full_name": "Revolutionary Socialist Party"},

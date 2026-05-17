@@ -98,6 +98,27 @@ export const useDistrictSwing = (state: string) =>
     enabled: !!state,
   })
 
+export const useLsSegmentSwing = (state: string) =>
+  useQuery<any>({
+    queryKey: ['ls-segment-swing', state],
+    queryFn: () => api.get(`/${state}/ls-segment-swing`).then(r => r.data),
+    enabled: !!state,
+  })
+
+export const useLs2024VsA2026Swing = (state: string) =>
+  useQuery<any>({
+    queryKey: ['ls2024-vs-a2026-swing', state],
+    queryFn: () => api.get(`/${state}/ls2024-vs-a2026-swing`).then(r => r.data),
+    enabled: !!state,
+  })
+
+export const useLs2024PcWinners = (state: string) =>
+  useQuery<any>({
+    queryKey: ['ls2024-pc-winners', state],
+    queryFn: () => api.get(`/${state}/ls2024-pc-winners`).then(r => r.data),
+    enabled: !!state,
+  })
+
 export const usePartyAnalytics = (state: string) =>
   useQuery<any>({
     queryKey: ['party-analytics', state],

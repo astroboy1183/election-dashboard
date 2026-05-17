@@ -1,0 +1,396 @@
+{
+  "state": "tamil-nadu",
+  "year": 2024,
+  "mps": [
+    {
+      "ls_number": 1,
+      "ls_name": "TIRUVALLUR",
+      "constituency_type": "SC",
+      "mp_name": "Sasikanth Senthil",
+      "mp_party": "INC",
+      "mp_gender": "Male",
+      "mp_social_category": "SC",
+      "total_valid_votes": 1398834
+    },
+    {
+      "ls_number": 2,
+      "ls_name": "CHENNAI NORTH",
+      "constituency_type": "GEN",
+      "mp_name": "DR.KALANIDHI VEERASWAMY",
+      "mp_party": "DMK",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 889281
+    },
+    {
+      "ls_number": 3,
+      "ls_name": "CHENNAI SOUTH",
+      "constituency_type": "GEN",
+      "mp_name": "T.SUMATHY (ALIAS) THAMIZHACHI THANGAPANDIAN",
+      "mp_party": "DMK",
+      "mp_gender": "Female",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1083668
+    },
+    {
+      "ls_number": 4,
+      "ls_name": "CHENNAI CENTRAL",
+      "constituency_type": "GEN",
+      "mp_name": "DAYANIDHI MARAN",
+      "mp_party": "DMK",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 719386
+    },
+    {
+      "ls_number": 5,
+      "ls_name": "SRIPERUMBUDUR",
+      "constituency_type": "GEN",
+      "mp_name": "T R BAALU",
+      "mp_party": "DMK",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1414485
+    },
+    {
+      "ls_number": 6,
+      "ls_name": "KANCHEEPURAM",
+      "constituency_type": "SC",
+      "mp_name": "SELVAM. G",
+      "mp_party": "DMK",
+      "mp_gender": "Male",
+      "mp_social_category": "SC",
+      "total_valid_votes": 1242613
+    },
+    {
+      "ls_number": 7,
+      "ls_name": "ARAKKONAM",
+      "constituency_type": "GEN",
+      "mp_name": "S JAGATHRATCHAKAN",
+      "mp_party": "DMK",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1151209
+    },
+    {
+      "ls_number": 8,
+      "ls_name": "VELLORE",
+      "constituency_type": "GEN",
+      "mp_name": "DM KATHIR ANAND",
+      "mp_party": "DMK",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1120722
+    },
+    {
+      "ls_number": 9,
+      "ls_name": "KRISHNAGIRI",
+      "constituency_type": "GEN",
+      "mp_name": "GOPINATH K",
+      "mp_party": "INC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1155174
+    },
+    {
+      "ls_number": 10,
+      "ls_name": "DHARMAPURI",
+      "constituency_type": "GEN",
+      "mp_name": "MANI. A.",
+      "mp_party": "DMK",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1238634
+    },
+    {
+      "ls_number": 11,
+      "ls_name": "TIRUVANNAMALAI",
+      "constituency_type": "GEN",
+      "mp_name": "ANNADURAI, C.N.",
+      "mp_party": "DMK",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1134316
+    },
+    {
+      "ls_number": 12,
+      "ls_name": "ARANI",
+      "constituency_type": "GEN",
+      "mp_name": "THARANIVENTHAN M S",
+      "mp_party": "DMK",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1131073
+    },
+    {
+      "ls_number": 13,
+      "ls_name": "VILUPPURAM",
+      "constituency_type": "SC",
+      "mp_name": "RAVIKUMAR. D",
+      "mp_party": "VCK",
+      "mp_gender": "Male",
+      "mp_social_category": "SC",
+      "total_valid_votes": 1143701
+    },
+    {
+      "ls_number": 14,
+      "ls_name": "KALLAKURICHI",
+      "constituency_type": "GEN",
+      "mp_name": "MALAIYARASAN D",
+      "mp_party": "DMK",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1241036
+    },
+    {
+      "ls_number": 15,
+      "ls_name": "SALEM",
+      "constituency_type": "GEN",
+      "mp_name": "SELVAGANAPATHI T M",
+      "mp_party": "DMK",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1289950
+    },
+    {
+      "ls_number": 16,
+      "ls_name": "NAMAKKAL",
+      "constituency_type": "GEN",
+      "mp_name": "MATHESWARAN V S",
+      "mp_party": "DMK",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1133319
+    },
+    {
+      "ls_number": 17,
+      "ls_name": "ERODE",
+      "constituency_type": "GEN",
+      "mp_name": "K.E.PRAKASH",
+      "mp_party": "DMK",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1079440
+    },
+    {
+      "ls_number": 18,
+      "ls_name": "TIRUPPUR",
+      "constituency_type": "GEN",
+      "mp_name": "SUBBARAYAN, K.",
+      "mp_party": "CPI",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1124812
+    },
+    {
+      "ls_number": 19,
+      "ls_name": "NILGIRIS",
+      "constituency_type": "SC",
+      "mp_name": "RAJA A",
+      "mp_party": "DMK",
+      "mp_gender": "Male",
+      "mp_social_category": "SC",
+      "total_valid_votes": 1005906
+    },
+    {
+      "ls_number": 20,
+      "ls_name": "COIMBATORE",
+      "constituency_type": "GEN",
+      "mp_name": "GANAPATHY RAJKUMAR P",
+      "mp_party": "DMK",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1361045
+    },
+    {
+      "ls_number": 21,
+      "ls_name": "POLLACHI",
+      "constituency_type": "GEN",
+      "mp_name": "ESWARASAMY K",
+      "mp_party": "DMK",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1111542
+    },
+    {
+      "ls_number": 22,
+      "ls_name": "DINDIGUL",
+      "constituency_type": "GEN",
+      "mp_name": "SACHITHANANTHAM R",
+      "mp_party": "CPI(M)",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1127501
+    },
+    {
+      "ls_number": 23,
+      "ls_name": "KARUR",
+      "constituency_type": "GEN",
+      "mp_name": "JOTHIMANI. S",
+      "mp_party": "INC",
+      "mp_gender": "Female",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1123770
+    },
+    {
+      "ls_number": 24,
+      "ls_name": "TIRUCHIRAPPALLI",
+      "constituency_type": "GEN",
+      "mp_name": "DURAI VAIKO",
+      "mp_party": "MDMK",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1042115
+    },
+    {
+      "ls_number": 25,
+      "ls_name": "PERAMBALUR",
+      "constituency_type": "GEN",
+      "mp_name": "ARUN NEHRU",
+      "mp_party": "DMK",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1118904
+    },
+    {
+      "ls_number": 26,
+      "ls_name": "CUDDALORE",
+      "constituency_type": "GEN",
+      "mp_name": "M.K. VISHNUPRASAD",
+      "mp_party": "INC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1024271
+    },
+    {
+      "ls_number": 27,
+      "ls_name": "CHIDAMBARAM",
+      "constituency_type": "SC",
+      "mp_name": "THIRUMAAVALAVAN THOL",
+      "mp_party": "VCK",
+      "mp_gender": "Male",
+      "mp_social_category": "SC",
+      "total_valid_votes": 1158310
+    },
+    {
+      "ls_number": 28,
+      "ls_name": "MAYILADUTHURAI",
+      "constituency_type": "GEN",
+      "mp_name": "SUDHA R",
+      "mp_party": "INC",
+      "mp_gender": "Female",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1079013
+    },
+    {
+      "ls_number": 29,
+      "ls_name": "NAGAPATTINAM",
+      "constituency_type": "SC",
+      "mp_name": "SELVARAJ V",
+      "mp_party": "CPI",
+      "mp_gender": "Male",
+      "mp_social_category": "SC",
+      "total_valid_votes": 964093
+    },
+    {
+      "ls_number": 30,
+      "ls_name": "THANJAVUR",
+      "constituency_type": "GEN",
+      "mp_name": "MURASOLI S",
+      "mp_party": "DMK",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1015873
+    },
+    {
+      "ls_number": 31,
+      "ls_name": "SIVAGANGA",
+      "constituency_type": "GEN",
+      "mp_name": "KARTI P CHIDAMBARAM",
+      "mp_party": "INC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1045230
+    },
+    {
+      "ls_number": 32,
+      "ls_name": "MADURAI",
+      "constituency_type": "GEN",
+      "mp_name": "VENKATESAN S",
+      "mp_party": "CPI(M)",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 975795
+    },
+    {
+      "ls_number": 33,
+      "ls_name": "THENI",
+      "constituency_type": "GEN",
+      "mp_name": "THANGA TAMILSELVAN",
+      "mp_party": "DMK",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1129883
+    },
+    {
+      "ls_number": 34,
+      "ls_name": "VIRUDHUNAGAR",
+      "constituency_type": "GEN",
+      "mp_name": "MANICKAM TAGORE B",
+      "mp_party": "INC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1052493
+    },
+    {
+      "ls_number": 35,
+      "ls_name": "RAMANATHAPURAM",
+      "constituency_type": "GEN",
+      "mp_name": "NAVASKANI K",
+      "mp_party": "IUML",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1103558
+    },
+    {
+      "ls_number": 36,
+      "ls_name": "THOOTHUKKUDI",
+      "constituency_type": "GEN",
+      "mp_name": "KANIMOZHI KARUNANIDHI",
+      "mp_party": "DMK",
+      "mp_gender": "Female",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 968720
+    },
+    {
+      "ls_number": 37,
+      "ls_name": "TENKASI",
+      "constituency_type": "SC",
+      "mp_name": "DR RANI SRIKUMAR",
+      "mp_party": "DMK",
+      "mp_gender": "Female",
+      "mp_social_category": "SC",
+      "total_valid_votes": 1021954
+    },
+    {
+      "ls_number": 38,
+      "ls_name": "TIRUNELVELI",
+      "constituency_type": "GEN",
+      "mp_name": "ROBERT BRUCE C",
+      "mp_party": "INC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1060052
+    },
+    {
+      "ls_number": 39,
+      "ls_name": "KANNIYAKUMARI",
+      "constituency_type": "GEN",
+      "mp_name": "VIJAYAKUMAR (Alias) VIJAY VASANTH",
+      "mp_party": "INC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1025299
+    }
+  ]
+}

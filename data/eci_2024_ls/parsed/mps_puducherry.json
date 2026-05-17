@@ -1,0 +1,16 @@
+{
+  "state": "puducherry",
+  "year": 2024,
+  "mps": [
+    {
+      "ls_number": 1,
+      "ls_name": "PUDUCHERRY",
+      "constituency_type": "GEN",
+      "mp_name": "VE. VAITHILINGAM",
+      "mp_party": "INC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 798177
+    }
+  ]
+}

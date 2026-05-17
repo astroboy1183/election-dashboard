@@ -1,0 +1,146 @@
+{
+  "state": "assam",
+  "year": 2024,
+  "mps": [
+    {
+      "ls_number": 1,
+      "ls_name": "Kokrajhar",
+      "constituency_type": "ST",
+      "mp_name": "JOYANTA BASUMATARY",
+      "mp_party": "UPPL",
+      "mp_gender": "Male",
+      "mp_social_category": "ST",
+      "total_valid_votes": 1227584
+    },
+    {
+      "ls_number": 2,
+      "ls_name": "Dhubri",
+      "constituency_type": "GEN",
+      "mp_name": "RAKIBUL HUSSAIN",
+      "mp_party": "INC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 2438593
+    },
+    {
+      "ls_number": 3,
+      "ls_name": "Barpeta",
+      "constituency_type": "GEN",
+      "mp_name": "PHANI BHUSAN CHOUDHURY",
+      "mp_party": "AGP",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1668826
+    },
+    {
+      "ls_number": 4,
+      "ls_name": "Darrang-Udalguri",
+      "constituency_type": "GEN",
+      "mp_name": "DILIP SAIKIA",
+      "mp_party": "BJP",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1787996
+    },
+    {
+      "ls_number": 5,
+      "ls_name": "Guwahati",
+      "constituency_type": "GEN",
+      "mp_name": "BIJULI KALITA MEDHI",
+      "mp_party": "BJP",
+      "mp_gender": "Female",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1579140
+    },
+    {
+      "ls_number": 6,
+      "ls_name": "Diphu",
+      "constituency_type": "ST",
+      "mp_name": "AMARSING TISSO",
+      "mp_party": "BJP",
+      "mp_gender": "Male",
+      "mp_social_category": "ST",
+      "total_valid_votes": 666568
+    },
+    {
+      "ls_number": 7,
+      "ls_name": "Karimganj",
+      "constituency_type": "GEN",
+      "mp_name": "KRIPANATH MALLAH",
+      "mp_party": "BJP",
+      "mp_gender": "Male",
+      "mp_social_category": "SC",
+      "total_valid_votes": 1143942
+    },
+    {
+      "ls_number": 8,
+      "ls_name": "Silchar",
+      "constituency_type": "SC",
+      "mp_name": "PARIMAL SUKLABAIDYA",
+      "mp_party": "BJP",
+      "mp_gender": "Male",
+      "mp_social_category": "SC",
+      "total_valid_votes": 1076726
+    },
+    {
+      "ls_number": 9,
+      "ls_name": "Nagaon",
+      "constituency_type": "GEN",
+      "mp_name": "PRADYUT BORDOLOI",
+      "mp_party": "INC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1538003
+    },
+    {
+      "ls_number": 10,
+      "ls_name": "Kaziranga",
+      "constituency_type": "GEN",
+      "mp_name": "KAMAKHYA PRASAD TASA",
+      "mp_party": "BJP",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1605506
+    },
+    {
+      "ls_number": 11,
+      "ls_name": "Sonitpur",
+      "constituency_type": "GEN",
+      "mp_name": "RANJIT DUTTA",
+      "mp_party": "BJP",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1269720
+    },
+    {
+      "ls_number": 12,
+      "ls_name": "Lakhimpur",
+      "constituency_type": "GEN",
+      "mp_name": "PRADAN BARUAH",
+      "mp_party": "BJP",
+      "mp_gender": "Male",
+      "mp_social_category": "ST",
+      "total_valid_votes": 1194293
+    },
+    {
+      "ls_number": 13,
+      "ls_name": "Dibrugarh",
+      "constituency_type": "GEN",
+      "mp_name": "SARBANANDA SONOWAL",
+      "mp_party": "BJP",
+      "mp_gender": "Male",
+      "mp_social_category": "ST",
+      "total_valid_votes": 1246067
+    },
+    {
+      "ls_number": 14,
+      "ls_name": "Jorhat",
+      "constituency_type": "GEN",
+      "mp_name": "GAURAV GOGOI",
+      "mp_party": "INC",
+      "mp_gender": "Male",
+      "mp_social_category": "GENERAL",
+      "total_valid_votes": 1376605
+    }
+  ]
+}

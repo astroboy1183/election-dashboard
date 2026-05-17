@@ -93,6 +93,146 @@ export default function ConstituencyDetail() {
         </div>
       </div>
 
+      {/* Who Represents You — citizen-facing card. Pairs the elected MLA
+          (Assembly 2026 winner of this AC) with the sitting MP (LS 2024
+          winner of the parent Lok Sabha seat that contains this AC).
+          The dual representation that every Indian voter has but rarely
+          sees side-by-side. */}
+      {data.representation && (data.representation.mla || data.representation.mp) && (
+        <div className="card" style={{ marginBottom: '1.5rem', borderLeft: '4px solid #a78bfa' }}>
+          <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 6, flexWrap: 'wrap', gap: 8 }}>
+            <div className="section-title" style={{ marginBottom: 0 }}>🪪 Who Represents You</div>
+            <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)' }}>
+              Your two elected representatives — at the state assembly and the national parliament.
+            </div>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: 8 }}>
+            {/* MLA — assembly */}
+            {data.representation.mla ? (
+              <div style={{
+                padding: '1rem 1.1rem', borderRadius: 8,
+                background: `${data.representation.mla.party_color}0c`,
+                border: `1px solid ${data.representation.mla.party_color}44`,
+              }}>
+                <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 8 }}>
+                  <div style={{ fontSize: '0.66rem', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 700 }}>
+                    🏛️ Member of Legislative Assembly (MLA)
+                  </div>
+                  <div style={{ fontSize: '0.66rem', color: 'var(--text-muted)' }}>elected 2026</div>
+                </div>
+                <div style={{ fontSize: '1.05rem', fontWeight: 800, lineHeight: 1.25, marginBottom: 4 }}>
+                  {data.representation.mla.name}
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8, fontSize: '0.82rem' }}>
+                  <PartyLogo party={data.representation.mla.party} size={18} />
+                  <span style={{ color: data.representation.mla.party_color, fontWeight: 700 }}>
+                    {data.representation.mla.party}
+                  </span>
+                  {data.representation.mla.party_full_name && (
+                    <span style={{ color: 'var(--text-muted)', fontSize: '0.72rem' }}>
+                      · {data.representation.mla.party_full_name}
+                    </span>
+                  )}
+                </div>
+                <div style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+                  Represents <strong style={{ color: 'var(--text-primary)' }}>{data.representation.mla.constituency_name}</strong> (AC #{data.representation.mla.ac_number}) in the State Legislative Assembly.
+                  {data.representation.mla.vote_share != null && (
+                    <> Won with <strong style={{ color: 'var(--text-primary)' }}>{data.representation.mla.vote_share}%</strong> of votes.</>
+                  )}
+                </div>
+                {/* Compact demographic chips */}
+                {(data.representation.mla.age || data.representation.mla.gender || data.representation.mla.assets_cr != null) && (
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 10 }}>
+                    {data.representation.mla.age != null && (
+                      <span style={{ fontSize: '0.7rem', padding: '0.18rem 0.5rem', borderRadius: 12,
+                                     background: 'var(--bg-card)', border: '1px solid var(--border)', color: 'var(--text-secondary)' }}>
+                        🎂 Age {data.representation.mla.age}
+                      </span>
+                    )}
+                    {data.representation.mla.gender && (
+                      <span style={{ fontSize: '0.7rem', padding: '0.18rem 0.5rem', borderRadius: 12,
+                                     background: 'var(--bg-card)', border: '1px solid var(--border)', color: 'var(--text-secondary)' }}>
+                        {data.representation.mla.gender === 'Male' ? '♂' : data.representation.mla.gender === 'Female' ? '♀' : '⚧'} {data.representation.mla.gender}
+                      </span>
+                    )}
+                    {data.representation.mla.assets_cr != null && (
+                      <span style={{ fontSize: '0.7rem', padding: '0.18rem 0.5rem', borderRadius: 12,
+                                     background: 'var(--bg-card)', border: '1px solid var(--border)', color: 'var(--text-secondary)' }}>
+                        💰 ₹{data.representation.mla.assets_cr} cr declared
+                      </span>
+                    )}
+                    {data.representation.mla.criminal_cases != null && data.representation.mla.criminal_cases > 0 && (
+                      <span style={{ fontSize: '0.7rem', padding: '0.18rem 0.5rem', borderRadius: 12,
+                                     background: 'rgba(239,68,68,0.10)', border: '1px solid rgba(239,68,68,0.30)', color: '#fca5a5' }}>
+                        ⚖️ {data.representation.mla.criminal_cases} criminal case{data.representation.mla.criminal_cases === 1 ? '' : 's'}
+                      </span>
+                    )}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div style={{ padding: '1rem', borderRadius: 8, background: 'var(--bg-secondary)', color: 'var(--text-secondary)', fontStyle: 'italic', fontSize: '0.85rem' }}>
+                MLA data not yet declared for this AC.
+              </div>
+            )}
+
+            {/* MP — parliament */}
+            {data.representation.mp ? (
+              <div style={{
+                padding: '1rem 1.1rem', borderRadius: 8,
+                background: `${data.representation.mp.party_color}0c`,
+                border: `1px solid ${data.representation.mp.party_color}44`,
+              }}>
+                <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 8 }}>
+                  <div style={{ fontSize: '0.66rem', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 700 }}>
+                    🏛️ Member of Parliament (MP)
+                  </div>
+                  <div style={{ fontSize: '0.66rem', color: 'var(--text-muted)' }}>elected {data.representation.mp.elected_year}</div>
+                </div>
+                <div style={{ fontSize: '1.05rem', fontWeight: 800, lineHeight: 1.25, marginBottom: 4 }}>
+                  {data.representation.mp.name}
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8, fontSize: '0.82rem' }}>
+                  <PartyLogo party={data.representation.mp.party} size={18} />
+                  <span style={{ color: data.representation.mp.party_color, fontWeight: 700 }}>
+                    {data.representation.mp.party}
+                  </span>
+                  {data.representation.mp.party_full_name && (
+                    <span style={{ color: 'var(--text-muted)', fontSize: '0.72rem' }}>
+                      · {data.representation.mp.party_full_name}
+                    </span>
+                  )}
+                </div>
+                <div style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+                  Represents <strong style={{ color: 'var(--text-primary)' }}>{data.representation.mp.ls_name}</strong> (PC #{data.representation.mp.ls_number}) in the Lok Sabha. This assembly seat is one of its segments.
+                </div>
+                {(data.representation.mp.gender || data.representation.mp.seat_type) && (
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 10 }}>
+                    {data.representation.mp.gender && (
+                      <span style={{ fontSize: '0.7rem', padding: '0.18rem 0.5rem', borderRadius: 12,
+                                     background: 'var(--bg-card)', border: '1px solid var(--border)', color: 'var(--text-secondary)' }}>
+                        {data.representation.mp.gender === 'Male' ? '♂' : data.representation.mp.gender === 'Female' ? '♀' : '⚧'} {data.representation.mp.gender}
+                      </span>
+                    )}
+                    {data.representation.mp.seat_type && data.representation.mp.seat_type !== 'GEN' && (
+                      <span style={{ fontSize: '0.7rem', padding: '0.18rem 0.5rem', borderRadius: 12,
+                                     background: 'rgba(167,139,250,0.10)', border: '1px solid rgba(167,139,250,0.30)', color: '#a78bfa' }}>
+                        🪶 Reserved ({data.representation.mp.seat_type})
+                      </span>
+                    )}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div style={{ padding: '1rem', borderRadius: 8, background: 'var(--bg-secondary)', color: 'var(--text-secondary)', fontStyle: 'italic', fontSize: '0.85rem' }}>
+                MP data not yet linked for this AC.
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
       {/* Candidate bar chart */}
       {(() => {
         // Derived context the chart needs: winner/runner-up for the reference line,
